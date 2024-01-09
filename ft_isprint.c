@@ -6,11 +6,11 @@
 /*   By: jnenczak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 15:59:12 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/08 15:59:13 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/01/09 13:32:28 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_isprint(char c)
+int	ft_isprint(char c)
 {
 	return (c >= 32 && c < 127);
 }

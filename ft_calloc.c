@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnenczak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 13:34:19 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/09 13:34:41 by jnenczak         ###   ########.fr       */
+/*   Created: 2024/01/09 13:19:14 by jnenczak          #+#    #+#             */
+/*   Updated: 2024/01/09 13:25:27 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_toupper(char *str)
+#include <stddef.h>
+#include <stdlib.h>
+
+void	*ft_memset(void *b, int c, size_t len)
 {
 	int		i;
-	char	c;
+	char	*char_ptr;
 
 	i = 0;
-	while (str[i])
+	char_ptr = b;
+	while(len--)
 	{
-		c = str[i];
-		if (c >= 'a' && c <= 'z')
-			str[i] = c - 32;
-		i++;
+		*char_ptr = c;
+		char_ptr++;
 	}
-	return (str);
+	return (b);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*alloc;
+   	void	*ret;
+
+	alloc = (void *)malloc(count * size);
+	ret = ft_memset(alloc, 0, count);
+	return (ret);
 }

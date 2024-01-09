@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnenczak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 13:34:19 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/09 13:34:41 by jnenczak         ###   ########.fr       */
+/*   Created: 2024/01/09 13:12:18 by jnenczak          #+#    #+#             */
+/*   Updated: 2024/01/09 13:18:15 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_toupper(char *str)
+int	ft_isnum(const char *str)
 {
-	int		i;
-	char	c;
+	char c;
 
-	i = 0;
-	while (str[i])
+	c = *str;
+	return (c >= '0' && c <= '9');
+}
+
+int	ft_atoi(const char *str)
+{
+	int ret;
+
+	ret = 0;
+	while (!ft_isnum(str))
+		str++;
+	while (ft_isnum(str))
 	{
-		c = str[i];
-		if (c >= 'a' && c <= 'z')
-			str[i] = c - 32;
-		i++;
+		ret = ret * 10 + (*str - '0');
+		str++;
 	}
-	return (str);
+	return (ret);
 }

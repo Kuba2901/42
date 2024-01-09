@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnenczak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 13:34:19 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/09 13:34:41 by jnenczak         ###   ########.fr       */
+/*   Created: 2024/01/09 12:50:18 by jnenczak          #+#    #+#             */
+/*   Updated: 2024/01/09 12:54:46 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_toupper(char *str)
+#include <stddef.h>
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	int		i;
-	char	c;
+	int	i;
 
 	i = 0;
-	while (str[i])
+	while (i < dstsize)
 	{
-		c = str[i];
-		if (c >= 'a' && c <= 'z')
-			str[i] = c - 32;
+		if (src[i])
+			dst[i] = src[i];
+		else
+		{
+			dst[i] = '\0';
+			break ;
+		}
 		i++;
 	}
-	return (str);
+	return (i);
 }

@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnenczak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 13:34:19 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/09 13:34:41 by jnenczak         ###   ########.fr       */
+/*   Created: 2024/01/09 12:44:59 by jnenczak          #+#    #+#             */
+/*   Updated: 2024/01/09 12:48:34 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stddef.h>
 
-char	*ft_toupper(char *str)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
+	char	*dst_ptr;
 	int		i;
-	char	c;
 
 	i = 0;
-	while (str[i])
+	dst_ptr = dst;
+	while (i < len)
 	{
-		c = str[i];
-		if (c >= 'a' && c <= 'z')
-			str[i] = c - 32;
+		dst_ptr[i] = src[i];
 		i++;
 	}
-	return (str);
+	return (dst);
 }
