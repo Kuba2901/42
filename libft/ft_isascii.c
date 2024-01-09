@@ -1,20 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jnenczak <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 15:59:36 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/08 15:59:37 by jnenczak         ###   ########.fr       */
+/*   Created: 2024/01/08 15:58:49 by jnenczak          #+#    #+#             */
+/*   Updated: 2024/01/09 22:21:19 by jakubnencza      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
+int	ft_isascii(char c)
 {
-	int	counter;
-   	counter = 0;
-	while (str++)
-		counter++;
-	return (counter);
+	return (c >= 0 && c <= 127);
 }

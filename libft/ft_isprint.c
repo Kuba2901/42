@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jnenczak <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 15:57:55 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/08 15:57:56 by jnenczak         ###   ########.fr       */
+/*   Created: 2024/01/08 15:59:12 by jnenczak          #+#    #+#             */
+/*   Updated: 2024/01/09 22:21:57 by jakubnencza      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-
-void	ft_bzero(void *s, size_t n)
+int	ft_isprint(char c)
 {
-	char	*ptr;
-
-	ptr = s;
-	while (ptr++ && n--)
-		*ptr = 0;
+	return (c >= 32 && c <= 126);
 }

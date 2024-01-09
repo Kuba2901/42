@@ -1,18 +1,19 @@
-#include <stdlib.h>
+#include "libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	char	occ;
+	unsigned char	occ;
 	char	curr;
 	char	*str;
 
-	occ = (char)c;
+	occ = (unsigned char)c;
 	str = (char *)s;
-	while (*(str++))
+	while (*str)
 	{
 		curr = *str;
 		if (curr == occ)
 			return (str);
+		str++;
 	}
 	return (NULL);
 }

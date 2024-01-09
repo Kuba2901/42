@@ -3,35 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jnenczak <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:19:14 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/09 13:25:27 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:36:03 by jakubnencza      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdlib.h>
-
-void	*ft_memset(void *b, int c, size_t len)
-{
-	int		i;
-	char	*char_ptr;
-
-	i = 0;
-	char_ptr = b;
-	while(len--)
-	{
-		*char_ptr = c;
-		char_ptr++;
-	}
-	return (b);
-}
+#include "libft.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*alloc;
-   	void	*ret;
+	void	*ret;
 
 	alloc = (void *)malloc(count * size);
 	ret = ft_memset(alloc, 0, count);
