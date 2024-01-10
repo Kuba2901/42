@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
+/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 00:30:36 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/10 14:50:35 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:04:20 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,15 +104,15 @@ char	**ft_split(char const *s1, char const *set)
 	char	**split;
 	int		string_index;
 
-	if (handle_errors(s1, set, &split, &string_index) != 2)
+	if (handle_errors((char*)s1, (char*)set, &split, &string_index) != 2)
 		return (split);
 	while (*(s1))
 	{
-		while (*s1 && is_sep(s1, set))
+		while (*s1 && is_sep((char*)s1, (char*)set))
 			s1++;
 		if (*s1)
-			split[string_index++] = create_word(s1, set);
-		while (*s1 && !is_sep(s1, set))
+			split[string_index++] = create_word((char*)s1, (char*)set);
+		while (*s1 && !is_sep((char*)s1, (char*)set))
 			s1++;
 	}
 	split[string_index] = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
+/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:43:04 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/09 17:44:09 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/01/10 17:09:20 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,18 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	char		*dst_ptr;
 	char		*src_ptr;
-	size_t		i;
 
-	i = 0;
 	dst_ptr = (char *)dst;
 	src_ptr = (char *)src;
-	while (i < len)
+	if (dst_ptr > src_ptr)
 	{
-		dst_ptr[i] = src_ptr[i];
-		i++;
+		while (len--)
+			*(dst_ptr + len) = *(src_ptr + len);
+	}
+	else
+	{
+		while (len--)
+			*dst_ptr++ = *src_ptr++;
 	}
 	return (dst);
 }

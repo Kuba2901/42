@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:55:03 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/10 14:48:49 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:34:18 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	compare_str(char *needle, char *word, int word_index)
 {
 	int		same;
 	size_t	i;
-	size_t	j;
+	int		j;
 
 	same = 1;
 	i = word_index;
@@ -54,7 +54,7 @@ char	*ft_strnstr(char *str, char *to_find, size_t len)
 	first_to_find = needle_empty(to_find);
 	if (first_to_find == 0)
 		return (str);
-	while (str[i] != '\0' && i < len)
+	while (str[i] != '\0' && i < len - (size_t)ft_strlen(to_find) - 1)
 	{
 		c = str[i];
 		if (c == first_to_find)

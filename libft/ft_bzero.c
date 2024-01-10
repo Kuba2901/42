@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
+/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 15:57:55 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/09 17:33:07 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/01/10 17:01:39 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ void	ft_bzero(void *s, size_t n)
 
 	ptr = (char *)s;
 	while (n--)
-		*ptr = 0;
+		*ptr++ = 0;
 }

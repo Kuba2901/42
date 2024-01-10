@@ -3,25 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jnenczak <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:34:51 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/09 13:36:00 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:56:32 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_tolower(char *str)
+int	ft_tolower(int c)
 {
-	int		i;
-	char	c;
-
-	i = 0;
-	while (str[i])
-	{
-		c = str[i];
-		if (c >= 'A' && c <= 'Z')
-			str[i] = c + 32;
-		i++;
-	}
-	return (str);
+	if (c >= 'A' && c <= 'Z')
+		return (c + 32);
+	return (c);
 }
