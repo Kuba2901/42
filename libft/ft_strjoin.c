@@ -6,13 +6,13 @@
 /*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 23:51:25 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/09 23:51:30 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/01/10 14:49:25 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*ret;
 	size_t	size;

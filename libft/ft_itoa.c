@@ -6,7 +6,7 @@
 /*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 00:34:46 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/10 01:24:12 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/01/10 14:52:44 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ static int	ft_get_size(int n)
 	int	size;
 
 	size = 1;
-	while (n /= 10)
+	while (n > 0)
+	{
 		size++;
+		n /= 10;
+	}
 	return (size);
 }
 

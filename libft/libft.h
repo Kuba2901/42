@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
+/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:10:34 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/10 01:24:19 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/01/10 14:44:08 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 int		ft_isalpha(char c);
 int		ft_isdigit(char c);
-int 	ft_isalnum(char c);
+int		ft_isalnum(char c);
 int		ft_isascii(char c);
 int		ft_isprint(char c);
 int		ft_strlen(char *str);

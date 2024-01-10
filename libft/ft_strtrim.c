@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
+/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 23:54:38 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/10 00:26:15 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/01/10 14:45:25 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

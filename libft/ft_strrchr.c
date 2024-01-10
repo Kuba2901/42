@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
+/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 22:46:33 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/09 22:58:07 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/01/10 14:48:35 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

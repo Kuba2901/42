@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
+/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:55:03 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/09 23:03:08 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/01/10 14:48:49 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,3 @@ char	*ft_strnstr(char *str, char *to_find, size_t len)
 	}
 	return (NULL);
 }
-

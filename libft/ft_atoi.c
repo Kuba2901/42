@@ -6,7 +6,7 @@
 /*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:12:18 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/09 17:27:14 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/01/10 14:53:09 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_atoi(const char *str)
 {
-	int ret;
+	int	ret;
 	int	sign;
 
 	ret = 0;

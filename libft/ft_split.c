@@ -6,7 +6,7 @@
 /*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 00:30:36 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/10 00:34:15 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/01/10 14:50:35 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ static char	*create_word(char *str, char *charset)
 	return (created);
 }
 
-static int	handle_errors(char *str, char *charset, char ***split, int *string_index)
+static int	handle_errors(char *str, char *charset, char ***split,
+		int *string_index)
 {
 	int	str_len;
 
@@ -111,7 +112,7 @@ char	**ft_split(char const *s1, char const *set)
 			s1++;
 		if (*s1)
 			split[string_index++] = create_word(s1, set);
-		while (*s1&& !is_sep(s1, set))
+		while (*s1 && !is_sep(s1, set))
 			s1++;
 	}
 	split[string_index] = 0;
