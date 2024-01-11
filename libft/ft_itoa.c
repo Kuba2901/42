@@ -3,20 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
+/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 00:34:46 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/10 14:52:44 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/01/11 17:20:04 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_get_size(int n)
+static int	ft_get_size(long n)
 {
 	int	size;
 
-	size = 1;
+	size = 0;
+	if (n >= 0 && n <= 9)
+		return (1);
+	if (n < 0)
+	{
+		size++;
+		n *= -1;
+	}
 	while (n > 0)
 	{
 		size++;
@@ -25,67 +32,43 @@ static int	ft_get_size(int n)
 	return (size);
 }
 
-static char	*ft_get_ret(int n)
+static void	copy_num(long n, char *dst)
 {
-	int		size;
-	char	*ret;
+	char	a;
 
-	size = ft_get_size(n) + 1;
-	if (n < 0)
-		size++;
-	ret = (char *)malloc(sizeof(char) * (size));
-	if (!ret)
-		return (NULL);
-	return (ret);
-}
-
-static char	*ft_single(int n)
-{
-	char	*ret;
-
-	if (n >= 0 && n <= 9)
+	if (n == -2147483648)
 	{
-		ret = (char *)malloc(sizeof(char) * 2);
-		ret[0] = n + '0';
-		ret[1] = '\0';
-		return (ret);
+		*dst++ = '-';
+		*dst++ = '2';
+		copy_num(147483648, dst);
 	}
-	else if (n < 0 && n >= -9)
+	else if (n < 0)
 	{
-		n *= -1;
-		ret = (char *)malloc(sizeof(char) * 3);
-		ret[0] = '-';
-		ret[1] = n + '0';
-		ret[2] = '\0';
-		return (ret);
+		*dst++ = '-';
+		copy_num(-n, dst);
 	}
-	return (NULL);
+	else if (n <= 9)
+	{
+		a = n + '0';
+		*dst++ = a;
+	}
+	else
+	{
+		copy_num(n / 10, dst);
+		copy_num(n % 10, dst + ft_get_size(n / 10));
+	}
 }
 
 char	*ft_itoa(int n)
 {
 	char	*ret;
-	int		i;
-	int		negative;
+	long	ln;
 
-	if (n > -10 && n < 10)
-		return (ft_single(n));
-	negative = 0;
-	if (n < 0)
-	{
-		negative = 1;
-		n *= -1;
-	}
-	ret = ft_get_ret(n);
-	i = ft_get_size(n) + negative;
-	ret[--i] = '\0';
-	while (n > 0)
-	{
-		ret[i] = (n % 10) + '0';
-		n /= 10;
-		i--;
-	}
-	if (negative)
-		ret[i] = '-';
+	ln = (long)n;
+	ret = (char *)malloc(sizeof(char) * (ft_get_size(n) + 1));
+	if (!ret)
+		return (NULL);
+	copy_num(n, ret);
+	ret[ft_get_size(n)] = '\0';
 	return (ret);
 }

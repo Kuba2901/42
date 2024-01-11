@@ -6,17 +6,17 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:55:03 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/10 18:34:18 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/01/11 15:15:23 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	compare_str(char *needle, char *word, int word_index)
+static int	compare_str(const char *needle, const char *word, int word_index)
 {
 	int		same;
 	size_t	i;
-	int		j;
+	size_t	j;
 
 	same = 1;
 	i = word_index;
@@ -31,9 +31,9 @@ static int	compare_str(char *needle, char *word, int word_index)
 	return (1);
 }
 
-static char	needle_empty(char *to_find)
+static char	needle_empty(const char *to_find)
 {
-	int	needle_len;
+	size_t	needle_len;
 
 	needle_len = ft_strlen(to_find);
 	if (needle_len > 0)
@@ -42,7 +42,7 @@ static char	needle_empty(char *to_find)
 		return (0);
 }
 
-char	*ft_strnstr(char *str, char *to_find, size_t len)
+const char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
 	size_t	i;
 	char	c;
@@ -52,9 +52,11 @@ char	*ft_strnstr(char *str, char *to_find, size_t len)
 	i = 0;
 	found = 0;
 	first_to_find = needle_empty(to_find);
+	if (!len)
+		return (NULL);
 	if (first_to_find == 0)
 		return (str);
-	while (str[i] != '\0' && i < len - (size_t)ft_strlen(to_find) - 1)
+	while (str[i] != '\0' && i < len - ft_strlen(to_find) - 1)
 	{
 		c = str[i];
 		if (c == first_to_find)

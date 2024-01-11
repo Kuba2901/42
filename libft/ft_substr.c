@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 23:26:31 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/10 15:53:32 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/01/11 15:29:26 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,28 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*ret;
 	size_t	i;
+	size_t	len_substr;
 
+	if (s == NULL)
+		return (NULL);
 	ret = (char *)malloc(sizeof(char) * (len + 1));
 	i = 0;
-	if (s == NULL || ret == NULL)
+	if (start >= (unsigned int)ft_strlen(s))
+		return (ft_strdup(""));
+	len_substr = ft_strlen(s) - start;
+	if (len > (unsigned int)len_substr)
+		len = len_substr;
+	if (ret == NULL)
 		return (NULL);
-	while (s[start] && i < len)
-	{
-		ret[i++] = s[start];
-		start++;
-	}
-	ret[i] = '\0';
+	ft_strlcpy(ret, s + start, len + 1);
 	return (ret);
 }
-// What about null termination?
 
-#include <stdio.h>
+// #include <stdio.h>
 
-int	main(void)
-{
-	const char *str = "Hello world!";
-	printf("orig: %s\n", str);
-	printf("substr: %s\n", ft_substr(str, 2, 6));
-	return (0);
-}
+// int	main(void)
+// {
+// 	char	str[] = "lorem ipsum dolor sit amet";
+// 	printf("res: %s\n", ft_substr(str, 0, 0));
+// 	return (0);
+// }

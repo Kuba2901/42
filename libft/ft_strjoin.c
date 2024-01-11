@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
+/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 23:51:25 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/10 14:49:25 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/01/11 15:38:56 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,17 @@ char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*ret;
 	size_t	size;
-	size_t	str_iter;
 	size_t	curr;
 
 	if (!s1 || !s2)
 		return (NULL);
-	size = (size_t)ft_strlen((char *)s1) + (size_t)ft_strlen((char *)s2);
+	size = ft_strlen(s1) + ft_strlen(s2) + 1;
 	ret = (char *)malloc(sizeof(char) * size);
 	if (!ret)
 		return (NULL);
-	str_iter = 0;
 	curr = 0;
-	while (s1[str_iter])
-		ret[curr++] = s1[str_iter++];
-	str_iter = 0;
-	while (s2[str_iter])
-		ret[curr++] = s2[str_iter++];
+	while (*s1)
+		ret[curr++] = *s1++;
+	ft_strlcpy(ret + curr, s2, size - ft_strlen(s1));
 	return (ret);
 }

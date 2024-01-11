@@ -6,24 +6,18 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 00:30:36 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/10 16:04:20 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/01/11 16:21:53 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	is_sep(char *str, char *charset)
+static int	is_sep(char *str, char sep)
 {
-	while (*charset)
-	{
-		if (*str == *charset)
-			return (1);
-		charset++;
-	}
-	return (0);
+	return (*str == sep);
 }
 
-static int	count_words(char *str, char *charset)
+static int	count_words(char *str, char sep)
 {
 	int		wc;
 	int		jumped;
@@ -36,7 +30,7 @@ static int	count_words(char *str, char *charset)
 	while (*str)
 	{
 		jumped = 0;
-		while (is_sep(str, charset))
+		while (is_sep(str, sep))
 		{
 			jumped++;
 			str++;
@@ -50,14 +44,14 @@ static int	count_words(char *str, char *charset)
 	return (wc);
 }
 
-static char	*create_word(char *str, char *charset)
+static char	*create_word(char *str, char sep)
 {
 	char	*created;
 	int		i;
 	int		word_len;
 
 	word_len = 0;
-	while (*(str + word_len) && !is_sep(str + word_len, charset))
+	while (*(str + word_len) && !is_sep(str + word_len, sep))
 		word_len++;
 	i = -1;
 	created = (char *)malloc(word_len + 1);
@@ -70,7 +64,7 @@ static char	*create_word(char *str, char *charset)
 	return (created);
 }
 
-static int	handle_errors(char *str, char *charset, char ***split,
+static int	handle_errors(char *str, char sep, char ***split,
 		int *string_index)
 {
 	int	str_len;
@@ -84,35 +78,27 @@ static int	handle_errors(char *str, char *charset, char ***split,
 	str_len = -1;
 	while (str[++str_len])
 		;
-	if (charset == NULL)
-	{
-		*split = (char **)malloc(2 * 8);
-		(*split)[0] = (char *)malloc(str_len + 1);
-		(*split)[0] = create_word(str, "");
-		(*split)[1] = 0;
-		return (1);
-	}
 	*split = (char **)malloc(
-			(count_words(str, charset) + 1) * sizeof(char *));
+			(count_words(str, sep) + 1) * sizeof(char *));
 	*string_index = 0;
-	(*split)[count_words(str, charset)] = 0;
+	(*split)[count_words(str, sep)] = 0;
 	return (2);
 }
 
-char	**ft_split(char const *s1, char const *set)
+char	**ft_split(char const *s1, char c)
 {
 	char	**split;
 	int		string_index;
 
-	if (handle_errors((char*)s1, (char*)set, &split, &string_index) != 2)
+	if (handle_errors((char *)s1, c, &split, &string_index) != 2)
 		return (split);
-	while (*(s1))
+	while (*s1)
 	{
-		while (*s1 && is_sep((char*)s1, (char*)set))
+		while (*s1 && is_sep((char *)s1, c))
 			s1++;
 		if (*s1)
-			split[string_index++] = create_word((char*)s1, (char*)set);
-		while (*s1 && !is_sep((char*)s1, (char*)set))
+			split[string_index++] = create_word((char *)s1, c);
+		while (*s1 && !is_sep((char *)s1, c))
 			s1++;
 	}
 	split[string_index] = 0;
