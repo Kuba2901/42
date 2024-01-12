@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 00:34:46 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/11 17:20:04 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/01/12 20:18:29 by jakubnencza      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*ft_itoa(int n)
 
 	ln = (long)n;
 	ret = (char *)malloc(sizeof(char) * (ft_get_size(n) + 1));
-	if (!ret)
+	if (ret == NULL)
 		return (NULL);
 	copy_num(ln, ret);
 	ret[ft_get_size(n)] = '\0';
