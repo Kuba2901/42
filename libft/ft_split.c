@@ -21,11 +21,9 @@ static int	count_words(char *str, char sep)
 {
 	int		wc;
 	int		jumped;
-	int		i;
 	char	*con;
 
 	wc = 0;
-	i = 0;
 	con = str;
 	while (*str)
 	{

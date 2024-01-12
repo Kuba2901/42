@@ -68,7 +68,7 @@ char	*ft_itoa(int n)
 	ret = (char *)malloc(sizeof(char) * (ft_get_size(n) + 1));
 	if (!ret)
 		return (NULL);
-	copy_num(n, ret);
+	copy_num(ln, ret);
 	ret[ft_get_size(n)] = '\0';
 	return (ret);
 }

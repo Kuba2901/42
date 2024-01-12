@@ -14,11 +14,9 @@
 
 static int	compare_str(const char *needle, const char *word, int word_index)
 {
-	int		same;
 	size_t	i;
 	size_t	j;
 
-	same = 1;
 	i = word_index;
 	j = 0;
 	while (j < ft_strlen(needle))
