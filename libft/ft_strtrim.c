@@ -51,6 +51,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		beg;
 	int		end;
 
+	if (s1 == NULL || set == NULL)
+		return (NULL);
 	beg = get_begin(s1, set);
 	end = get_end(s1, set);
 	if (beg > end)
