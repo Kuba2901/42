@@ -1,0 +1,12 @@
+.vscode/
+
+# FranFrau tester files
+libft_tester/
+libft-unit-test/
+libft/libft-war-machine/
+libft/Libftest/
+libft/libftTester/
+libft/Supreme-Tester-Libft/
+libft/tester.sh
+
+
