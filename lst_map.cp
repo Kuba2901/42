@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 18:49:35 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/12 20:18:55 by jakubnencza      ###   ########.fr       */
+/*   Created: 2024/01/12 18:56:29 by jakubnencza       #+#    #+#             */
+/*   Updated: 2024/01/13 18:35:04 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*current;
-	t_list	*temp;
+	t_list	*new_list;
+	t_list	*new_elem;
 
-	if (lst == NULL || del == NULL || (*lst) == NULL)
-		return ;
-	current = *lst;
-	while (current->next)
+	if (!lst || !f || !del)
+		return (NULL);
+	new_list = NULL;
+	while (lst)
 	{
-		temp = current;
-		current = current->next;
-		del(temp->content);
-		free(temp);
+		new_elem = ft_lstnew((*f)(lst->content));
+		if (new_elem == NULL)
+		{
+			ft_lstclear(&new_list, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new_list, new_elem);
+		lst = lst->next;
 	}
-	del(current->content);
-	free(current);
-	*lst = NULL;
+	return (new_list);
 }
+

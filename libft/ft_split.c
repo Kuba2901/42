@@ -53,6 +53,8 @@ static char	*create_word(char *str, char sep)
 		word_len++;
 	i = -1;
 	created = (char *)malloc(word_len + 1);
+	if (!created)
+		return (NULL);
 	while (++i < word_len)
 	{
 		created[i] = *str;

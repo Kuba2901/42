@@ -36,4 +36,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean .c.o
+.PHONY: all bonus clean fclean re .c.o
