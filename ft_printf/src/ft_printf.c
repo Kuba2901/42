@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 15:20:50 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/14 16:18:48 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/01/14 17:02:28 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,36 +15,49 @@
 
 static void	ft_dec_to_hex(int n, int lower)
 {
-	char	a;
-
-	if (n == -2147483648)
+	if (n <= 9)
 	{
-		ft_putstr_fd("-2", fd);
-		ft_putnbr_fd(147483648, fd);
+		ft_putchar_fd(n + '0', FT_STDOUT);
 	}
-	else if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
-		ft_putnbr_fd(-n, fd);
-	}
-	else if (n <= 9)
-	{
-		a = n + 48;
-		ft_putchar_fd(a, fd);
-	}
+	else if (n < 16)
+		ft_putchar_fd('A' + n - 10, FT_STDOUT);
 	else
 	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(n % 10, fd);
+		ft_dec_to_hex(n / 16, lower);
+		ft_dec_to_hex(n % 16, lower);
 	}
 }
+
+void	ft_print_pointer(void *ptr)
+{
+	uintptr_t	address;
+	int			remainder;
+	char		buffer[20];
+	int			index;
+
+	index = 0;
+	address = (uintptr_t)ptr;
+	while (address > 0)
+	{
+		remainder = address % 16;
+		if (remainder < 10)
+			buffer[index++] = '0' + remainder;
+		else
+			buffer[index++] = 'a' + remainder - 10;
+		address /= 16;
+	}
+	buffer[index++] = 'x';
+	buffer[index++] = '0';
+	while (index > 0)
+		ft_putchar_fd(buffer[--index], FT_STDOUT);
+}
+
 
 
 int	ft_printf(const char *str, ...)
 {
 	va_list			args;
 	char			c;
-	unsigned int	i;
 
 	va_start(args, str);
 
@@ -70,9 +83,11 @@ int	ft_printf(const char *str, ...)
 		else if (c == '%')
 			ft_putchar_fd('%', FT_STDOUT);
 		else if (c == 'X')
-			decimalToHexadecimal(va_arg(args, int), 0);
+			ft_dec_to_hex(va_arg(args, int), 0);
 		else if (c == 'x')
-			decimalToHexadecimal(va_arg(args, int), 1);
+			ft_dec_to_hex(va_arg(args, int), 1);
+		else if (c == 'p')
+			ft_print_pointer(va_arg(args, void *));
 		str++;
 	}
 	/*
@@ -93,6 +108,9 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {
-	ft_printf("upper: %X and lower: %x", 12, 20);
+	char	*test = (char *)malloc(sizeof(char) * 16);
+	printf("upper: %X and lower: %p\n", 12, test);
+	ft_printf("upper: %X and lower: %p", 12, test);
+	free(test);
 	return (0);
 }
