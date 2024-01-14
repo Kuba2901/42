@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 15:20:50 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/14 17:02:28 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/01/14 17:19:38 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	ft_dec_to_hex(int n, int lower)
 	}
 }
 
-void	ft_print_pointer(void *ptr)
+static void	ft_print_pointer(void *ptr)
 {
 	uintptr_t	address;
 	int			remainder;
@@ -52,14 +52,24 @@ void	ft_print_pointer(void *ptr)
 		ft_putchar_fd(buffer[--index], FT_STDOUT);
 }
 
-
-
-int	ft_printf(const char *str, ...)
+static void	ft_handle_num(char c, int num)
 {
-	va_list			args;
-	char			c;
+	if (c == 'u')
+	{
+		num = (unsigned int)num;
+		ft_putnbr_fd(num, FT_STDOUT);
+	}
+	else if (c == 'c')
+		ft_putchar_fd(num, FT_STDOUT);
+	else if (c == 'x' || c == 'X')
+		ft_dec_to_hex(num, c == 'x');
+	else
+		ft_putnbr_fd(num, FT_STDOUT);
+}
 
-	va_start(args, str);
+static void	ft_print_data(const char *str, va_list args)
+{
+	char			c;
 
 	while (*str)
 	{
@@ -72,45 +82,36 @@ int	ft_printf(const char *str, ...)
 			break ;
 		str++;
 		c = *str;
-		if (c == 'c')
-			ft_putchar_fd(va_arg(args, int), FT_STDOUT);
+		if (c == '%')
+			ft_putchar_fd('%', FT_STDOUT);
+		else if (c == 'c' || c == 'd' || c == 'i' || c == 'u' \
+			|| c == 'x' || c == 'X')
+			ft_handle_num(c, va_arg(args, int));
 		else if (c == 's')
 			ft_putstr_fd(va_arg(args, char *), FT_STDOUT);
-		else if (c == 'd' || c == 'i')
-			ft_putnbr_fd(va_arg(args, int), FT_STDOUT);
-		else if (c == 'u')
-			ft_putnbr_fd((unsigned int)va_arg(args, int), FT_STDOUT);
-		else if (c == '%')
-			ft_putchar_fd('%', FT_STDOUT);
-		else if (c == 'X')
-			ft_dec_to_hex(va_arg(args, int), 0);
-		else if (c == 'x')
-			ft_dec_to_hex(va_arg(args, int), 1);
 		else if (c == 'p')
 			ft_print_pointer(va_arg(args, void *));
 		str++;
 	}
-	/*
-		%c: Character
-		%s: String
-		%p: Pointer
-		%d, %i: Signed decimal integer
-		%u: Unsigned decimal integer
-		%x, %X: Hexadecimal integer
-		%%: Percent sign (literal)
-	*/
+}
 
+int	ft_printf(const char *str, ...)
+{
+	va_list			args;
+
+	va_start(args, str);
+	ft_print_data(str, args);
 	va_end(args);
 	return (0);
 }
 
-#include <stdio.h>
+// #include <stdio.h>
 
-int	main(void)
-{
-	char	*test = (char *)malloc(sizeof(char) * 16);
-	printf("upper: %X and lower: %p\n", 12, test);
-	ft_printf("upper: %X and lower: %p", 12, test);
-	free(test);
-	return (0);
-}
+// int	main(void)
+// {
+// 	char	*test = (char *)malloc(sizeof(char) * 16);
+// 	printf("upper: %c and lower: %p\n", 'A', test);
+// 	ft_printf("upper: %c and lower: %p\n", 'A', test);
+// 	free(test);
+// 	return (0);
+// }
