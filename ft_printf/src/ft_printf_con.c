@@ -6,7 +6,7 @@
 /*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 18:16:22 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/16 18:43:32 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/01/16 18:54:39 by jakubnencza      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_print_pointer(void *ptr, int *counter, int index)
 	{
 		ft_putstr_fd("0x0", FT_STDOUT);
 		*counter += 3;
-		return ;	
+		return ;
 	}
 	address = (uintptr_t)ptr;
 	while (address > 0)

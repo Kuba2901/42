@@ -6,13 +6,12 @@
 /*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 18:15:29 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/16 18:45:19 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/01/16 18:54:02 by jakubnencza      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
-#include <stdarg.h>
 
 void	ft_putnbr_unsigned_fd(unsigned int n, int fd, int *counter)
 {
@@ -39,7 +38,6 @@ static void	ft_print_casual(const char **str, int *counter)
 		*str += 1;
 		*counter += 1;
 	}
-
 }
 
 static void	ft_handle_given(char c, int *counter, va_list args)
@@ -84,18 +82,3 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (counter);
 }
-
-// #include <stdio.h>
-
-// int main(void)
-// {
-// 	printf("STANDARD\n");
-// 	int num = printf(" %x ", -1);
-// 	printf("num: %d\n", num);
-
-// 	ft_printf("CUSTOM\n");
-// 	num = ft_printf(" %x ", -1);
-// 	ft_printf("num: %d\n", num);
-
-// 	return (0);
-// }	

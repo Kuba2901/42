@@ -6,12 +6,13 @@
 /*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 18:20:42 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/16 18:28:38 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/01/16 18:55:49 by jakubnencza      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	FT_PRINTF_H
+#ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+# include <stdarg.h>
 
 int		ft_printf(const char *str, ...);
 void	ft_dec_to_hex(unsigned int n, int lower, int *counter);
