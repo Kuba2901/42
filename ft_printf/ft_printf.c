@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 15:20:50 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/14 17:43:33 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/01/16 14:15:51 by jakubnencza      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdarg.h> 
+#include <stdarg.h>
 
-static void	ft_dec_to_hex(int n, int lower)
+static void ft_dec_to_hex(int n, int lower)
 {
 	if (n <= 9)
 	{
@@ -28,12 +28,12 @@ static void	ft_dec_to_hex(int n, int lower)
 	}
 }
 
-static void	ft_print_pointer(void *ptr)
+static void ft_print_pointer(void *ptr)
 {
-	uintptr_t	address;
-	int			remainder;
-	char		buffer[20];
-	int			index;
+	uintptr_t address;
+	int remainder;
+	char buffer[20];
+	int index;
 
 	index = 0;
 	address = (uintptr_t)ptr;
@@ -52,7 +52,7 @@ static void	ft_print_pointer(void *ptr)
 		ft_putchar_fd(buffer[--index], FT_STDOUT);
 }
 
-static void	ft_handle_num(char c, int num)
+static void ft_handle_num(char c, int num)
 {
 	if (c == 'u')
 	{
@@ -67,9 +67,9 @@ static void	ft_handle_num(char c, int num)
 		ft_putnbr_fd(num, FT_STDOUT);
 }
 
-static void	ft_print_data(const char *str, va_list args)
+static void ft_print_data(const char *str, va_list args)
 {
-	char			c;
+	char c;
 
 	while (*str)
 	{
@@ -79,13 +79,12 @@ static void	ft_print_data(const char *str, va_list args)
 			str++;
 		}
 		if (!*str)
-			break ;
+			break;
 		str++;
 		c = *str;
 		if (c == '%')
 			ft_putchar_fd('%', FT_STDOUT);
-		else if (c == 'c' || c == 'd' || c == 'i' || c == 'u' \
-			|| c == 'x' || c == 'X')
+		else if (c == 'c' || c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X')
 			ft_handle_num(c, va_arg(args, int));
 		else if (c == 's')
 			ft_putstr_fd(va_arg(args, char *), FT_STDOUT);
@@ -93,11 +92,12 @@ static void	ft_print_data(const char *str, va_list args)
 			ft_print_pointer(va_arg(args, void *));
 		str++;
 	}
+	ft_putchar_fd('\0', FT_STDOUT);
 }
 
-int	ft_printf(const char *str, ...)
+int ft_printf(const char *str, ...)
 {
-	va_list			args;
+	va_list args;
 
 	va_start(args, str);
 	ft_print_data(str, args);
@@ -105,15 +105,70 @@ int	ft_printf(const char *str, ...)
 	return (0);
 }
 
-// #include <stdio.h>
+#include <stdio.h>
 
-// int main(void)
-// {
-// 	ft_printf("%c\n", '0');
-// 	printf("%c\n", '0');
-// 	ft_printf(" %c \n", '0');
-// 	printf(" %c \n", '0');
-// 	ft_printf(" %c\n", '0' - 256);
-// 	printf(" %c\n", '0' - 256);
-// 	return (0);
-// }
+int main(void)
+{
+	ft_printf("[*] CHAR\n");
+	int num = printf("%d\n", 120);
+	printf("%d\n", num);
+
+
+	// ft_printf(" %c \n", '0');
+	// printf(" %c \n", '0');
+
+	// ft_printf(" %c\n", '0' - 256);
+	// printf(" %c\n", '0' - 256);
+
+	// ft_printf("%c \n", '0' + 256);
+	// printf("%c \n", '0' + 256);
+
+	// ft_printf(" %c %c %c \n", '0', 0, '1');
+	// printf(" %c %c %c \n", '0', 0, '1');
+
+	// ft_printf(" %c %c %c \n", ' ', ' ', ' ');
+	// printf(" %c %c %c \n", ' ', ' ', ' ');
+
+	// ft_printf(" %c %c %c \n", '1', '2', '3');
+	// printf(" %c %c %c \n", '1', '2', '3');
+
+	// ft_printf(" %c %c %c \n", '2', '1', 0);
+	// printf(" %c %c %c \n", '2', '1', 0);
+
+	// ft_printf(" %c %c %c \n", 0, '1', '2');
+	// printf(" %c %c %c \n", 0, '1', '2');
+
+	// ft_printf("[*] STRING\n");
+	// char *s2 = "Mussum Ipsum, cacilds vidis litro abertis. Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi. Atirei o pau no gatis, per gatis num morreus.";
+	// ft_printf("%s\n", "");
+	// printf("%s\n", "");
+
+	// ft_printf(" %s\n", "");
+	// printf(" %s\n", "");
+
+	// ft_printf("%s \n", "");
+	// printf("%s \n", "");
+
+	// ft_printf(" %s \n", "");
+	// printf(" %s \n", "");
+
+	// ft_printf(" %s \n", "-");
+	// printf(" %s \n", "-");
+
+	// ft_printf(" %s %s \n", "", "-");
+	// printf(" %s %s \n", "", "-");
+
+	// ft_printf(" %s %s \n", " - ", "");
+	// printf(" %s %s \n", " - ", "");
+
+	// ft_printf(" %s %s %s %s %s\n", " - ", "", "4", "", s2);
+	// printf(" %s %s %s %s %s\n", " - ", "", "4", "", s2);
+
+	// ft_printf(" %s %s %s %s %s \n", " - ", "", "4", "", "2 ");
+	// printf(" %s %s %s %s %s \n", " - ", "", "4", "", "2 ");
+
+	// ft_printf(" NULL %s NULL \n", NULL);
+	// printf(" NULL %s NULL \n", NULL);
+
+	return (0);
+}
