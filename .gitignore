@@ -8,5 +8,7 @@ libft/Libftest/
 libft/libftTester/
 libft/Supreme-Tester-Libft/
 libft/tester.sh
+ft_printf/printfTester/
+get_next_line/gnlTester/
 
 
