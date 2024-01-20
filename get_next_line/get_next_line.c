@@ -6,7 +6,7 @@
 /*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 19:40:37 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/17 17:39:00 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/01/20 14:53:25 by jakubnencza      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,41 +16,64 @@
 
 char	*get_next_line(int fd)
 {
-	char	*ret;
-	char	c;
-	int		index;
-	int		endl_reached;
+	char		*ret;
+	char		c;
+	int			index;
+	int			endl_reached;
+	static int	mark = 0;
 
 	endl_reached = 0;
-	ret = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	index = 0;
-	while ( !endl_reached && read(fd, &c, 1) && index < BUFFER_SIZE)
+	ret = (char *)malloc(sizeof(char) * BUFFER_SIZE);
+	if (fd < 0 || ret == NULL)
+		return (NULL);
+	if (mark)
 	{
-		if (c != '\n')
+		printf("Mark found at: %d\n", mark);
+		index = mark;
+		while (index--)
+		{
+			printf("Skipping %c at %d in the file\n", c, mark - index);
+			read(fd, &c, 1);
+		}
+	}
+	while (!endl_reached && read(fd, &c, 1) && index < (BUFFER_SIZE - 1))
+	{
+		if (c != '\n' && c != '\r')
+		{
+			printf("%c - %d: saved to buff at %d\n", c, (int)c, index);
 			ret[index++] = c;
+		}
 		else
 			endl_reached = 1;
 	}
 	if (!endl_reached)
-	{
-		while (read(fd, &c, 1))
-			if (c == '\n')
-				break ;
-	}
+		while (read(fd, &c, 1) && c != '\n' && c != '\r')
+			;
 	else
+	{
+		printf("Put \\n at %d\n", index);
 		ret[index++] = '\n';
-	ret[index++] = '\0';
+	}
+	if (!index)
+	{
+		free(ret);
+		return (NULL);
+	}
+	mark += index;
+	printf("mark set to: %d\n", mark);
+	ret[index] = '\0';
+	printf("put terminator at %d\n", index);
 	return (ret);
 }
 
-// int	main(void)
-// {
-// 	int fd = open("test", O_RDONLY);
-// 	char *ret = get_next_line(fd);
-// 	char *ret2 = get_next_line(fd);
-// 	printf("ret1: %s\n", ret);
-// 	printf("ret2: %s\n", ret2);
-// 	free(ret);
-// 	free(ret2);
-// 	return (0);
-// }
+#include <string.h>
+
+int	main(void)
+{
+	int fd = open("files/41_no_nl", O_RDONLY);
+	char *ret = get_next_line(fd);
+	printf("ret1: %s\n", ret);
+	free(ret);
+	return (0);
+}
