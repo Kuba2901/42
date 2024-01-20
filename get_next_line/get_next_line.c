@@ -1,12 +1,13 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 19:40:37 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/20 17:53:41 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:26:47 by jakubnencza      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +44,29 @@ static size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 
 char	*get_next_line(int fd)
 {
-	char		*ret;
+	char	*ret;
+	size_t	rbytes;
+	int		index;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	ret = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!ret)
 		return (NULL);
-	while (())
+	rbytes = read(fd, ret, BUFFER_SIZE);
+	index = 0;
+	if (rbytes <= 0)
+	{
+		free(ret);
+		return (NULL);
+	}
+	while (ret[index])
+	{
+		if (ret[index] == '\n')
+		{
+			
+		}
+	}
 }
 
 #include <string.h>
