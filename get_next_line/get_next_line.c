@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 19:40:37 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/20 17:24:46 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/01/20 17:38:44 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*get_next_line(int fd)
 			if (skip[index] == '\n')
 			{
 				printf("found new line: %d\n", index);
-				break;
+				break ;
 			}
 		}
 		// ft_strlcpy(new_ret, skip, BUFFER_SIZE);
@@ -79,7 +79,7 @@ char	*get_next_line(int fd)
 				return (NULL);
 			}
 			ft_strlcpy(new_ret, ret, index + 2);
-			skip = &new_ret[index];
+			skip = &ret[index];
 			printf("last: %p\n", skip);
 			free(ret);
 			return (new_ret);
