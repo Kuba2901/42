@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 19:40:37 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/20 16:47:38 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/01/20 17:24:46 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,53 @@ static size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 
 char	*get_next_line(int fd)
 {
-	char	*ret;
-	char	*new_ret;
-	size_t	rbytes;
-	int		index;
+	char		*ret;
+	char		*new_ret;
+	size_t		rbytes;
+	int			index;
+	static char	*skip = NULL;
 
 	ret = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (fd < 0 || BUFFER_SIZE <= 0 || ret == NULL)
 		return (NULL);
-	rbytes = read(fd, ret, BUFFER_SIZE);
 	index = 0;
-	while (ret[index++] && ret[index] != '\n')
-		;
-	if (index != ft_strlen(ret))
+	rbytes = read(fd, ret, BUFFER_SIZE);
+	if (skip != NULL)
 	{
-		new_ret = (char *)malloc(sizeof(char) * (index + 1));
-		if (!new_ret)
+		while (skip[index])
 		{
-			free(ret);
-			return (NULL);
+			if (skip[index] == '\n')
+			{
+				printf("found new line: %d\n", index);
+				break;
+			}
 		}
-		ft_strlcpy(new_ret, ret, index + 1);
+		// ft_strlcpy(new_ret, skip, BUFFER_SIZE);
 		free(ret);
-		return (new_ret);
+		return (NULL);	
+	}
+	while (ret[index])
+	{
+		if (ret[index] == '\n')
+		{
+			new_ret = (char *)malloc(sizeof(char) * (index + 2));
+			if (!new_ret)
+			{
+				free(ret);
+				return (NULL);
+			}
+			ft_strlcpy(new_ret, ret, index + 2);
+			skip = &new_ret[index];
+			printf("last: %p\n", skip);
+			free(ret);
+			return (new_ret);
+		}
+		index++;
+	}
+	if (!index)
+	{
+		free(ret);
+		return (NULL);
 	}
 	return (ret);
 }
@@ -75,9 +99,15 @@ char	*get_next_line(int fd)
 int	main(void)
 {
 	int fd = open("files/41_with_nl", O_RDONLY);
-	char *ret = get_next_line(fd);
+	char *ret;
+
+	ret = get_next_line(fd);
 	printf("%s", ret);
 	free(ret);
+	ret = get_next_line(fd);
+	printf("%s", ret);
+	free(ret);
+	close(fd);
 
 	return (0);
 }
