@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 19:40:37 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/20 17:38:44 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/01/20 17:53:41 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,54 +44,13 @@ static size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 char	*get_next_line(int fd)
 {
 	char		*ret;
-	char		*new_ret;
-	size_t		rbytes;
-	int			index;
-	static char	*skip = NULL;
 
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 	ret = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (fd < 0 || BUFFER_SIZE <= 0 || ret == NULL)
+	if (!ret)
 		return (NULL);
-	index = 0;
-	rbytes = read(fd, ret, BUFFER_SIZE);
-	if (skip != NULL)
-	{
-		while (skip[index])
-		{
-			if (skip[index] == '\n')
-			{
-				printf("found new line: %d\n", index);
-				break ;
-			}
-		}
-		// ft_strlcpy(new_ret, skip, BUFFER_SIZE);
-		free(ret);
-		return (NULL);	
-	}
-	while (ret[index])
-	{
-		if (ret[index] == '\n')
-		{
-			new_ret = (char *)malloc(sizeof(char) * (index + 2));
-			if (!new_ret)
-			{
-				free(ret);
-				return (NULL);
-			}
-			ft_strlcpy(new_ret, ret, index + 2);
-			skip = &ret[index];
-			printf("last: %p\n", skip);
-			free(ret);
-			return (new_ret);
-		}
-		index++;
-	}
-	if (!index)
-	{
-		free(ret);
-		return (NULL);
-	}
-	return (ret);
+	while (())
 }
 
 #include <string.h>
