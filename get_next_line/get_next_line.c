@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 19:40:37 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/20 16:40:20 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/01/20 16:47:38 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,27 @@ static int	ft_strlen(const char *str)
 	return (i);
 }
 
+static size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	i;
+
+	if (dstsize == 0)
+		return (ft_strlen(src));
+	i = 0;
+	while (i < dstsize - 1 && src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (ft_strlen(src));
+}
+
+
 char	*get_next_line(int fd)
 {
 	char	*ret;
+	char	*new_ret;
 	size_t	rbytes;
 	int		index;
 
@@ -38,7 +56,17 @@ char	*get_next_line(int fd)
 	while (ret[index++] && ret[index] != '\n')
 		;
 	if (index != ft_strlen(ret))
-		printf("Found new line inside\n");
+	{
+		new_ret = (char *)malloc(sizeof(char) * (index + 1));
+		if (!new_ret)
+		{
+			free(ret);
+			return (NULL);
+		}
+		ft_strlcpy(new_ret, ret, index + 1);
+		free(ret);
+		return (new_ret);
+	}
 	return (ret);
 }
 
