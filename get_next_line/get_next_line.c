@@ -15,74 +15,88 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-static int	ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i++])
-		;
-	return (i);
-}
-
-static size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	i;
-
-	if (dstsize == 0)
-		return (ft_strlen(src));
-	i = 0;
-	while (i < dstsize - 1 && src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (ft_strlen(src));
-}
-
-
-char	*get_next_line(int fd)
+char	*ft_reassign(char *buff, char *new)
 {
 	char	*ret;
-	size_t	rbytes;
-	int		index;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	ret = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	ret = ft_strjoin(buff, new);
+	free(buff);
+	free(new);
+	return (ret);
+}
+
+char	*ft_read_buffer(int fd)
+{
+	char	*ret;
+	char	*temp;
+	size_t	rbytes;
+
+	ret = (char *)malloc(sizeof(char) * BUFFER_SIZE);
 	if (!ret)
 		return (NULL);
 	rbytes = read(fd, ret, BUFFER_SIZE);
-	index = 0;
-	if (rbytes <= 0)
+	ret[rbytes] = '\0';
+	while (rbytes > 0)
 	{
-		free(ret);
-		return (NULL);
-	}
-	while (ret[index])
-	{
-		if (ret[index] == '\n')
+		temp = (char *)malloc(sizeof(char) * BUFFER_SIZE);
+		rbytes = read(fd, temp, BUFFER_SIZE);
+		if (!rbytes)
 		{
-			
+			free(temp);
+			break ;
+		}
+		ret = ft_reassign(ret, temp);
+	}
+	printf("ret: %s\n", ret);
+	return (ret);
+}
+
+char	*ft_get_line(const char *str)
+{
+	unsigned int	i;
+
+	i = -1;
+	if (str == NULL || *str == '\0')
+		return (NULL);
+	while (str[++i])
+	{
+		if (str[i] == '\n')
+		{
+			i++;
+			break ;
 		}
 	}
+	char *ret = ft_substr(str, 0, i);
+	return (ret);
 }
 
-#include <string.h>
-
-int	main(void)
+char	*get_next_line(int fd)
 {
-	int fd = open("files/41_with_nl", O_RDONLY);
-	char *ret;
+	static const char	*mark = NULL;
+	char				*ret;
 
-	ret = get_next_line(fd);
-	printf("%s", ret);
-	free(ret);
-	ret = get_next_line(fd);
-	printf("%s", ret);
-	free(ret);
-	close(fd);
-
-	return (0);
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	if (!mark)
+		mark = ft_read_buffer(fd);
+	ret = ft_get_line(mark);
+	if (ret != NULL)
+		mark += ft_strlen(ret);
+	return (ret);
 }
+
+// #include <string.h>
+
+// int	main(void)
+// {
+// 	int fd = open("files/41_with_nl_copy", O_RDONLY);
+// 	char *ret;
+
+// 	while ((ret = get_next_line(fd)) != NULL)
+// 	{
+// 		printf("line: %s\n", ret);
+// 		free(ret);
+// 	}
+// 	close(fd);
+// 	return (0);
+// }
