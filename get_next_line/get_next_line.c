@@ -22,6 +22,11 @@ char	*ft_reassign(char *buff, char *new)
 	ret = ft_strjoin(buff, new);
 	free(buff);
 	free(new);
+	if (*ret == '\0')
+	{
+		free(ret);
+		return (NULL);
+	}
 	return (ret);
 }
 
@@ -47,13 +52,13 @@ char	*ft_read_buffer(int fd)
 		}
 		ret = ft_reassign(ret, temp);
 	}
-	printf("ret: %s\n", ret);
 	return (ret);
 }
 
 char	*ft_get_line(const char *str)
 {
 	unsigned int	i;
+	char			*ret;
 
 	i = -1;
 	if (str == NULL || *str == '\0')
@@ -66,37 +71,46 @@ char	*ft_get_line(const char *str)
 			break ;
 		}
 	}
-	char *ret = ft_substr(str, 0, i);
+	ret = ft_substr(str, 0, i);
+	return (ret);
+}
+
+char	*ft_reassign_mark(const char *mark, char *line)
+{
+	char	*ret;
+
+	ret = ft_strdup(mark + ft_strlen(line));
 	return (ret);
 }
 
 char	*get_next_line(int fd)
 {
-	static const char	*mark = NULL;
-	char				*ret;
+	static char	*mark = NULL;
+	char		*ret;
+	char		*temp;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!mark)
-		mark = ft_read_buffer(fd);
+		temp = ft_read_buffer(fd);
 	ret = ft_get_line(mark);
 	if (ret != NULL)
-		mark += ft_strlen(ret);
+		mark = ft_reassign_mark(mark, ret);
 	return (ret);
 }
 
-// #include <string.h>
+#include <string.h>
 
-// int	main(void)
-// {
-// 	int fd = open("files/41_with_nl_copy", O_RDONLY);
-// 	char *ret;
+int	main(void)
+{
+	int fd = open("files/41_with_nl_copy", O_RDONLY);
+	char *ret;
 
-// 	while ((ret = get_next_line(fd)) != NULL)
-// 	{
-// 		printf("line: %s\n", ret);
-// 		free(ret);
-// 	}
-// 	close(fd);
-// 	return (0);
-// }
+	while ((ret = get_next_line(fd)) != NULL)
+	{
+		printf("line: %s\n", ret);
+		free(ret);
+	}
+	close(fd);
+	return (0);
+}

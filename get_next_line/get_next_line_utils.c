@@ -45,23 +45,20 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (ret);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strchr(const char *s, int c)
 {
-	char	*ret;
-	size_t	len_substr;
+	char	converted;
 
-	if (s == NULL)
-		return (NULL);
-	ret = (char *)malloc(sizeof(char) * (len + 1));
-	if (start >= (unsigned int)ft_strlen(s))
-		return (ft_strdup(""));
-	len_substr = ft_strlen(s) - start;
-	if (len > (unsigned int)len_substr)
-		len = len_substr;
-	if (ret == NULL)
-		return (NULL);
-	ft_strlcpy(ret, s + start, len + 1);
-	return (ret);
+	converted = (char)c;
+	while (*s)
+	{
+		if ((*s) == converted)
+			return ((char *)s);
+		s++;
+	}
+	if ((*s) == converted)
+		return ((char *)s);
+	return (NULL);
 }
 
 char	*ft_strdup(const char *s1)
