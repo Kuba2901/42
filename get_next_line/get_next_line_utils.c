@@ -5,6 +5,8 @@ int	ft_strlen(const char *str)
 	int	i;
 
 	i = -1;
+	if (!str)
+		return 0;
 	while (str[++i])
 		;
 	return (i);
@@ -49,6 +51,8 @@ char	*ft_strchr(const char *s, int c)
 {
 	char	converted;
 
+	if (!s)
+		return NULL;
 	converted = (char)c;
 	while (*s)
 	{
