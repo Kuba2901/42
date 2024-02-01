@@ -6,7 +6,7 @@
 /*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:21:41 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/02/01 16:41:19 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/02/01 16:43:19 by jakubnencza      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ char	*ft_read_until_nl(int fd)
 		rbytes = read(fd, temp, BUFFER_SIZE);
 		if (!rbytes)
 		{
-			// if (ret == NULL)
 			free(temp);
 			break ;
 		}
