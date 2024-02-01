@@ -11,4 +11,4 @@ libft/tester.sh
 ft_printf/printfTester/
 get_next_line/gnlTester/
 get_next_line/tester/
-
+.DS_Store
