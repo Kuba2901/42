@@ -6,7 +6,7 @@
 /*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:21:41 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/02/01 13:58:34 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/02/01 16:41:19 by jakubnencza      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,18 +110,3 @@ char	*get_next_line(int fd)
 	free(read_buff);
 	return (line);
 }
-
-// #include <string.h>
-
-// int	main(void)
-// {
-// 	int fd = open("files/42_with_nl", O_RDONLY);
-// 	char *ret;
-// 	while ((ret = get_next_line(fd)) != NULL)
-// 	{
-// 		printf("line: %s\n", ret);
-// 		free(ret);
-// 	}
-// 	close(fd);
-// 	return (0);
-// }

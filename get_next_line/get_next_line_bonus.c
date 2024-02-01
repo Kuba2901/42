@@ -6,7 +6,7 @@
 /*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:21:41 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/02/01 14:05:48 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/02/01 16:40:51 by jakubnencza      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ char	*ft_read_until_nl(int fd)
 		rbytes = read(fd, temp, BUFFER_SIZE);
 		if (!rbytes)
 		{
-			// if (ret == NULL)
 			free(temp);
 			break ;
 		}
@@ -86,7 +85,7 @@ char	*ft_get_line_from_buff(char *buff)
 
 char	*get_next_line(int fd)
 {
-	static char	*mark = NULL;
+	static char	*mark[FOPEN_MAX];
 	char		*read_buff;
 	char		*line;
 
@@ -94,34 +93,19 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = NULL;
 	read_buff = ft_read_until_nl(fd);
-	if (mark != NULL)
+	if (mark[fd] != NULL)
 	{
 		if (!read_buff)
 		{
-			read_buff = ft_strdup(mark);
-			free(mark);
-			mark = NULL;
+			read_buff = ft_strdup(mark[fd]);
+			free(mark[fd]);
+			mark[fd] = NULL;
 		}
 		else
-			read_buff = ft_join_reassign(mark, read_buff);
+			read_buff = ft_join_reassign(mark[fd], read_buff);
 	}
 	line = ft_get_line_from_buff(read_buff);
-	mark = ft_strdup(read_buff + ft_strlen(line));
+	mark[fd] = ft_strdup(read_buff + ft_strlen(line));
 	free(read_buff);
 	return (line);
 }
-
-// #include <string.h>
-
-// int	main(void)
-// {
-// 	int fd = open("files/42_with_nl", O_RDONLY);
-// 	char *ret;
-// 	while ((ret = get_next_line(fd)) != NULL)
-// 	{
-// 		printf("line: %s\n", ret);
-// 		free(ret);
-// 	}
-// 	close(fd);
-// 	return (0);
-// }
