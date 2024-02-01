@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -6,67 +5,46 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/16 19:40:37 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/01/20 18:26:47 by jakubnencza      ###   ########.fr       */
+/*   Created: 2024/01/31 16:21:41 by jakubnencza       #+#    #+#             */
+/*   Updated: 2024/02/01 13:43:43 by jakubnencza      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
-#include <fcntl.h>
 
-char	*ft_get_line(char *buff)
+char	*ft_join_reassign(char *buffer, char *to_join)
 {
-	int		i;
 	char	*ret;
 
-	i = -1;
-	if (!buff)
-		return NULL;
-	while (buff[++i])
+	if (buffer != NULL && to_join == NULL)
 	{
-		if (buff[i] == '\n')
-		{
-			i++;
-			break ;
-		}
+		ret = ft_strdup(buffer);
+		free(buffer);
+		return (ret);
 	}
-	ret = (char *)malloc(sizeof(char) * (i + 1));
-	if (!ret)
+	if (buffer == NULL && to_join != NULL)
+	{
+		ret = ft_strdup(to_join);
+		free(to_join);
+		return (ret);
+	}
+	if (!buffer)
 		return (NULL);
-	ret[i] = '\0';
-	while (--i >= 0)
-		ret[i] = buff[i];
+	ret = ft_strjoin(buffer, to_join);
+	free(buffer);
+	free(to_join);
 	return (ret);
 }
 
-char	*ft_reassign(char *buff, char *new)
+char	*ft_read_until_nl(int fd)
 {
-	char	*ret;
-
-	if (!buff)
-		return (new);
-	ret = ft_strjoin(buff, new);
-	free(buff);
-	free(new);
-	return (ret);
-}
-
-char	*ft_read_line(int fd)
-{
-	char			*line;
-	char			*temp;
 	unsigned int	rbytes;
+	char			*temp;
+	char			*ret;
 
-	line = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	rbytes = read(fd, line, BUFFER_SIZE);
-	if (rbytes <= 0)
-	{
-		free(line);
-		return (NULL);
-	}
-	line[rbytes] = '\0';
-	while (!ft_strchr(line, '\n') && rbytes > 0)
+	rbytes = 1;
+	ret = NULL;
+	while (rbytes > 0)
 	{
 		temp = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 		if (!temp)
@@ -74,63 +52,76 @@ char	*ft_read_line(int fd)
 		rbytes = read(fd, temp, BUFFER_SIZE);
 		if (!rbytes)
 		{
+			// if (ret == NULL)
 			free(temp);
 			break ;
 		}
 		temp[rbytes] = '\0';
-		line = ft_reassign(line, temp);
+		ret = ft_join_reassign(ret, temp);
+		if (ft_strchr(ret, '\n'))
+			break ;
 	}
+	return (ret);
+}
+
+char	*ft_get_line_from_buff(char *buff)
+{
+	char	*line;
+	int		i;
+
+	i = -1;
+	if (!buff)
+		return (NULL);
+	while (buff[++i])
+	{
+		if (buff[i] == '\n')
+			break ;
+	}
+	line = (char *)malloc(sizeof(char) * (i + 2));
+	if (!line)
+		return (NULL);
+	ft_strlcpy(line, buff, i + 2);
 	return (line);
 }
 
 char	*get_next_line(int fd)
 {
-	static char		*mark = NULL;
-	char			*ret;
-	char			*buff;
-	int				len;
+	static char	*mark = NULL;
+	char		*read_buff;
+	char		*line;
 
-
-	// printf("buff: %s\n", buff);
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return NULL;
-	buff = ft_read_line(fd);
-	if (!buff || !buff[0])
+		return (NULL);
+	line = NULL;
+	read_buff = ft_read_until_nl(fd);
+	if (mark != NULL)
 	{
-		if (mark != NULL && !(mark[0]))
+		if (!read_buff)
 		{
+			read_buff = ft_strdup(mark);
 			free(mark);
-			return (NULL);
+			mark = NULL;
 		}
-		buff = ft_strdup(mark);
-		ret = ft_get_line(mark);
-		free(mark);
-		mark = ft_strdup(buff + ft_strlen(ret));
-		free(buff);
-		return (ret);
+		else
+			read_buff = ft_join_reassign(mark, read_buff);
 	}
-	ret = ft_get_line(buff);
-	len = ft_strlen(ret);
-	if (mark != NULL)
-		ret = ft_reassign(mark, ret);
-	if (mark != NULL)
-		free(mark);
-	mark = ft_strdup(buff + len);
-	free(buff);
-	return (ret);
+	line = ft_get_line_from_buff(read_buff);
+	mark = ft_strdup(read_buff + ft_strlen(line));
+	free(read_buff);
+	return (line);
 }
 
-#include <string.h>
+// #include <string.h>
 
-int	main(void)
-{
-	int fd = open("files/alternate_line_nl_no_nl", O_RDONLY);
-	char *ret;
-	while ((ret = get_next_line(fd)) != NULL)
-	{
-		// printf("line: %s", ret);
-		free(ret);
-	}
-	close(fd);
-	return (0);
-}
+// int	main(void)
+// {
+// 	int fd = open("files/42_with_nl", O_RDONLY);
+// 	char *ret;
+// 	while ((ret = get_next_line(fd)) != NULL)
+// 	{
+// 		printf("line: %s\n", ret);
+// 		free(ret);
+// 	}
+// 	close(fd);
+// 	return (0);
+// }
