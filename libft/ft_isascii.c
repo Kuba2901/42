@@ -6,11 +6,11 @@
 /*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 15:58:49 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/09 22:21:19 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/02/02 14:48:09 by jakubnencza      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(char c)
+int	ft_isascii(int c)
 {
 	return (c >= 0 && c <= 127);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:25:34 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/11 15:03:08 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/02/02 14:58:07 by jakubnencza      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ char	*ft_strdup(const char *s1)
 	int		i;
 	char	*alloc;
 
-	if (!s1)
-		return (NULL);
 	i = 0;
 	alloc = (char *)malloc((ft_strlen(s1) + 1) * sizeof(char));
 	if (!alloc)

@@ -6,11 +6,11 @@
 /*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 15:59:12 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/09 22:21:57 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/02/02 14:48:32 by jakubnencza      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(char c)
+int	ft_isprint(int c)
 {
 	return (c >= 32 && c <= 126);
 }

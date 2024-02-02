@@ -6,7 +6,7 @@
 /*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:19:14 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/09 17:36:03 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/02/02 14:52:19 by jakubnencza      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*alloc;
-	void	*ret;
+	void	*ptr;
+	size_t	total;
 
-	alloc = (void *)malloc(count * size);
-	if (alloc == NULL)
+	total = count * size;
+	if (count + size < count || count + size < size || total > 2147483424)
 		return (NULL);
-	ret = ft_memset(alloc, 0, count);
-	return (ret);
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (NULL);
+	while (total--)
+		((char *)ptr)[total] = 0;
+	return (ptr);
 }

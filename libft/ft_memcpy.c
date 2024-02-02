@@ -6,7 +6,7 @@
 /*   By: jakubnenczak <jakubnenczak@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:32:40 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/01/09 22:28:56 by jakubnencza      ###   ########.fr       */
+/*   Updated: 2024/02/02 14:44:28 by jakubnencza      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_memcpy(void *dst, void *src, size_t n)
 	char	*dst_ptr;
 	char	*src_ptr;
 
-	if (dst == NULL || src == NULL)
+	if (src == NULL && dst == NULL && n != 0)
 		return (NULL);
 	dst_ptr = (char *)dst;
 	src_ptr = (char *)src;
