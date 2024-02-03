@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:10:34 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/02/02 17:14:22 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/02/03 22:29:24 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-int			ft_isalpha(char c);
-int			ft_isdigit(char c);
-int			ft_isalnum(char c);
-int			ft_isascii(char c);
+int			ft_isalpha(int c);
+int			ft_isdigit(int c);
+int			ft_isalnum(int c);
+int			ft_isascii(int c);
 int			ft_isprint(char c);
 size_t		ft_strlen(const char *s1);
 void		*ft_memset(void *b, int c, size_t len);
 void		ft_bzero(void *s, size_t n);
-void		*ft_memcpy(void *dst, void *src, size_t n);
+void		*ft_memcpy(void *dst, const void *src, size_t n);
 void		*ft_memmove(void *dst, const void *src, size_t len);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
 int			ft_toupper(int c);

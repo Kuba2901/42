@@ -6,13 +6,13 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:32:40 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/02/02 17:13:44 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/02/03 22:04:55 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, void *src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	char	*dst_ptr;
 	char	*src_ptr;

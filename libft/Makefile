@@ -21,15 +21,14 @@ $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
-bonus: $(NAME) $(OBJB)
-	ar rc $(NAME) $(OBJB)
+bonus: $(NAME) $(OBJBONUS)
+	ar rc $(NAME) $(OBJBONUS)
 	ranlib $(NAME)
-
 
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ) $(OBJBONUS)
 
 fclean: clean
 	$(RM) $(NAME)
