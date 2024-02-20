@@ -6,12 +6,12 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:21:41 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/02/02 17:25:41 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:28:08 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-
+#include "get_next_line_bonus.h"
+// ERROR: THIS WAS THE ERROR
 char	*ft_join_reassign(char *buffer, char *to_join)
 {
 	char	*ret;
