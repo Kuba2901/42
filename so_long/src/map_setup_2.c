@@ -36,7 +36,7 @@ int	check_map_rectangular(const char *file_name)
 		if (!w)
 			w = ft_custom_strlen(temp);
 		else if (ft_custom_strlen(temp) != w)
-			error = 1;
+			error = MAP_NOT_RECTANGULAR;
 		free(temp);
 		temp = get_next_line(fd);
 	}
@@ -51,18 +51,16 @@ int	check_map_rectangular(const char *file_name)
 /// - 2 - no starting position on the map
 /// - 3 - multiple exits on the map
 /// - 4 - multiple starting positions on the map
-void	check_duplicates(t_map **orig)
+int	check_duplicates(t_map *map)
 {
 	int		exits;
 	int		positions;
 	int		x;
 	int		y;
-	t_map	*map;
 
 	exits = 0;
 	positions = 0;
 	y = -1;
-	map = *orig;
 	while (++y < map->map_dimensions->height)
 	{
 		x = 0;
@@ -76,43 +74,47 @@ void	check_duplicates(t_map **orig)
 		}
 	}
 	if (!exits)
-		map->error_code = 1;
+		return (MAP_NO_EXIT);
 	if (!positions)
-		map->error_code = 2;
+		return (MAP_NO_STARTING_POSITION);
 	if (exits > 1)
-		map->error_code = 3;
+		return (MAP_MULTIPLE_EXITS);
 	if (positions > 1)
-		map->error_code = 4;
-	else
-		map->error_code = 0;
+		return (MAP_MULTIPLE_STARTING_POSITIONS);
+	return (0);
 }
 
-int	check_surrounded_by_walls(t_game **orig)
+int	check_surrounded_by_walls(t_map *map)
 {
-	t_map	*map;
 	int		x;
 	int		y;
 
-	map = (*orig)->map;
-	y = 0;
-	while (y < map->map_dimensions->height)
+	printf("PRINTING MAP!\n");
+	print_map(map);
+	y = -1;
+	while (++y < map->map_dimensions->height)
 	{
-		x = 0;
-		while (x < map->map_dimensions->width)
+		x = -1;
+		while (++x < map->map_dimensions->width)
 		{
 			if (!y || y == map->map_dimensions->height - 1)
 			{
 				if (map->map[y][x].c != '1')
-					return (1);
+				{
+					t_point pt = map->map[y][x];
+					printf("(x,y,c) => (%d, %d, %c)\n", pt.x, pt.y, pt.c);
+					return (MAP_NOT_SURROUNDED_BY_WALLS);
+				}
 			}
 			else if (x == 0 || x == map->map_dimensions->width - 1)
 			{
 				if (map->map[y][x].c != '1')
-					return (1);
+				{
+					printf("2\n");
+					return (MAP_NOT_SURROUNDED_BY_WALLS);
+				}
 			}
-			x++;
 		}
-		y++;
 	}
 	return (0);
 }

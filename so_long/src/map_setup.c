@@ -91,11 +91,16 @@ void	print_map(t_map	*map)
 
 void	free_map(t_map *map)
 {
-	int	i;
-	i = -1;
-	while (++i < map->map_dimensions->height)
-		free(map->map[i]);
+	free_map_points(map->map, map->map_dimensions->height);
 	free(map->map);
 	free(map->map_dimensions);
 	free(map);
+}
+
+void	free_map_points(t_point **map, int h)
+{
+	int	i;
+	i = -1;
+	while (++i < h)
+		free(map[i]);
 }
