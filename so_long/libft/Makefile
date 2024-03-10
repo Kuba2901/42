@@ -1,38 +1,39 @@
 NAME = libft.a
-GNL_SRC = gnl/src/get_next_line.c
-FT_PRINTF_SRC = src/ft_printf.c src/ft_printf_con.c
-SRC = src/ft_atoi.c src/ft_bzero.c src/ft_calloc.c src/ft_isalnum.c src/ft_isalpha.c src/ft_isascii.c src/ft_isdigit.c src/ft_isprint.c src/ft_itoa.c \
-src/ft_memchr.c src/ft_memcmp.c src/ft_memcpy.c src/ft_memmove.c src/ft_memset.c src/ft_putchar_fd.c src/ft_putendl_fd.c src/ft_putnbr_fd.c src/ft_putstr_fd.c \
-src/ft_split.c src/ft_strchr.c src/ft_strdup.c src/ft_striteri.c src/ft_strjoin.c src/ft_strlcat.c src/ft_strlcpy.c src/ft_strlen.c src/ft_strmapi.c src/ft_strncmp.c \
-src/ft_strnstr.c src/ft_strrchr.c src/ft_strtrim.c src/ft_substr.c src/ft_tolower.c src/ft_toupper.c $(GNL_SRC) $(FT_PRINTF_SRC)
-BONUS	= src/ft_lstnew.c src/ft_lstadd_front.c src/ft_lstsize.c src/ft_lstlast.c \
-		  src/ft_lstadd_back.c src/ft_lstdelone.c src/ft_lstclear.c src/ft_lstiter.c src/ft_lstmap.c
+SRC_LIBFT = src_libft/ft_atoi.c src_libft/ft_bzero.c src_libft/ft_calloc.c src_libft/ft_isalnum.c src_libft/ft_isalpha.c src_libft/ft_isascii.c src_libft/ft_isdigit.c src_libft/ft_isprint.c src_libft/ft_itoa.c \
+src_libft/ft_memchr.c src_libft/ft_memcmp.c src_libft/ft_memcpy.c src_libft/ft_memmove.c src_libft/ft_memset.c src_libft/ft_putchar_fd.c src_libft/ft_putendl_fd.c src_libft/ft_putnbr_fd.c src_libft/ft_putstr_fd.c \
+src_libft/ft_split.c src_libft/ft_strchr.c src_libft/ft_strdup.c src_libft/ft_striteri.c src_libft/ft_strjoin.c src_libft/ft_strlcat.c src_libft/ft_strlcpy.c src_libft/ft_strlen.c src_libft/ft_strmapi.c src_libft/ft_strncmp.c \
+src_libft/ft_strnstr.c src_libft/ft_strrchr.c src_libft/ft_strtrim.c src_libft/ft_substr.c src_libft/ft_tolower.c src_libft/ft_toupper.c
+
+SRC_GNL = src_gnl/get_next_line.c
+INC_GNL = -I inc_gnl/ 
+
+SRC = $(SRC_LIBFT) $(SRC_GNL)
+
+BONUS	= src_libft/ft_lstnew.c src_libft/ft_lstadd_front.c src_libft/ft_lstsize.c src_libft/ft_lstlast.c \
+		  src_libft/ft_lstadd_back.c src_libft/ft_lstdelone.c src_libft/ft_lstclear.c src_libft/ft_lstiter.c src_libft/ft_lstmap.c
 OBJBONUS = $(BONUS:%.c=%.o)
+
 OBJ = $(SRC:.c=.o)
-INC = -I gnl/inc/ -I inc/
+INC_LIBFT = -I inc_libft/
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
 .c.o:
-	$(CC) $(CFLAGS) -c $< -o $@ $(INC)
+	$(CC) $(CFLAGS) -c $< -o $@ $(INC_LIBFT) $(INC_GNL)
 
 $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
-bonus: $(NAME) $(OBJBONUS)
-	ar rc $(NAME) $(OBJBONUS)
-	ranlib $(NAME)
-
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJ) $(OBJBONUS)
+	$(RM) $(OBJ)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re .c.o
+.PHONY: all clean fclean re .c.o

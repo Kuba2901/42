@@ -1,103 +1,31 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/09 21:35:29 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/09 23:51:47 by jnenczak         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include <so_long.h>
 
-#include <mlx.h>
-#include <get_next_line.h>
-#include <ft_printf.h>
+t_game		*start_game(const char *file_name)
+{
+	t_game	*game;
+	t_map	*map;
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data;
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color) {
-	char	*dst;
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	map = fill_map(file_name);
+	game = (t_game *)malloc(sizeof(t_game));
+	game->map = map;
+	count_collectibles(&game);
+	return (game);
 }
 
-void	free_map(char **map)
+int	main(void)
 {
-	int	i;
-
-	i = -1;
-	while (map[++i] != NULL)
-		free(map[i]);
-	free(map);
-}
-
-int	count_lines(const char *file_name)
-{
-	char	*ret;
-	char	*temp;
-	int		fd;
-	int		count;
-
-	fd = open(file_name, O_RDONLY);
-	count = 0;
-	while ((temp = get_next_line(fd)) != NULL)
+	const char	*file_name = MAP_FILE_NAME;
+	if (check_map_rectangular(file_name))
 	{
-		count++;
-		free(temp);
+		printf("Error in map shape");
+		return (0);
 	}
-	close(fd);
-	return (count);
-}
-
-char	**duplicate_map(const char *file_name)
-{
-	char	**ret;
-	char	*temp;
-	int		fd;
-	int		lines_count;
-	int		i;
-	
-	lines_count = count_lines(file_name);
-	ret = (char **)malloc(sizeof(char *) * (lines_count + 1));
-	fd = open(file_name, O_RDONLY);
-	i = 0;
-	while ((temp = get_next_line(fd)) != NULL)
-	{
-		ret[i++] = ft_strdup(temp);
-		free(temp);
-	}
-	ret[i] = NULL;
-	return (ret);
-}
-
-void	print_map(char **map) {
-	while (*map != NULL)
-		ft_printf("%s", *map++);
-}
-
-int main(void)
-{
-	const char	*map_name = "map.ber";
-	char	**map = duplicate_map(map_name);
+	t_game	*game = start_game(file_name);
+	t_map	*map = game->map;
+	printf("Collectibles count: %d\n", game->collectibles);
+	printf("Printing map!\n");
 	print_map(map);
 	free_map(map);
-    // void    *mlx;
-    // void    *mlx_window;
-    // t_data	img;
-
-    // mlx = mlx_init();
-	// mlx_window = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	// img.img = mlx_new_image(mlx, 1920, 1080);
-	// img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	
-	// my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
-	// mlx_put_image_to_window(mlx, mlx_window, img.img, 0, 0);
-	// mlx_loop(mlx);
+	free(game);
+	return (0);
 }
