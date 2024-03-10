@@ -55,15 +55,15 @@ void	check_duplicates(t_map **orig)
 {
 	int		exits;
 	int		positions;
-	t_map	*map;
 	int		x;
 	int		y;
+	t_map	*map;
 
 	exits = 0;
 	positions = 0;
-	map = (*orig)->map;
 	y = -1;
-	while (y < map->map_dimensions->height)
+	map = *orig;
+	while (++y < map->map_dimensions->height)
 	{
 		x = 0;
 		while (x < map->map_dimensions->width)
@@ -76,11 +76,43 @@ void	check_duplicates(t_map **orig)
 		}
 	}
 	if (!exits)
-		(*orig)->error_code = 1;
+		map->error_code = 1;
 	if (!positions)
-		(*orig)->error_code = 2;
+		map->error_code = 2;
 	if (exits > 1)
-		(*orig)->error_code = 3;
+		map->error_code = 3;
 	if (positions > 1)
-		(*orig)->error_code = 4;
+		map->error_code = 4;
+	else
+		map->error_code = 0;
+}
+
+int	check_surrounded_by_walls(t_game **orig)
+{
+	t_map	*map;
+	int		x;
+	int		y;
+
+	map = (*orig)->map;
+	y = 0;
+	while (y < map->map_dimensions->height)
+	{
+		x = 0;
+		while (x < map->map_dimensions->width)
+		{
+			if (!y || y == map->map_dimensions->height - 1)
+			{
+				if (map->map[y][x].c != '1')
+					return (1);
+			}
+			else if (x == 0 || x == map->map_dimensions->width - 1)
+			{
+				if (map->map[y][x].c != '1')
+					return (1);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (0);
 }

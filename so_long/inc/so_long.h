@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/10 18:37:17 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/10 19:01:19 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SO_LONG_H
 #include <get_next_line.h>
 #include <libft.h>
-# define MAP_FILE_NAME "map_test.ber"
+# define MAP_FILE_NAME "assets/map_test.ber"
 
 typedef struct	s_point
 {
@@ -55,4 +55,5 @@ void	free_map(t_map *map);
 void	check_duplicates(t_map **orig);
 void	count_collectibles(t_game **orig);
 int	check_map_rectangular(const char *file_name);
+void	free_game(t_game *game);
 #endif

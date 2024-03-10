@@ -5,9 +5,16 @@ t_game		*start_game(const char *file_name)
 	t_game	*game;
 	t_map	*map;
 
-	map = fill_map(file_name);
 	game = (t_game *)malloc(sizeof(t_game));
+	map = fill_map(file_name);
 	game->map = map;
+	check_duplicates(&map);
+	if (map->error_code)
+	{
+		printf("Something duplicated: %d\n", map->error_code);
+		free_game(game);
+		return (NULL);
+	}
 	count_collectibles(&game);
 	return (game);
 }
@@ -21,11 +28,12 @@ int	main(void)
 		return (0);
 	}
 	t_game	*game = start_game(file_name);
+	if (game == NULL)
+		return (0);
 	t_map	*map = game->map;
 	printf("Collectibles count: %d\n", game->collectibles);
 	printf("Printing map!\n");
 	print_map(map);
-	free_map(map);
-	free(game);
+	free_game(game);
 	return (0);
 }

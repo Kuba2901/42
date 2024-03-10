@@ -25,3 +25,12 @@ void	count_collectibles(t_game **orig)
 	(*orig)->collected = 0;
 	(*orig)->collectibles = collectibles;
 }
+
+void	free_game(t_game *game)
+{
+	t_map	*map;
+
+	map = game->map;
+	free_map(map);
+	free(game);
+}
