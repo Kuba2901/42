@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/11 22:41:40 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/12 00:29:59 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <get_next_line.h>
 #include <libft.h>
 #include <mlx.h>
-# define MAP_FILE_NAME "assets/map_correct.ber"
+# define MAP_FILE_NAME "assets/maps/map_correct.ber"
 # define MAP_NO_EXIT 1
 # define MAP_NO_STARTING_POSITION 2
 # define MAP_MULTIPLE_EXITS 3
@@ -25,11 +25,28 @@
 # define MAP_NO_COLLECTIBLES 7
 # define MAP_NO_PATH 8
 
+// Exit
+# define EXIT_TEX "assets/textures/chosen_tiles_xpm/exit.xpm" 
+
+// Floor
+# define FLOOR_TEX "assets/textures/chosen_tiles_xpm/floor.xpm" 
+
+// Outer
+# define EDGE_TEX "assets/textures/chosen_tiles_xpm/edge.xpm" 
+
+// Collectible texture
+# define COLLECTIBLE_TEX "assets/textures/chosen_tiles_xpm/collectible.xpm" 
+
+// Wall textures
+# define LEFT_WALL_TEX "assets/textures/chosen_tiles_xpm/leftmost_wall.xpm" 
+# define RIGHT_WALL_TEX "assets/textures/chosen_tiles_xpm/rightmost_wall.xpm" 
+# define TOP_WALL_TEX "assets/textures/chosen_tiles_xpm/top_wall.xpm" 
+# define BOTTOM_WALL_TEX "assets/textures/chosen_tiles_xpm/top_wall.xpm" 
+
 // Character sprite
-# define CHARACTER_PATH "assets/textures/characters_tiles"
-# define CHARACTER_1 "assets/textures/characters_tiles/tile025.png"
-# define CHARACTER_2 "assets/textures/characters_tiles/tile026.png"
-# define CHARACTER_3 "assets/textures/characters_tiles/tile027.png"
+# define PLAYER_1_TEX "assets/textures/chosen_tiles_xpm/player_1.xpm"
+# define PLAYER_2_TEX "assets/textures/chosen_tiles_xpm/player_2.xpm"
+# define PLAYER_3_TEX "assets/textures/chosen_tiles_xpm/player_3.xpm"
 
 // Window size
 # define WINDOW_HEIGHT 400
@@ -37,7 +54,7 @@
 # define WINDOW_TITLE "SO_LONG"
 
 // Tile size
-# define TILE_SIZE 50
+# define TILE_SIZE 128
 # define X_TILES (WINDOW_WIDTH / TILE_SIZE)
 # define Y_TILES (WINDOW_HEIGHT / TILE_SIZE)
 
@@ -63,6 +80,7 @@ typedef struct	s_point
 	int		x;
 	int		y;
 	char	c;
+	char	*img_path;
 }	t_point;
 
 typedef struct	s_map_dim
@@ -94,6 +112,7 @@ typedef struct	s_game
 	t_mlx_vars	mlx_vars;
 	int			running;
 	int			steps;
+	int			drawn;
 }	t_game;
 
 
@@ -119,7 +138,7 @@ int			check_map_rectangular(const char *file_name);
 void		free_game(t_game *game);
 void		print_error(int code);
 int			check_surrounded_by_walls(t_map *map);
-void		free_map_points(t_point **map, int h);
+void		free_map_points(t_map *map);
 size_t		ft_custom_strlen(char *str);
 int			check_path_exists(t_map *map);
 int			floodFill(t_map *map, t_point pt);
@@ -136,4 +155,7 @@ void		move_player(t_game *game, int x, int y);
 int			move_valid(t_map *map, t_point pt);
 void		draw_rectangle(void *mlx, void *win, t_point pt);
 void		draw_board(t_game *game);
+void		assign_sprites(t_map *map);
+char		*get_sprite(t_map *map, t_point pt);
+void	custom_render_image(t_game *game, t_point pt);
 #endif
