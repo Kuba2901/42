@@ -33,4 +33,5 @@ void	free_game(t_game *game)
 	map = game->map;
 	free_map(map);
 	free(game);
+	printf("Game memory freed\n");
 }

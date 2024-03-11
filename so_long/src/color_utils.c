@@ -11,22 +11,17 @@ t_color	create_trgb(int t, int r, int g, int b)
 	return (ret);
 }
 
-int	get_t(int trgb)
+int	determine_color(t_point pt)
 {
-	return ((trgb >> 24) & 0xFF);
-}
-
-int	get_r(int trgb)
-{
-	return ((trgb >> 16) & 0xFF);
-}
-
-int	get_g(int trgb)
-{
-	return ((trgb >> 8) & 0xFF);
-}
-
-int	get_b(int trgb)
-{
-	return (trgb & 0xFF);
+	if (pt.c == '0')
+		return create_trgb(255,0,0,0).col;
+	if (pt.c == '1')
+		return create_trgb(255,255,255,255).col;
+	if (pt.c == 'C')
+		return create_trgb(255,0,255,0).col;
+	if (pt.c == 'E')
+		return create_trgb(255,255,0,0).col;
+	if (pt.c == 'A')
+		return create_trgb(255,255,0,255).col;
+	return create_trgb(255,0,0,255).col;
 }
