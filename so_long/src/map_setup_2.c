@@ -88,31 +88,24 @@ int	check_surrounded_by_walls(t_map *map)
 {
 	int		x;
 	int		y;
+	t_point	pt;
 
-	printf("PRINTING MAP!\n");
-	print_map(map);
 	y = -1;
 	while (++y < map->map_dimensions->height)
 	{
 		x = -1;
 		while (++x < map->map_dimensions->width)
 		{
+			pt = map->map[y][x];
 			if (!y || y == map->map_dimensions->height - 1)
 			{
-				if (map->map[y][x].c != '1')
-				{
-					t_point pt = map->map[y][x];
-					printf("(x,y,c) => (%d, %d, %c)\n", pt.x, pt.y, pt.c);
+				if (pt.c != '1')
 					return (MAP_NOT_SURROUNDED_BY_WALLS);
-				}
 			}
 			else if (x == 0 || x == map->map_dimensions->width - 1)
 			{
-				if (map->map[y][x].c != '1')
-				{
-					printf("2\n");
+				if (pt.c != '1')
 					return (MAP_NOT_SURROUNDED_BY_WALLS);
-				}
 			}
 		}
 	}

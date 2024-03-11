@@ -23,7 +23,6 @@ t_game		*start_game(const char *file_name)
 		free_game(game);
 		return (NULL);
 	}
-	print_map(game->map);
 	map_surrounded = check_surrounded_by_walls(game->map);
 	if (map_surrounded)
 	{
@@ -49,8 +48,6 @@ int	main(int ac, char **av)
 	if (game == NULL)
 		return (0);
 	t_map	*map = game->map;
-	printf("Collectibles count: %d\n", game->collectibles);
-	printf("Printing map!\n");
 	print_map(map);
 	free_game(game);
 	return (0);

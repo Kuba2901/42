@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/10 22:11:04 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/11 02:17:06 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,5 @@ void	free_game(t_game *game);
 void	print_error(int code);
 int	check_surrounded_by_walls(t_map *map);
 void	free_map_points(t_point **map, int h);
+size_t	ft_custom_strlen(char *str);
 #endif

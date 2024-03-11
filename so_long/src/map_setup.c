@@ -14,7 +14,7 @@ t_map_dim	*get_map_dimensions(const char *file_name)
 	while (temp != NULL)
 	{
 		if (!h)
-			ret->width = ft_strlen(temp);
+			ret->width = ft_custom_strlen(temp);
 		h++;
 		free(temp);
 		temp = get_next_line(fd);
@@ -82,6 +82,7 @@ void	print_map(t_map	*map)
 		while (x < map->map_dimensions->width)
 		{
 			printf("%c", map->map[y][x].c);
+			// printf("(%d,%d)", map->map[y][x].y, map->map[y][x].x);
 			x++;
 		}
 		printf("\n");
