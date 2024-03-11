@@ -1,8 +1,8 @@
 NAME = so_long
-SRC = main.c src/map_setup.c src/map_setup_2.c src/map_setup_3.c src/game_setup.c src/error_codes.c
+SRC = main.c
 OBJ = $(SRC:.c=.o)
 INC_LIBFT_GNL = -Ilibft/inc_libft/ -Ilibft/inc_gnl/
-INC = -Iinc/ -I/usr/include -Imlx_linux $(INC_LIBFT_GNL)
+INC = -I/usr/include -Imlx_linux $(INC_LIBFT_GNL)
 CC = cc
 CFLAGS = -Wall -Wextra # -Werror
 RM = rm -rf
@@ -14,7 +14,8 @@ LIBS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz $(LIB
 
 $(NAME): $(OBJ)
 	cd libft && make
-	$(CC) $(OBJ) $(LIBS) -o $(NAME)
+# $(CC) $(OBJ) $(LIBS) -o $(NAME)
+	$(CC) $(OBJ) $(LIBFT_INCLUDE) -o $(NAME)
 
 all: $(NAME)
 
