@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/11 16:34:49 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/11 19:40:48 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SO_LONG_H
 #include <get_next_line.h>
 #include <libft.h>
+#include <mlx.h>
 # define MAP_FILE_NAME "assets/map_test.ber"
 # define MAP_NO_EXIT 1
 # define MAP_NO_STARTING_POSITION 2
@@ -23,6 +24,26 @@
 # define MAP_NOT_SURROUNDED_BY_WALLS 6
 # define MAP_NO_COLLECTIBLES 7
 # define MAP_NO_PATH 8
+
+// Window size
+# define WINDOW_HEIGHT 400
+# define WINDOW_WIDTH 600
+# define WINDOW_TITLE "SO_LONG"
+
+// Tile size
+# define TILE_SIZE 50
+# define X_TILES (WINDOW_WIDTH / TILE_SIZE)
+# define Y_TILES (WINDOW_HEIGHT / TILE_SIZE)
+
+typedef struct s_color
+{
+	int	t;
+	int	r;
+	int	g;
+	int	b;
+	int	col;
+}	t_color;
+
 
 typedef struct	s_point
 {
@@ -78,4 +99,9 @@ void	print_point_info(t_point pt);
 t_map	*duplicate_map(t_map *map);
 int	path_exists(t_map *orig);
 int	full_map_check(const char *file_name, t_map *map);
+int	get_b(int trgb);
+int	get_g(int trgb);
+int	get_r(int trgb);
+int	get_t(int trgb);
+t_color	create_trgb(int t, int r, int g, int b);
 #endif
