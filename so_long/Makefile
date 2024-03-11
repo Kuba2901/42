@@ -15,7 +15,6 @@ LIBS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz $(LIB
 $(NAME): $(OBJ)
 	cd libft && make
 	$(CC) $(OBJ) $(LIBS) -o $(NAME)
-# $(CC) $(OBJ) $(LIBFT_INCLUDE) -o $(NAME)
 
 all: $(NAME)
 

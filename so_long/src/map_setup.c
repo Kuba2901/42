@@ -59,6 +59,10 @@ t_map	*fill_map(const char *file_name)
 		while (temp[x] && temp[x] != '\n')
 		{
 			map->map[y][x] = create_point(x, y, temp[x]);
+			if (map->map[y][x].c == 'P')
+				map->start = map->map[y][x];
+			else if (map->map[y][x].c == 'E')
+				map->end = map->map[y][x];
 			x++;
 		}
 		y++;

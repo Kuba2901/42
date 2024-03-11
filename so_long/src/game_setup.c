@@ -1,6 +1,6 @@
 #include <so_long.h>
 
-void	count_collectibles(t_game **orig)
+void	count_collectibles(t_game *orig)
 {
 	t_point	*row;
 	int		collectibles;
@@ -10,7 +10,7 @@ void	count_collectibles(t_game **orig)
 
 	collectibles = 0;
 	y = -1;
-	map = (*orig)->map;
+	map = orig->map;
 	while (++y < map->map_dimensions->height)
 	{
 		x = 0;
@@ -22,8 +22,8 @@ void	count_collectibles(t_game **orig)
 			x++;
 		}
 	}
-	(*orig)->collected = 0;
-	(*orig)->collectibles = collectibles;
+	orig->collected = 0;
+	orig->collectibles = collectibles;
 }
 
 void	free_game(t_game *game)

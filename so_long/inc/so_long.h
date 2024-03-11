@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/11 02:17:06 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:34:49 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define MAP_NOT_RECTANGULAR 5
 # define MAP_NOT_SURROUNDED_BY_WALLS 6
 # define MAP_NO_COLLECTIBLES 7
+# define MAP_NO_PATH 8
 
 typedef struct	s_point
 {
@@ -41,6 +42,8 @@ typedef struct s_map
 	t_point		**map;
 	t_map_dim	*map_dimensions;
 	int			error_code;
+	t_point		start;
+	t_point		end;
 }	t_map;
 
 
@@ -61,11 +64,18 @@ t_map	*fill_map(const char *file_name);
 void	print_map(t_map	*map);
 void	free_map(t_map *map);
 int	check_duplicates(t_map *map);
-void	count_collectibles(t_game **orig);
+void	count_collectibles(t_game *orig);
 int	check_map_rectangular(const char *file_name);
 void	free_game(t_game *game);
 void	print_error(int code);
 int	check_surrounded_by_walls(t_map *map);
 void	free_map_points(t_point **map, int h);
 size_t	ft_custom_strlen(char *str);
+int check_path_exists(t_map *map);
+int floodFill(t_map *map, t_point pt);
+int is_out_of_bounds(t_map *map, t_point pt);
+void	print_point_info(t_point pt);
+t_map	*duplicate_map(t_map *map);
+int	path_exists(t_map *orig);
+int	full_map_check(const char *file_name, t_map *map);
 #endif

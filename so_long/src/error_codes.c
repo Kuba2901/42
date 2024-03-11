@@ -23,6 +23,8 @@ const char	*get_error_message(int code)
 		return "The Map is not surrounded by walls!";
 	if (code == MAP_NO_COLLECTIBLES)
 		return "There are no collectibles on the map!";
+	if (code == MAP_NO_PATH)
+		return "Path doesn't exist!";
 	return "Unknown error!";
 }
 
