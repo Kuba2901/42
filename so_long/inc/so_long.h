@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/12 18:13:15 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/12 19:10:47 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,17 @@
 # define RIGHT_PLAYER_3_TEX "assets/textures/chosen_64x64/right_3.xpm"
 # define RIGHT_PLAYER_4_TEX "assets/textures/chosen_64x64/right_4.xpm"
 # define PLAYER_SPRITES_NUM 4
+
+// Enemy sprite
+# define LEFT_ENEMY_1_TEX "assets/textures/chosen_64x64/enemy/left_1.xpm"
+# define LEFT_ENEMY_2_TEX "assets/textures/chosen_64x64/enemy/left_2.xpm"
+# define LEFT_ENEMY_3_TEX "assets/textures/chosen_64x64/enemy/left_3.xpm"
+# define LEFT_ENEMY_4_TEX "assets/textures/chosen_64x64/enemy/left_4.xpm"
+# define RIGHT_ENEMY_1_TEX "assets/textures/chosen_64x64/enemy/right_1.xpm"
+# define RIGHT_ENEMY_2_TEX "assets/textures/chosen_64x64/enemy/right_2.xpm"
+# define RIGHT_ENEMY_3_TEX "assets/textures/chosen_64x64/enemy/right_3.xpm"
+# define RIGHT_ENEMY_4_TEX "assets/textures/chosen_64x64/enemy/right_4.xpm"
+# define ENEMY_SPRITES_NUM 4
 
 // Environment sprites
 # define TORCH_TEX "assets/textures/chosen_64x64/torch.xpm"
