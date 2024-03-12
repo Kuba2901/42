@@ -81,8 +81,34 @@ int calculate_tile_size(t_map_dim *dims)
 		return (x_tile);
 }
 
+void	display_stroked_text(t_game *game, int tx, int ty, char *str)
+{
+	int	color;
+
+	color = create_trgb(255, 255, 255, 255).col;
+	mlx_string_put(game->mlx_vars.mlx, game->mlx_vars.win,
+		tx + 1, ty, color, str);
+	mlx_string_put(game->mlx_vars.mlx, game->mlx_vars.win,
+		tx, ty + 1, color, str);
+}
+
+void display_steps_count(t_game *game)
+{
+	char	*steps;
+	char	*steps_info;
+	int		tx;
+	int		ty;
+
+	ty = game->map->map_dimensions->height * TILE_SIZE - (TILE_SIZE / 2); // Window decorations issue
+	tx = game->map->map_dimensions->width * TILE_SIZE / 2;
+	steps_info = ft_strdup("STEPS: ");
+	steps = ft_itoa(game->steps);
+	steps_info = ft_join_reassign(steps_info, steps);
+	display_stroked_text(game, tx, ty, steps_info);
+	free(steps_info);
+}
+
 int main(int ac, char **av) {
-	t_mlx_vars	vars;
 	t_map_dim	*dims;
 	t_game		*game;
 
@@ -90,18 +116,18 @@ int main(int ac, char **av) {
 		return (0);
 	game = start_game(av[1]);
 	dims = game->map->map_dimensions;
-    vars.mlx = mlx_init();
-    vars.win = mlx_new_window(vars.mlx, TILE_SIZE * dims->width, TILE_SIZE * dims->height, WINDOW_TITLE);
-	game->mlx_vars = vars;
+    game->mlx_vars.mlx = mlx_init();
+    game->mlx_vars.win = mlx_new_window(game->mlx_vars.mlx,
+		TILE_SIZE * dims->width, TILE_SIZE * dims->height, WINDOW_TITLE);
 	game->drawn = 0;
 	draw_board(game);
-	mlx_key_hook(vars.win, key_hook, game);
-	mlx_loop_hook(vars.mlx, render_frame, game);
-	mlx_loop(vars.mlx);
+	mlx_key_hook(game->mlx_vars.win, key_hook, game);
+	mlx_loop_hook(game->mlx_vars.mlx, render_frame, game);
+	mlx_loop(game->mlx_vars.mlx);
 
 	// CLEAR THE RESOURCES
-    mlx_destroy_display(vars.mlx);
-    free(vars.mlx);
+    mlx_destroy_display(game->mlx_vars.mlx);
+    free(game->mlx_vars.mlx);
 	free_game(game);
     return (0);
 }

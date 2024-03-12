@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/12 17:42:31 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:13:15 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,29 +28,29 @@
 # define MAP_NO_PATH 8
 
 // Wall textures
-# define LEFT_WALL_TEX "assets/textures/chosen_tiles_xpm/leftmost_wall.xpm" 
-# define RIGHT_WALL_TEX "assets/textures/chosen_tiles_xpm/rightmost_wall.xpm" 
-# define TOP_WALL_TEX "assets/textures/chosen_tiles_xpm/top_wall.xpm" 
-# define BOTTOM_WALL_TEX "assets/textures/chosen_tiles_xpm/top_wall.xpm" 
+# define LEFT_WALL_TEX "assets/textures/chosen_64x64/leftmost_wall.xpm" 
+# define RIGHT_WALL_TEX "assets/textures/chosen_64x64/rightmost_wall.xpm" 
+# define TOP_WALL_TEX "assets/textures/chosen_64x64/top_wall.xpm" 
+# define BOTTOM_WALL_TEX "assets/textures/chosen_64x64/top_wall.xpm" 
 
 // Character sprite
-# define LEFT_PLAYER_1_TEX "assets/textures/chosen_tiles_xpm/left_1.xpm"
-# define LEFT_PLAYER_2_TEX "assets/textures/chosen_tiles_xpm/left_2.xpm"
-# define LEFT_PLAYER_3_TEX "assets/textures/chosen_tiles_xpm/left_3.xpm"
-# define LEFT_PLAYER_4_TEX "assets/textures/chosen_tiles_xpm/left_4.xpm"
-# define RIGHT_PLAYER_1_TEX "assets/textures/chosen_tiles_xpm/right_1.xpm"
-# define RIGHT_PLAYER_2_TEX "assets/textures/chosen_tiles_xpm/right_2.xpm"
-# define RIGHT_PLAYER_3_TEX "assets/textures/chosen_tiles_xpm/right_3.xpm"
-# define RIGHT_PLAYER_4_TEX "assets/textures/chosen_tiles_xpm/right_4.xpm"
+# define LEFT_PLAYER_1_TEX "assets/textures/chosen_64x64/left_1.xpm"
+# define LEFT_PLAYER_2_TEX "assets/textures/chosen_64x64/left_2.xpm"
+# define LEFT_PLAYER_3_TEX "assets/textures/chosen_64x64/left_3.xpm"
+# define LEFT_PLAYER_4_TEX "assets/textures/chosen_64x64/left_4.xpm"
+# define RIGHT_PLAYER_1_TEX "assets/textures/chosen_64x64/right_1.xpm"
+# define RIGHT_PLAYER_2_TEX "assets/textures/chosen_64x64/right_2.xpm"
+# define RIGHT_PLAYER_3_TEX "assets/textures/chosen_64x64/right_3.xpm"
+# define RIGHT_PLAYER_4_TEX "assets/textures/chosen_64x64/right_4.xpm"
 # define PLAYER_SPRITES_NUM 4
 
 // Environment sprites
-# define TORCH_TEX "assets/textures/chosen_tiles_xpm/torch.xpm"
-# define COLLECTIBLE_TEX "assets/textures/chosen_tiles_xpm/collectible.xpm" 
-# define EDGE_TEX "assets/textures/chosen_tiles_xpm/edge.xpm" 
-# define FLOOR_TEX "assets/textures/chosen_tiles_xpm/floor.xpm" 
-# define EXIT_TEX "assets/textures/chosen_tiles_xpm/exit.xpm" 
-# define START_TEX "assets/textures/chosen_tiles_xpm/start.xpm" 
+# define TORCH_TEX "assets/textures/chosen_64x64/torch.xpm"
+# define COLLECTIBLE_TEX "assets/textures/chosen_64x64/collectible.xpm" 
+# define EDGE_TEX "assets/textures/chosen_64x64/edge.xpm" 
+# define FLOOR_TEX "assets/textures/chosen_64x64/floor.xpm" 
+# define EXIT_TEX "assets/textures/chosen_64x64/exit.xpm" 
+# define START_TEX "assets/textures/chosen_64x64/start.xpm" 
 
 // Window size
 # define WINDOW_HEIGHT 1080
@@ -58,7 +58,7 @@
 # define WINDOW_TITLE "SO_LONG"
 
 // Tile size
-# define TILE_SIZE 32
+# define TILE_SIZE 64
 # define X_TILES (WINDOW_WIDTH / TILE_SIZE)
 # define Y_TILES (WINDOW_HEIGHT / TILE_SIZE)
 
@@ -174,4 +174,5 @@ void		custom_render_image(t_game *game, t_point pt);
 void		animate_player(t_game *game, int direction);
 void		quit_game(t_game *game);
 int 		calculate_tile_size(t_map_dim *dims);
+void display_steps_count(t_game *game);
 #endif

@@ -42,6 +42,7 @@ void draw_board(t_game *game) {
 		}
     }
 	custom_render_image(game, game->player);
+	display_steps_count(game);
 	if (!game->drawn)
 		game->drawn = 1;
 }
