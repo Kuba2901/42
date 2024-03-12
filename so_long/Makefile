@@ -28,4 +28,6 @@ fclean: clean
 
 re: fclean all
 
+clean_rebuild: all clean
+
 .PHONY: all clean fclean .c.o
