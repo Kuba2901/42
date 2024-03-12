@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/12 00:29:59 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/12 00:55:40 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,6 @@
 # define MAP_NO_COLLECTIBLES 7
 # define MAP_NO_PATH 8
 
-// Exit
-# define EXIT_TEX "assets/textures/chosen_tiles_xpm/exit.xpm" 
-
-// Floor
-# define FLOOR_TEX "assets/textures/chosen_tiles_xpm/floor.xpm" 
-
-// Outer
-# define EDGE_TEX "assets/textures/chosen_tiles_xpm/edge.xpm" 
-
-// Collectible texture
-# define COLLECTIBLE_TEX "assets/textures/chosen_tiles_xpm/collectible.xpm" 
-
 // Wall textures
 # define LEFT_WALL_TEX "assets/textures/chosen_tiles_xpm/leftmost_wall.xpm" 
 # define RIGHT_WALL_TEX "assets/textures/chosen_tiles_xpm/rightmost_wall.xpm" 
@@ -44,9 +32,20 @@
 # define BOTTOM_WALL_TEX "assets/textures/chosen_tiles_xpm/top_wall.xpm" 
 
 // Character sprite
-# define PLAYER_1_TEX "assets/textures/chosen_tiles_xpm/player_1.xpm"
-# define PLAYER_2_TEX "assets/textures/chosen_tiles_xpm/player_2.xpm"
-# define PLAYER_3_TEX "assets/textures/chosen_tiles_xpm/player_3.xpm"
+# define LEFT_PLAYER_1_TEX "assets/textures/chosen_tiles_xpm/left_player_1.xpm"
+# define LEFT_PLAYER_2_TEX "assets/textures/chosen_tiles_xpm/left_player_2.xpm"
+# define LEFT_PLAYER_3_TEX "assets/textures/chosen_tiles_xpm/left_player_3.xpm"
+# define RIGHT_PLAYER_1_TEX "assets/textures/chosen_tiles_xpm/right_player_1.xpm"
+# define RIGHT_PLAYER_2_TEX "assets/textures/chosen_tiles_xpm/right_player_2.xpm"
+# define RIGHT_PLAYER_3_TEX "assets/textures/chosen_tiles_xpm/right_player_3.xpm"
+
+// Environment sprites
+# define TORCH_TEX "assets/textures/chosen_tiles_xpm/torch.xpm"
+# define COLLECTIBLE_TEX "assets/textures/chosen_tiles_xpm/collectible.xpm" 
+# define EDGE_TEX "assets/textures/chosen_tiles_xpm/edge.xpm" 
+# define FLOOR_TEX "assets/textures/chosen_tiles_xpm/floor.xpm" 
+# define EXIT_TEX "assets/textures/chosen_tiles_xpm/exit.xpm" 
+# define START_TEX "assets/textures/chosen_tiles_xpm/start.xpm" 
 
 // Window size
 # define WINDOW_HEIGHT 400
@@ -149,13 +148,13 @@ int			path_exists(t_map *orig);
 int			full_map_check(const char *file_name, t_map *map);
 t_color		create_trgb(int t, int r, int g, int b);
 int			determine_color(t_point pt);
-void		move_player(t_game *game, int x, int y);
+void		move_player(t_game *game, int x, int y, int direction);
 int			key_hook(int keycode, t_game *game);
-void		move_player(t_game *game, int x, int y);
 int			move_valid(t_map *map, t_point pt);
 void		draw_rectangle(void *mlx, void *win, t_point pt);
 void		draw_board(t_game *game);
 void		assign_sprites(t_map *map);
 char		*get_sprite(t_map *map, t_point pt);
 void	custom_render_image(t_game *game, t_point pt);
+void	animate_player(t_game *game, int direction);
 #endif

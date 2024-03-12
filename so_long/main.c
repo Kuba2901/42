@@ -22,7 +22,7 @@ t_game		*start_game(const char *file_name)
 		return (NULL);
 	}
 	game->player = create_point(map->start.x, map->start.y, 'A');
-	game->player.img_path = PLAYER_1_TEX;
+	game->player.img_path = RIGHT_PLAYER_1_TEX;
 	game->running = 1;
 	game->steps = 0;
 	assign_sprites(game->map);
@@ -40,7 +40,7 @@ int main() {
     vars.win = mlx_new_window(vars.mlx, dims->width * TILE_SIZE,
 		dims->height * TILE_SIZE, WINDOW_TITLE);
 	game->mlx_vars = vars;
-
+	game->drawn = 0;
 	draw_board(game);
 	mlx_key_hook(vars.win, key_hook, game);
 	mlx_loop(vars.mlx);

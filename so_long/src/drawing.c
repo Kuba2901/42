@@ -91,7 +91,11 @@ char	*get_sprite(t_map *map, t_point pt)
 	if (pt.x == map->map_dimensions->width - 1)
 		return (RIGHT_WALL_TEX);
 	if (pt.y == 0)
+	{
+		if (!(pt.x % 3))
+			return (TORCH_TEX);
 		return (TOP_WALL_TEX);
+	}
 	if (pt.y == map->map_dimensions->height - 1)
 		return (BOTTOM_WALL_TEX);
 	if (pt.c == '0')
@@ -100,5 +104,17 @@ char	*get_sprite(t_map *map, t_point pt)
 		return (COLLECTIBLE_TEX);
 	if (pt.c == 'E')
 		return (EXIT_TEX);
+	if (pt.c == '1')
+		return (TOP_WALL_TEX);
+	if (pt.c == 'P')
+		return (START_TEX);
 	return (EDGE_TEX);
+}
+
+void	animate_player(t_game *game, int direction)
+{
+	if (direction == ARROW_LEFT)
+		game->player.img_path = LEFT_PLAYER_1_TEX;
+	if (direction == ARROW_RIGHT)
+		game->player.img_path = RIGHT_PLAYER_1_TEX;
 }
