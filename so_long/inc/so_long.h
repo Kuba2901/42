@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/12 19:10:47 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/12 23:43:19 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <get_next_line.h>
 #include <libft.h>
 #include <mlx.h>
+#include <time.h>
 # ifndef MAP_FILE_NAME
 #	define MAP_FILE_NAME "assets/maps/map_correct.ber"
 # endif
@@ -54,6 +55,7 @@
 # define RIGHT_ENEMY_3_TEX "assets/textures/chosen_64x64/enemy/right_3.xpm"
 # define RIGHT_ENEMY_4_TEX "assets/textures/chosen_64x64/enemy/right_4.xpm"
 # define ENEMY_SPRITES_NUM 4
+# define ENEMIES_COUNT 1
 
 // Environment sprites
 # define TORCH_TEX "assets/textures/chosen_64x64/torch.xpm"
@@ -125,19 +127,38 @@ typedef struct	s_mlx_vars {
 	void	*win;
 }				t_mlx_vars;
 
-typedef struct	s_game
+typedef struct s_enemies
 {
-	t_map		*map;
+	int			enemies_count;
+	t_point		*enemies;
+	char		*enemy_left_sprites[ENEMY_SPRITES_NUM];
+	char		*enemy_right_sprites[ENEMY_SPRITES_NUM];
+}	t_enemies;
+
+typedef struct	s_game_stats
+{
 	int			collectibles;
 	int			collected;
-	t_point		player;
-	t_mlx_vars	mlx_vars;
 	int			running;
 	int			steps;
 	int			drawn;
 	int			frames;
-	char		*player_left_sprites[PLAYER_SPRITES_NUM];
-	char		*player_right_sprites[PLAYER_SPRITES_NUM];
+}	t_game_stats;
+
+typedef struct	s_player
+{
+	t_point			player;
+	char			*player_left_sprites[PLAYER_SPRITES_NUM];
+	char			*player_right_sprites[PLAYER_SPRITES_NUM];
+}	t_player;
+
+typedef struct	s_game
+{
+	t_map			*map;
+	t_mlx_vars		mlx_vars;
+	t_game_stats	game_stats;
+	t_player		player;
+	t_enemies		enemies;
 }	t_game;
 
 
@@ -185,5 +206,5 @@ void		custom_render_image(t_game *game, t_point pt);
 void		animate_player(t_game *game, int direction);
 void		quit_game(t_game *game);
 int 		calculate_tile_size(t_map_dim *dims);
-void display_steps_count(t_game *game);
+void 		display_steps_count(t_game *game);
 #endif

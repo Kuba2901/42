@@ -22,8 +22,8 @@ void	count_collectibles(t_game *orig)
 			x++;
 		}
 	}
-	orig->collected = 0;
-	orig->collectibles = collectibles;
+	orig->game_stats.collected = 0;
+	orig->game_stats.collectibles = collectibles;
 }
 
 void	free_game(t_game *game)

@@ -36,15 +36,15 @@ void draw_board(t_game *game) {
 	for (y = 0; y < map->map_dimensions->height; y++) {
         for (x = 0; x < map->map_dimensions->width; x++) {
 			pt = map->map[y][x];
-			if (!game->drawn)
+			if (!game->game_stats.drawn)
 				draw_rectangle(game->mlx_vars.mlx, game->mlx_vars.win, game->map->map_dimensions, pt);
 			custom_render_image(game, pt);
 		}
     }
-	custom_render_image(game, game->player);
+	custom_render_image(game, game->player.player);
 	display_steps_count(game);
-	if (!game->drawn)
-		game->drawn = 1;
+	if (!game->game_stats.drawn)
+		game->game_stats.drawn = 1;
 }
 
 void	custom_render_image(t_game *game, t_point pt)
@@ -116,14 +116,14 @@ void	animate_player(t_game *game, int direction)
 {
 	if (direction == ARROW_LEFT)
 	{
-		game->player.img_path = LEFT_PLAYER_1_TEX;
-		game->player.img_num = 0;
-		game->player.direction = ARROW_LEFT;
+		game->player.player.img_path = LEFT_PLAYER_1_TEX;
+		game->player.player.img_num = 0;
+		game->player.player.direction = ARROW_LEFT;
 	}
 	if (direction == ARROW_RIGHT)
 	{
-		game->player.img_path = RIGHT_PLAYER_1_TEX;
-		game->player.img_num = 0;
-		game->player.direction = ARROW_RIGHT;
+		game->player.player.img_path = RIGHT_PLAYER_1_TEX;
+		game->player.player.img_num = 0;
+		game->player.player.direction = ARROW_RIGHT;
 	}
 }

@@ -10,7 +10,7 @@ int	key_hook(int keycode, t_game *game)
 {
 	t_point player;
 
-	player = game->player;
+	player = game->player.player;
 	if (keycode == ARROW_UP)
 		move_player(game, player.x, player.y - 1, keycode);
 	if (keycode == ARROW_LEFT)
