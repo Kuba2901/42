@@ -1,5 +1,11 @@
 #include <so_long.h>
 
+void	quit_game(t_game *game)
+{
+	mlx_destroy_window(game->mlx_vars.mlx, game->mlx_vars.win);
+	mlx_loop_end(game->mlx_vars.mlx);
+}
+
 int	key_hook(int keycode, t_game *game)
 {
 	t_point player;
@@ -14,10 +20,7 @@ int	key_hook(int keycode, t_game *game)
 	if (keycode == ARROW_RIGHT)
 		move_player(game, player.x + 1, player.y, keycode);
 	if (keycode == ESC)
-	{
-		mlx_destroy_window(game->mlx_vars.mlx, game->mlx_vars.win);
-		mlx_loop_end(game->mlx_vars.mlx);
-	}
+		quit_game(game);
 	printf("Key pressed: %d\n", keycode);
 	return (0);
 }

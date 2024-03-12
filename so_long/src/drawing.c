@@ -8,11 +8,12 @@ void sleep_ms(int milliseconds) {
     nanosleep(&ts, NULL);
 }
 
-void	draw_rectangle(void *mlx, void *win, t_point pt)
+void	draw_rectangle(void *mlx, void *win, t_map_dim *dims, t_point pt)
 {
 	int	x;
 	int	y;
-    
+    int	color;
+	color = create_trgb(255, 61, 37, 59).col;
 	y = -1;
 	while (++y < TILE_SIZE)
 	{
@@ -20,7 +21,7 @@ void	draw_rectangle(void *mlx, void *win, t_point pt)
 		while (++x < TILE_SIZE)
 		{
 			mlx_pixel_put(mlx, win, pt.x * TILE_SIZE + x, pt.y * TILE_SIZE + y,
-				create_trgb(255, 255, 255, 255).col);
+				color);
 		}
 	}
 }
@@ -32,12 +33,11 @@ void draw_board(t_game *game) {
 	t_point	pt;
 
 	map = game->map;
-	// mlx_clear_window(game->mlx_vars.mlx, game->mlx_vars.win);
 	for (y = 0; y < map->map_dimensions->height; y++) {
         for (x = 0; x < map->map_dimensions->width; x++) {
 			pt = map->map[y][x];
 			if (!game->drawn)
-				draw_rectangle(game->mlx_vars.mlx, game->mlx_vars.win, pt);
+				draw_rectangle(game->mlx_vars.mlx, game->mlx_vars.win, game->map->map_dimensions, pt);
 			custom_render_image(game, pt);
 		}
     }
@@ -114,7 +114,15 @@ char	*get_sprite(t_map *map, t_point pt)
 void	animate_player(t_game *game, int direction)
 {
 	if (direction == ARROW_LEFT)
+	{
 		game->player.img_path = LEFT_PLAYER_1_TEX;
+		game->player.img_num = 0;
+		game->player.direction = ARROW_LEFT;
+	}
 	if (direction == ARROW_RIGHT)
+	{
 		game->player.img_path = RIGHT_PLAYER_1_TEX;
+		game->player.img_num = 0;
+		game->player.direction = ARROW_RIGHT;
+	}
 }

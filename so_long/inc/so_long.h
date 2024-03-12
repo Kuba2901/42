@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/12 00:55:40 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:42:31 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 #include <get_next_line.h>
 #include <libft.h>
 #include <mlx.h>
-# define MAP_FILE_NAME "assets/maps/map_correct.ber"
+# ifndef MAP_FILE_NAME
+#	define MAP_FILE_NAME "assets/maps/map_correct.ber"
+# endif
 # define MAP_NO_EXIT 1
 # define MAP_NO_STARTING_POSITION 2
 # define MAP_MULTIPLE_EXITS 3
@@ -32,12 +34,15 @@
 # define BOTTOM_WALL_TEX "assets/textures/chosen_tiles_xpm/top_wall.xpm" 
 
 // Character sprite
-# define LEFT_PLAYER_1_TEX "assets/textures/chosen_tiles_xpm/left_player_1.xpm"
-# define LEFT_PLAYER_2_TEX "assets/textures/chosen_tiles_xpm/left_player_2.xpm"
-# define LEFT_PLAYER_3_TEX "assets/textures/chosen_tiles_xpm/left_player_3.xpm"
-# define RIGHT_PLAYER_1_TEX "assets/textures/chosen_tiles_xpm/right_player_1.xpm"
-# define RIGHT_PLAYER_2_TEX "assets/textures/chosen_tiles_xpm/right_player_2.xpm"
-# define RIGHT_PLAYER_3_TEX "assets/textures/chosen_tiles_xpm/right_player_3.xpm"
+# define LEFT_PLAYER_1_TEX "assets/textures/chosen_tiles_xpm/left_1.xpm"
+# define LEFT_PLAYER_2_TEX "assets/textures/chosen_tiles_xpm/left_2.xpm"
+# define LEFT_PLAYER_3_TEX "assets/textures/chosen_tiles_xpm/left_3.xpm"
+# define LEFT_PLAYER_4_TEX "assets/textures/chosen_tiles_xpm/left_4.xpm"
+# define RIGHT_PLAYER_1_TEX "assets/textures/chosen_tiles_xpm/right_1.xpm"
+# define RIGHT_PLAYER_2_TEX "assets/textures/chosen_tiles_xpm/right_2.xpm"
+# define RIGHT_PLAYER_3_TEX "assets/textures/chosen_tiles_xpm/right_3.xpm"
+# define RIGHT_PLAYER_4_TEX "assets/textures/chosen_tiles_xpm/right_4.xpm"
+# define PLAYER_SPRITES_NUM 4
 
 // Environment sprites
 # define TORCH_TEX "assets/textures/chosen_tiles_xpm/torch.xpm"
@@ -48,12 +53,12 @@
 # define START_TEX "assets/textures/chosen_tiles_xpm/start.xpm" 
 
 // Window size
-# define WINDOW_HEIGHT 400
-# define WINDOW_WIDTH 600
+# define WINDOW_HEIGHT 1080
+# define WINDOW_WIDTH 1920
 # define WINDOW_TITLE "SO_LONG"
 
 // Tile size
-# define TILE_SIZE 128
+# define TILE_SIZE 32
 # define X_TILES (WINDOW_WIDTH / TILE_SIZE)
 # define Y_TILES (WINDOW_HEIGHT / TILE_SIZE)
 
@@ -63,6 +68,9 @@
 # define ARROW_LEFT 65361
 # define ARROW_DOWN 65364
 # define ARROW_RIGHT 65363
+
+// Animations
+# define PLAYER_ANIM_DELAY 9000
 
 typedef struct s_color
 {
@@ -80,6 +88,10 @@ typedef struct	s_point
 	int		y;
 	char	c;
 	char	*img_path;
+
+	// Player details
+	int		direction;
+	int		img_num;
 }	t_point;
 
 typedef struct	s_map_dim
@@ -112,6 +124,9 @@ typedef struct	s_game
 	int			running;
 	int			steps;
 	int			drawn;
+	int			frames;
+	char		*player_left_sprites[PLAYER_SPRITES_NUM];
+	char		*player_right_sprites[PLAYER_SPRITES_NUM];
 }	t_game;
 
 
@@ -151,10 +166,12 @@ int			determine_color(t_point pt);
 void		move_player(t_game *game, int x, int y, int direction);
 int			key_hook(int keycode, t_game *game);
 int			move_valid(t_map *map, t_point pt);
-void		draw_rectangle(void *mlx, void *win, t_point pt);
+void		draw_rectangle(void *mlx, void *win, t_map_dim *dims, t_point pt);
 void		draw_board(t_game *game);
 void		assign_sprites(t_map *map);
 char		*get_sprite(t_map *map, t_point pt);
-void	custom_render_image(t_game *game, t_point pt);
-void	animate_player(t_game *game, int direction);
+void		custom_render_image(t_game *game, t_point pt);
+void		animate_player(t_game *game, int direction);
+void		quit_game(t_game *game);
+int 		calculate_tile_size(t_map_dim *dims);
 #endif
