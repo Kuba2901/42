@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/12 23:43:19 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/13 00:59:51 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,13 +198,17 @@ int			determine_color(t_point pt);
 void		move_player(t_game *game, int x, int y, int direction);
 int			key_hook(int keycode, t_game *game);
 int			move_valid(t_map *map, t_point pt);
-void		draw_rectangle(void *mlx, void *win, t_map_dim *dims, t_point pt);
+void		draw_rectangle(void *mlx, void *win, t_point pt);
 void		draw_board(t_game *game);
 void		assign_sprites(t_map *map);
 char		*get_sprite(t_map *map, t_point pt);
 void		custom_render_image(t_game *game, t_point pt);
-void		animate_player(t_game *game, int direction);
+void		change_player_direction(t_game *game, int direction);
 void		quit_game(t_game *game);
-int 		calculate_tile_size(t_map_dim *dims);
-void 		display_steps_count(t_game *game);
+void 		print_steps_count(t_game *game);
+void		initialize_game(t_game *game);
+void		display_stroked_text(t_game *game, int tx, int ty, char *str);
+int			render_frame(t_game *game);
+void 		assign_player_sprites(t_game *game);
+void 		assign_enemy_sprites(t_game *game);
 #endif

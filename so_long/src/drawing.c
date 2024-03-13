@@ -1,18 +1,11 @@
 #include <so_long.h>
-#include <time.h>
 
-void sleep_ms(int milliseconds) {
-    struct timespec ts;
-    ts.tv_sec = milliseconds / 1000;
-    ts.tv_nsec = (milliseconds % 1000) * 1000000L;
-    nanosleep(&ts, NULL);
-}
-
-void	draw_rectangle(void *mlx, void *win, t_map_dim *dims, t_point pt)
+void	draw_rectangle(void *mlx, void *win, t_point pt)
 {
 	int	x;
 	int	y;
     int	color;
+
 	color = create_trgb(255, 61, 37, 59).col;
 	y = -1;
 	while (++y < TILE_SIZE)
@@ -37,12 +30,16 @@ void draw_board(t_game *game) {
         for (x = 0; x < map->map_dimensions->width; x++) {
 			pt = map->map[y][x];
 			if (!game->game_stats.drawn)
-				draw_rectangle(game->mlx_vars.mlx, game->mlx_vars.win, game->map->map_dimensions, pt);
+				draw_rectangle(game->mlx_vars.mlx, game->mlx_vars.win, pt);
 			custom_render_image(game, pt);
 		}
     }
 	custom_render_image(game, game->player.player);
-	display_steps_count(game);
+	y = game->map->map_dimensions->height;
+	x = -1;
+	while (++x < game->map->map_dimensions->width)
+		draw_rectangle(game->mlx_vars.mlx, game->mlx_vars.win, create_point(x, y, '1'));
+	print_steps_count(game);
 	if (!game->game_stats.drawn)
 		game->game_stats.drawn = 1;
 }
@@ -112,7 +109,7 @@ char	*get_sprite(t_map *map, t_point pt)
 	return (EDGE_TEX);
 }
 
-void	animate_player(t_game *game, int direction)
+void	change_player_direction(t_game *game, int direction)
 {
 	if (direction == ARROW_LEFT)
 	{
@@ -126,4 +123,51 @@ void	animate_player(t_game *game, int direction)
 		game->player.player.img_num = 0;
 		game->player.player.direction = ARROW_RIGHT;
 	}
+}
+
+void print_steps_count(t_game *game)
+{
+	char	*steps;
+	char	*steps_info;
+	int		tx;
+	int		ty;
+
+	ty = (game->map->map_dimensions->height + 1) * TILE_SIZE - (TILE_SIZE / 2); // Window decorations issue
+	tx = game->map->map_dimensions->width * TILE_SIZE / 2;
+	steps_info = ft_strdup("STEPS: ");
+	steps = ft_itoa(game->game_stats.steps);
+	steps_info = ft_join_reassign(steps_info, steps);
+	display_stroked_text(game, tx, ty, steps_info);
+	free(steps_info);
+}
+
+int	render_frame(t_game *game)
+{
+	if (game->game_stats.frames % PLAYER_ANIM_DELAY == 0)
+	{
+		if (game->player.player.direction == ARROW_LEFT)
+		{
+			game->player.player.img_path = game->player.player_left_sprites[
+				++game->player.player.img_num % PLAYER_SPRITES_NUM
+			];	
+		}
+		else 
+			game->player.player.img_path = game->player.player_right_sprites[
+				++game->player.player.img_num % PLAYER_SPRITES_NUM
+			];
+		custom_render_image(game, game->player.player);
+	}
+	game->game_stats.frames += 1;
+	return (0);
+}
+
+void	display_stroked_text(t_game *game, int tx, int ty, char *str)
+{
+	int	color;
+
+	color = create_trgb(255, 255, 255, 255).col;
+	mlx_string_put(game->mlx_vars.mlx, game->mlx_vars.win,
+		tx + 1, ty, color, str);
+	mlx_string_put(game->mlx_vars.mlx, game->mlx_vars.win,
+		tx, ty + 1, color, str);
 }

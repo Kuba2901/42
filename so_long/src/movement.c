@@ -33,12 +33,12 @@ void		move_player(t_game *game, int x, int y, int direction)
 		game->player.player.x = x;
 		game->player.player.y = y;
 		game->game_stats.steps += 1;
-		animate_player(game, direction);
-		printf("Steps: (%d)\n", game->game_stats.steps);
+		change_player_direction(game, direction);
 		if (game->map->map[y][x].c == 'C')
 			collect_item(game);
 		draw_board(game);
-		if (game->player.player.x == game->map->end.x && game->player.player.y == game->map->end.y)
+		if (game->player.player.x == game->map->end.x \
+			&& game->player.player.y == game->map->end.y)
 		{
 			if (game_won(game))
 			{
