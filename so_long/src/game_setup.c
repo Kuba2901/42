@@ -63,8 +63,8 @@ void assign_enemy_sprites(t_game *game)
 	enemies->enemy_right_sprites[1] = RIGHT_ENEMY_2_TEX;
 	enemies->enemy_right_sprites[2] = RIGHT_ENEMY_3_TEX;
 	enemies->enemy_right_sprites[3] = RIGHT_ENEMY_4_TEX;
-	enemies->enemies_count = ENEMIES_COUNT;
-	// enemies->enemies = (t_point *)malloc(sizeof(t_point) * ENEMIES_COUNT);
+	enemies->enemies = (t_point *)malloc(sizeof(t_point) * ENEMIES_COUNT);
+	place_enemies(game);
 }
 
 void assign_player_sprites(t_game *game)
@@ -79,42 +79,77 @@ void assign_player_sprites(t_game *game)
 	game->player.player_right_sprites[3] = RIGHT_PLAYER_4_TEX;
 }
 
-int		count_free_available_fields(t_map *map)
+int	field_available(t_game *game, t_point pt)
 {
-	int		x;
-	int		y;
-	int		fields;
+	int		available;
+	t_map	*dup_map;
+	int		i;
 
-	y = 0;
-	fields = 0;
-	while (++y < map->map_dimensions->height - 1)
+	dup_map = duplicate_map(game->map);
+	dup_map->map[pt.y][pt.x].c = '1';
+	if (!path_exists(dup_map))
+		available = 1;
+	free_map(dup_map);
+	i = -1;
+	while (++i < game->enemies.enemies_count)
 	{
-		x = 0;
-		while (++x < map->map_dimensions->width - 1)
-		{
-			if (map->map[y][x].c == '0')
-				fields++;
-		}
+		if (game->enemies.enemies[i].x == pt.x \
+			&& game->enemies.enemies[i].y == pt.y)
+				return (POINT_NOT_AVAILABLE);
 	}
-	return (fields);
+	if (available)
+		return (POINT_AVAILABLE);
+	return (POINT_NOT_AVAILABLE);
 }
 
-// t_enemies	get_free_spots(t_game *game)
-// {
-// 	t_enemies	ret;
-// 	int			fields;
-// 	int			x;
-// 	int			y;
+void	place_enemies(t_game *game)
+{
+	int		y;
+	int		x;
+	t_point	pt;
 
-// 	fields = count_free_available_fields(game->map);
-// 	y = 0;
-// 	while (++y < game->map->map_dimensions->height - 1)
-// 	{
-// 		x = 0;
-// 		while (++x < game->map->map_dimensions->width - 1)
-// 		{
+	y = 0;
+	while (++y < game->map->map_dimensions->height - 1)
+	{
+		x = 0;
+		while (++x < game->map->map_dimensions->width - 1)
+		{
+			pt = game->map->map[y][x];
+			if (pt.c == MS_FREE && field_available(game, pt))
+			{
+				game->enemies.enemies[
+					game->enemies.enemies_count++] = create_point(x, y, MS_ENEMY);
+				game->enemies.enemies[
+					game->enemies.enemies_count - 1].img_path = LEFT_ENEMY_1_TEX;
+				if (game->enemies.enemies_count == ENEMIES_COUNT)
+					return ;
+			}
+		}
+	}
+}
 
-// 		}
-// 	}
-// 	return (ret);
-// }
+void	display_enemies(t_game *game)
+{
+	int	i;
+
+	i = -1;
+	while (++i < game->enemies.enemies_count)
+		custom_render_image(game, game->enemies.enemies[i]);
+}
+
+int	enemy_hit(t_game *game)
+{
+	t_point enemy;
+	t_point	player;
+	int	i;
+
+	i = -1;
+	player = game->player.player;
+	while (++i < game->enemies.enemies_count)
+	{
+		enemy = game->enemies.enemies[i];
+		if (enemy.x == player.x && enemy.y == player.y)
+			return (ENEMY_HIT);
+	}
+	return (0);
+}

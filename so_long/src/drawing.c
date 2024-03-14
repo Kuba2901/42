@@ -35,10 +35,12 @@ void draw_board(t_game *game) {
 		}
     }
 	custom_render_image(game, game->player.player);
+	display_enemies(game);
 	y = game->map->map_dimensions->height;
 	x = -1;
 	while (++x < game->map->map_dimensions->width)
-		draw_rectangle(game->mlx_vars.mlx, game->mlx_vars.win, create_point(x, y, '1'));
+		draw_rectangle(game->mlx_vars.mlx, game->mlx_vars.win,
+			create_point(x, y, MS_WALL));
 	print_steps_count(game);
 	if (!game->game_stats.drawn)
 		game->game_stats.drawn = 1;

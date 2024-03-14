@@ -33,10 +33,15 @@ void		move_player(t_game *game, int x, int y, int direction)
 		game->player.player.x = x;
 		game->player.player.y = y;
 		game->game_stats.steps += 1;
-		change_player_direction(game, direction);
+		if (enemy_hit(game))
+		{
+			printf("You lost!\n");
+			quit_game(game);
+		}
 		if (game->map->map[y][x].c == 'C')
 			collect_item(game);
 		draw_board(game);
+		change_player_direction(game, direction);
 		if (game->player.player.x == game->map->end.x \
 			&& game->player.player.y == game->map->end.y)
 		{

@@ -31,6 +31,7 @@ t_game		*start_game(const char *file_name)
 		return (NULL);
 	}
 	initialize_game(game);
+	printf("Enemies count: %d\n", game->enemies.enemies_count);
 	return (game);
 }
 

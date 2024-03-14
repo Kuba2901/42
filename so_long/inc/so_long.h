@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/13 00:59:51 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:43:18 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,17 @@
 # define MAP_NOT_SURROUNDED_BY_WALLS 6
 # define MAP_NO_COLLECTIBLES 7
 # define MAP_NO_PATH 8
+# define MAP_PATH_EXISTS 9
+# define POINT_AVAILABLE 10
+# define POINT_NOT_AVAILABLE 10
+# define ENEMY_HIT 11
+
+// Map structure
+# define MS_FREE '0'
+# define MS_WALL '1'
+# define MS_ENEMY 'Q'
+# define MS_START 'P'
+# define MS_EXIT 'E'
 
 // Wall textures
 # define LEFT_WALL_TEX "assets/textures/chosen_64x64/leftmost_wall.xpm" 
@@ -211,4 +222,8 @@ void		display_stroked_text(t_game *game, int tx, int ty, char *str);
 int			render_frame(t_game *game);
 void 		assign_player_sprites(t_game *game);
 void 		assign_enemy_sprites(t_game *game);
+int			field_available(t_game *game, t_point pt);
+void		place_enemies(t_game *game);
+void		display_enemies(t_game *game);
+int			enemy_hit(t_game *game);
 #endif
