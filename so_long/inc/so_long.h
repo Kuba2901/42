@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/15 17:13:40 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:34:41 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
 
 // Enemy sprite
 # define ENEMY_SPRITES_NUM 4
-# define ENEMIES_COUNT 1
+# define ENEMIES_COUNT 2
 # define LEFT_ENEMY_1_TEX "assets/textures/chosen_64x64/enemy/left_1.xpm"
 # define LEFT_ENEMY_2_TEX "assets/textures/chosen_64x64/enemy/left_2.xpm"
 # define LEFT_ENEMY_3_TEX "assets/textures/chosen_64x64/enemy/left_3.xpm"
@@ -232,4 +232,8 @@ void		display_enemies(t_game *game);
 int			random_num(int min, int max);
 void		move_enemies(t_game *game);
 void		animate_enemy(t_game *game, int enemy_num, int direction);
+void		change_enemies_sprites(t_game *game);
+int			ft_is_prime(int nb);
+int			ft_find_next_prime(int nb);
+void		sleep_ms(int milliseconds);
 #endif

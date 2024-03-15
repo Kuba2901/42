@@ -119,13 +119,7 @@ int	render_frame(t_game *game)
 		render_sprite(game, game->player.location);
 	}
 	if (game->stats.frames % ENEMY_ANIM_DELAY == 0)
-	{
-		if (game->enemies.enemies[0].direction == ARROW_LEFT)
-			game->enemies.enemies[0].img_path = game->enemies.enemy_left_sprites[++game->enemies.enemies[0].img_num % ENEMY_SPRITES_NUM];	
-		else 
-			game->enemies.enemies[0].img_path = game->enemies.enemy_right_sprites[++game->enemies.enemies[0].img_num % ENEMY_SPRITES_NUM];	
-		render_sprite(game, game->enemies.enemies[0]);
-	}
+		change_enemies_sprites(game);
 	if (game->stats.frames % ENEMY_MOVEMENT_DELAY == 0)
 		move_enemies(game);
 	game->stats.frames += 1;

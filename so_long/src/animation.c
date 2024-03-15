@@ -50,18 +50,33 @@ void	move_enemies(t_game *game)
 	}
 }
 
+void	change_enemies_sprites(t_game *game)
+{
+	int	i;
+
+	i = -1;
+	while (++i < game->enemies.enemies_count)
+	{
+		if (game->enemies.enemies[i].direction == ARROW_LEFT)
+			game->enemies.enemies[i].img_path = game->enemies.enemy_left_sprites[++game->enemies.enemies[i].img_num % ENEMY_SPRITES_NUM];	
+		else 
+			game->enemies.enemies[i].img_path = game->enemies.enemy_right_sprites[++game->enemies.enemies[i].img_num % ENEMY_SPRITES_NUM];	
+		render_sprite(game, game->enemies.enemies[i]);
+	}
+}
+
 void	animate_enemy(t_game *game, int enemy_num, int direction)
 {
 	if (direction == ARROW_LEFT)
 	{
-		game->enemies.enemies[enemy_num].img_path = LEFT_PLAYER_1_TEX;
+		game->enemies.enemies[enemy_num].img_path = LEFT_ENEMY_1_TEX;
 		game->enemies.enemies[enemy_num].img_num = 0;
 		game->enemies.enemies[enemy_num].direction = ARROW_LEFT;
 		game->enemies.enemies[enemy_num].x -= 1;
 	}
 	if (direction == ARROW_RIGHT)
 	{
-		game->enemies.enemies[enemy_num].img_path = RIGHT_PLAYER_1_TEX;
+		game->enemies.enemies[enemy_num].img_path = RIGHT_ENEMY_1_TEX;
 		game->enemies.enemies[enemy_num].img_num = 0;
 		game->enemies.enemies[enemy_num].direction = ARROW_RIGHT;
 		game->enemies.enemies[enemy_num].x += 1;
@@ -94,4 +109,41 @@ void sleep_ms(int milliseconds) {
     ts.tv_sec = milliseconds / 1000;
     ts.tv_nsec = (milliseconds % 1000) * 1000000L;
     nanosleep(&ts, NULL);
+}
+
+
+int	ft_is_prime(int nb)
+{
+	int	i;
+
+	i = 3;
+	if (nb <= 1)
+		return (0);
+	if (nb == 2 || nb == 3)
+		return (1);
+	if (nb % 2 == 0)
+		return (0);
+	if (nb == 2147483647)
+		return (1);
+	while (i * i <= nb)
+	{
+		if (nb % i == 0)
+			return (0);
+		i += 2;
+	}
+	return (1);
+}
+
+int	ft_find_next_prime(int nb)
+{
+	if (nb < 2)
+		return (2);
+	if (ft_is_prime(nb))
+		return (nb);
+	while (1)
+	{
+		nb++;
+		if (ft_is_prime(nb))
+			return (nb);
+	}
 }
