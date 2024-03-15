@@ -36,15 +36,15 @@ void draw_board(t_game *game) {
 	for (y = 0; y < map->map_dimensions->height; y++) {
         for (x = 0; x < map->map_dimensions->width; x++) {
 			pt = map->map[y][x];
-			if (!game->drawn)
+			if (!game->stats.drawn)
 				draw_rectangle(game->mlx_vars.mlx, game->mlx_vars.win, game->map->map_dimensions, pt);
 			custom_render_image(game, pt);
 		}
     }
 	custom_render_image(game, game->player);
 	display_steps_count(game);
-	if (!game->drawn)
-		game->drawn = 1;
+	if (!game->stats.drawn)
+		game->stats.drawn = 1;
 }
 
 void	custom_render_image(t_game *game, t_point pt)

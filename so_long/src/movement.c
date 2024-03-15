@@ -7,7 +7,7 @@ int			move_valid(t_map *map, t_point pt)
 
 int			game_won(t_game *game)
 {
-	if (!(game->collected == game->collectibles))
+	if (!(game->stats.collected == game->stats.collectibles))
 	{
 		printf("You have to collect all coins before finishing\n");
 		return (0);
@@ -22,7 +22,7 @@ void	collect_item(t_game *game)
 	player = game->player;
 	game->map->map[player.y][player.x].c = '0';
 	game->map->map[player.y][player.x].img_path = FLOOR_TEX;
-	game->collected += 1;
+	game->stats.collected += 1;
 	printf("Item collected!\n");
 }
 
@@ -32,9 +32,9 @@ void		move_player(t_game *game, int x, int y, int direction)
 	{
 		game->player.x = x;
 		game->player.y = y;
-		game->steps += 1;
+		game->stats.steps += 1;
 		animate_player(game, direction);
-		printf("Steps: (%d)\n", game->steps);
+		printf("Steps: (%d)\n", game->stats.steps);
 		if (game->map->map[y][x].c == 'C')
 			collect_item(game);
 		draw_board(game);

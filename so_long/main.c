@@ -28,7 +28,7 @@ t_game		*start_game(const char *file_name)
 		return (NULL);
 	}
 	count_collectibles(game);
-	if (!game->collectibles)
+	if (!game->stats.collectibles)
 	{
 		print_error(MAP_NO_COLLECTIBLES);
 		free_game(game);
@@ -39,8 +39,8 @@ t_game		*start_game(const char *file_name)
 	game->player.img_num = 0;
 	game->player.direction = ARROW_RIGHT;
 	game->running = 1;
-	game->steps = 0;
-	game->frames = 0;
+	game->stats.steps = 0;
+	game->stats.frames = 0;
 	assign_sprites(game->map);
 	assign_player_sprites(game);
 
@@ -56,7 +56,7 @@ t_game		*start_game(const char *file_name)
 
 int	render_frame(t_game *game)
 {
-	if (game->frames % PLAYER_ANIM_DELAY == 0)
+	if (game->stats.frames % PLAYER_ANIM_DELAY == 0)
 	{
 		if (game->player.direction == ARROW_LEFT)
 			game->player.img_path = game->player_left_sprites[++game->player.img_num % PLAYER_SPRITES_NUM];	
@@ -64,7 +64,7 @@ int	render_frame(t_game *game)
 			game->player.img_path = game->player_right_sprites[++game->player.img_num % PLAYER_SPRITES_NUM];
 		custom_render_image(game, game->player);
 	}
-	game->frames += 1;
+	game->stats.frames += 1;
 	return (0);
 }
 
@@ -102,7 +102,7 @@ void display_steps_count(t_game *game)
 	ty = game->map->map_dimensions->height * TILE_SIZE - (TILE_SIZE / 2); // Window decorations issue
 	tx = game->map->map_dimensions->width * TILE_SIZE / 2;
 	steps_info = ft_strdup("STEPS: ");
-	steps = ft_itoa(game->steps);
+	steps = ft_itoa(game->stats.steps);
 	steps_info = ft_join_reassign(steps_info, steps);
 	display_stroked_text(game, tx, ty, steps_info);
 	free(steps_info);
@@ -119,7 +119,7 @@ int main(int ac, char **av) {
     game->mlx_vars.mlx = mlx_init();
     game->mlx_vars.win = mlx_new_window(game->mlx_vars.mlx,
 		TILE_SIZE * dims->width, TILE_SIZE * dims->height, WINDOW_TITLE);
-	game->drawn = 0;
+	game->stats.drawn = 0;
 	draw_board(game);
 	mlx_key_hook(game->mlx_vars.win, key_hook, game);
 	mlx_loop_hook(game->mlx_vars.mlx, render_frame, game);

@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/12 18:13:15 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:07:55 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,19 +114,24 @@ typedef struct	s_mlx_vars {
 	void	*win;
 }				t_mlx_vars;
 
-typedef struct	s_game
+typedef struct	s_game_stats
 {
-	t_map		*map;
 	int			collectibles;
 	int			collected;
-	t_point		player;
-	t_mlx_vars	mlx_vars;
-	int			running;
 	int			steps;
 	int			drawn;
 	int			frames;
-	char		*player_left_sprites[PLAYER_SPRITES_NUM];
-	char		*player_right_sprites[PLAYER_SPRITES_NUM];
+}	t_game_stats;
+
+typedef struct	s_game
+{
+	t_map			*map;
+	t_point			player;
+	t_mlx_vars		mlx_vars;
+	t_game_stats	stats;
+	int				running;
+	char			*player_left_sprites[PLAYER_SPRITES_NUM];
+	char			*player_right_sprites[PLAYER_SPRITES_NUM];
 }	t_game;
 
 
