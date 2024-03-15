@@ -26,7 +26,7 @@ t_game		*start_game(const char *file_name)
 	game->stats.frames = 0;
 	assign_sprites(game->map);
 	initialize_player(game);
-	// initialize_enemies(game);
+	initialize_enemies(game);
 	return (game);
 }
 
