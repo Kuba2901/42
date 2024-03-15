@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/15 17:34:41 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:49:46 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,12 @@ typedef struct	s_image {
 	int		endian;
 }				t_image;
 
+typedef struct	s_free_points
+{
+	t_point	*points;
+	int		count;
+}	t_free_points;
+
 const char	*get_error_message(int code);
 t_game		*start_game(const char *file_name);
 t_map_dim	*get_map_dimensions(const char *file_name);
@@ -236,4 +242,8 @@ void		change_enemies_sprites(t_game *game);
 int			ft_is_prime(int nb);
 int			ft_find_next_prime(int nb);
 void		sleep_ms(int milliseconds);
+t_free_points get_free_points(t_game *game);
+int	count_free_points(t_game *game);
+int	enemy_at_point(t_game *game, t_point pt);
+int	point_cmp(t_point pt1, t_point pt2);
 #endif
