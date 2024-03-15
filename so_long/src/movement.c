@@ -1,5 +1,10 @@
 #include <so_long.h>
 
+int	enemy_hit(t_game *game)
+{
+	return (enemy_at_point(game, game->player.location));
+}
+
 int	move_valid(t_game *game, t_point pt)
 {
 	if (is_out_of_bounds(game->map, pt) || pt.c == '1')

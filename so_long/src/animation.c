@@ -19,8 +19,6 @@ void	move_enemies(t_game *game)
 	i = -1;
 	while (++i < game->enemies.enemies_count)
 	{
-		if ((i + 1) * random_num(1, 10) % ENEMY_MOVEMENT_DELAY == 0)
-		{
 			enemy = game->enemies.enemies[i];
 			if (!random_num(0, 1))
 				axis = AXIS_VERTICAL;
@@ -46,7 +44,6 @@ void	move_enemies(t_game *game)
 				else if (move_valid(game, new_pos))
 					animate_enemy(game, i, ARROW_LEFT);
 			}
-		}
 	}
 }
 

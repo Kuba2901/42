@@ -1,6 +1,6 @@
 #include <so_long.h>
 
-void	draw_rectangle(void *mlx, void *win, t_map_dim *dims, t_point pt)
+void	draw_rectangle(void *mlx, void *win, t_point pt)
 {
 	int	x;
 	int	y;
@@ -29,7 +29,7 @@ void draw_board(t_game *game) {
         for (x = 0; x < map->map_dimensions->width; x++) {
 			pt = map->map[y][x];
 			if (!game->stats.drawn)
-				draw_rectangle(game->mlx_vars.mlx, game->mlx_vars.win, game->map->map_dimensions, pt);
+				draw_rectangle(game->mlx_vars.mlx, game->mlx_vars.win, pt);
 			render_sprite(game, pt);
 		}
     }

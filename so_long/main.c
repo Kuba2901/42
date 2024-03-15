@@ -49,6 +49,7 @@ int main(int ac, char **av) {
 
 	if (ac != 2)
 		return (0);
+	srand(time(0));
 	game = start_game(av[1]);
 	dims = game->map->map_dimensions;
     game->mlx_vars.mlx = mlx_init();

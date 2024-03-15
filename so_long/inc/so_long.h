@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/15 17:49:46 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:22:55 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,7 +218,7 @@ int			determine_color(t_point pt);
 void		move_player(t_game *game, int x, int y, int direction);
 int			key_hook(int keycode, t_game *game);
 int			move_valid(t_game *game, t_point pt);
-void		draw_rectangle(void *mlx, void *win, t_map_dim *dims, t_point pt);
+void		draw_rectangle(void *mlx, void *win, t_point pt);
 void		draw_board(t_game *game);
 void		assign_sprites(t_map *map);
 char		*determine_sprite(t_map *map, t_point pt);
@@ -242,8 +242,10 @@ void		change_enemies_sprites(t_game *game);
 int			ft_is_prime(int nb);
 int			ft_find_next_prime(int nb);
 void		sleep_ms(int milliseconds);
-t_free_points get_free_points(t_game *game);
-int	count_free_points(t_game *game);
-int	enemy_at_point(t_game *game, t_point pt);
-int	point_cmp(t_point pt1, t_point pt2);
+t_free_points	*get_free_points(t_game *game);
+int			count_free_points(t_game *game);
+int			enemy_at_point(t_game *game, t_point pt);
+int			point_cmp(t_point pt1, t_point pt2);
+void		put_enemy(t_game *game, t_point pt);
+int			enemy_hit(t_game *game);
 #endif
