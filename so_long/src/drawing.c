@@ -41,7 +41,7 @@ void draw_board(t_game *game) {
 			custom_render_image(game, pt);
 		}
     }
-	custom_render_image(game, game->player);
+	custom_render_image(game, game->player.location);
 	display_steps_count(game);
 	if (!game->stats.drawn)
 		game->stats.drawn = 1;
@@ -116,14 +116,14 @@ void	animate_player(t_game *game, int direction)
 {
 	if (direction == ARROW_LEFT)
 	{
-		game->player.img_path = LEFT_PLAYER_1_TEX;
-		game->player.img_num = 0;
-		game->player.direction = ARROW_LEFT;
+		game->player.location.img_path = LEFT_PLAYER_1_TEX;
+		game->player.location.img_num = 0;
+		game->player.location.direction = ARROW_LEFT;
 	}
 	if (direction == ARROW_RIGHT)
 	{
-		game->player.img_path = RIGHT_PLAYER_1_TEX;
-		game->player.img_num = 0;
-		game->player.direction = ARROW_RIGHT;
+		game->player.location.img_path = RIGHT_PLAYER_1_TEX;
+		game->player.location.img_num = 0;
+		game->player.location.direction = ARROW_RIGHT;
 	}
 }

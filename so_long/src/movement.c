@@ -19,7 +19,7 @@ void	collect_item(t_game *game)
 {
 	t_point	player;
 
-	player = game->player;
+	player = game->player.location;
 	game->map->map[player.y][player.x].c = '0';
 	game->map->map[player.y][player.x].img_path = FLOOR_TEX;
 	game->stats.collected += 1;
@@ -30,15 +30,15 @@ void		move_player(t_game *game, int x, int y, int direction)
 {
 	if (move_valid(game->map, game->map->map[y][x]))
 	{
-		game->player.x = x;
-		game->player.y = y;
+		game->player.location.x = x;
+		game->player.location.y = y;
 		game->stats.steps += 1;
 		animate_player(game, direction);
 		printf("Steps: (%d)\n", game->stats.steps);
 		if (game->map->map[y][x].c == 'C')
 			collect_item(game);
 		draw_board(game);
-		if (game->player.x == game->map->end.x && game->player.y == game->map->end.y)
+		if (game->player.location.x == game->map->end.x && game->player.location.y == game->map->end.y)
 		{
 			if (game_won(game))
 			{

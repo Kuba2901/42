@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/15 15:07:55 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:15:20 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,15 +123,20 @@ typedef struct	s_game_stats
 	int			frames;
 }	t_game_stats;
 
+typedef struct	s_player
+{
+	t_point			location;
+	char			*player_left_sprites[PLAYER_SPRITES_NUM];
+	char			*player_right_sprites[PLAYER_SPRITES_NUM];
+}	t_player;
+
 typedef struct	s_game
 {
 	t_map			*map;
-	t_point			player;
 	t_mlx_vars		mlx_vars;
 	t_game_stats	stats;
+	t_player		player;
 	int				running;
-	char			*player_left_sprites[PLAYER_SPRITES_NUM];
-	char			*player_right_sprites[PLAYER_SPRITES_NUM];
 }	t_game;
 
 

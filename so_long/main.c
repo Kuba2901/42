@@ -4,14 +4,14 @@
 
 void assign_player_sprites(t_game *game)
 {
-	game->player_left_sprites[0] = LEFT_PLAYER_1_TEX;
-	game->player_left_sprites[1] = LEFT_PLAYER_2_TEX;
-	game->player_left_sprites[2] = LEFT_PLAYER_3_TEX;
-	game->player_left_sprites[3] = LEFT_PLAYER_4_TEX;
-	game->player_right_sprites[0] = RIGHT_PLAYER_1_TEX;
-	game->player_right_sprites[1] = RIGHT_PLAYER_2_TEX;
-	game->player_right_sprites[2] = RIGHT_PLAYER_3_TEX;
-	game->player_right_sprites[3] = RIGHT_PLAYER_4_TEX;
+	game->player.player_left_sprites[0] = LEFT_PLAYER_1_TEX;
+	game->player.player_left_sprites[1] = LEFT_PLAYER_2_TEX;
+	game->player.player_left_sprites[2] = LEFT_PLAYER_3_TEX;
+	game->player.player_left_sprites[3] = LEFT_PLAYER_4_TEX;
+	game->player.player_right_sprites[0] = RIGHT_PLAYER_1_TEX;
+	game->player.player_right_sprites[1] = RIGHT_PLAYER_2_TEX;
+	game->player.player_right_sprites[2] = RIGHT_PLAYER_3_TEX;
+	game->player.player_right_sprites[3] = RIGHT_PLAYER_4_TEX;
 }
 
 t_game		*start_game(const char *file_name)
@@ -34,23 +34,15 @@ t_game		*start_game(const char *file_name)
 		free_game(game);
 		return (NULL);
 	}
-	game->player = create_point(map->start.x, map->start.y, 'A');
-	game->player.img_path = RIGHT_PLAYER_1_TEX;
-	game->player.img_num = 0;
-	game->player.direction = ARROW_RIGHT;
+	game->player.location = create_point(map->start.x, map->start.y, 'A');
+	game->player.location.img_path = RIGHT_PLAYER_1_TEX;
+	game->player.location.img_num = 0;
+	game->player.location.direction = ARROW_RIGHT;
 	game->running = 1;
 	game->stats.steps = 0;
 	game->stats.frames = 0;
 	assign_sprites(game->map);
 	assign_player_sprites(game);
-
-	printf("Printing player sprites!\n");
-	for (int i = 0; i < PLAYER_SPRITES_NUM; i++)
-	{
-		printf("Left (%d): (%s)\n", i, game->player_left_sprites[i]);
-		printf("Right (%d): (%s)\n", i, game->player_right_sprites[i]);
-	}
-	
 	return (game);
 }
 
@@ -58,11 +50,11 @@ int	render_frame(t_game *game)
 {
 	if (game->stats.frames % PLAYER_ANIM_DELAY == 0)
 	{
-		if (game->player.direction == ARROW_LEFT)
-			game->player.img_path = game->player_left_sprites[++game->player.img_num % PLAYER_SPRITES_NUM];	
+		if (game->player.location.direction == ARROW_LEFT)
+			game->player.location.img_path = game->player.player_left_sprites[++game->player.location.img_num % PLAYER_SPRITES_NUM];	
 		else 
-			game->player.img_path = game->player_right_sprites[++game->player.img_num % PLAYER_SPRITES_NUM];
-		custom_render_image(game, game->player);
+			game->player.location.img_path = game->player.player_right_sprites[++game->player.location.img_num % PLAYER_SPRITES_NUM];
+		custom_render_image(game, game->player.location);
 	}
 	game->stats.frames += 1;
 	return (0);
@@ -124,5 +116,10 @@ int main(int ac, char **av) {
 	mlx_key_hook(game->mlx_vars.win, key_hook, game);
 	mlx_loop_hook(game->mlx_vars.mlx, render_frame, game);
 	mlx_loop(game->mlx_vars.mlx);
+
+	// CLEAR THE RESOURCES
+    mlx_destroy_display(game->mlx_vars.mlx);
+    free(game->mlx_vars.mlx);
+	free_game(game);
     return (0);
 }
