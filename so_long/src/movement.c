@@ -1,8 +1,10 @@
 #include <so_long.h>
 
-int			move_valid(t_map *map, t_point pt)
+int	move_valid(t_game *game, t_point pt)
 {
-	return (!(is_out_of_bounds(map, pt) || pt.c == '1'));
+	if (is_out_of_bounds(game->map, pt) || pt.c == '1')
+		return (0);
+	return (1);
 }
 
 void	collect_item(t_game *game)
@@ -18,16 +20,14 @@ void	collect_item(t_game *game)
 
 void		move_player(t_game *game, int x, int y, int direction)
 {
-	if (move_valid(game->map, game->map->map[y][x]))
+	if (move_valid(game, game->map->map[y][x]))
 	{
-		game->player.location.x = x;
-		game->player.location.y = y;
-		game->stats.steps += 1;
+		if (y != game->player.location.y)
+			game->player.location.y += (y - game->player.location.y);
 		animate_player(game, direction);
 		printf("Steps: (%d)\n", game->stats.steps);
 		if (game->map->map[y][x].c == 'C')
 			collect_item(game);
-		draw_board(game);
 		if (game->player.location.x == game->map->end.x && game->player.location.y == game->map->end.y)
 		{
 			if (game_won(game))

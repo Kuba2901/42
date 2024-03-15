@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/15 16:32:12 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:13:40 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define MAP_NO_PATH 8
 # define POINT_NOT_AVAILABLE 9
 # define POINT_AVAILABLE 10
+# define AXIS_VERTICAL 0
+# define AXIS_HORIZONTAL 1
 
 // Map structure
 # define MS_FREE '0'
@@ -209,7 +211,7 @@ t_color		create_trgb(int t, int r, int g, int b);
 int			determine_color(t_point pt);
 void		move_player(t_game *game, int x, int y, int direction);
 int			key_hook(int keycode, t_game *game);
-int			move_valid(t_map *map, t_point pt);
+int			move_valid(t_game *game, t_point pt);
 void		draw_rectangle(void *mlx, void *win, t_map_dim *dims, t_point pt);
 void		draw_board(t_game *game);
 void		assign_sprites(t_map *map);
@@ -227,4 +229,7 @@ int			game_won(t_game *game);
 int			field_available(t_game *game, t_point pt);
 void		place_enemies(t_game *game);
 void		display_enemies(t_game *game);
+int			random_num(int min, int max);
+void		move_enemies(t_game *game);
+void		animate_enemy(t_game *game, int enemy_num, int direction);
 #endif

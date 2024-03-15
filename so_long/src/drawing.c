@@ -126,6 +126,8 @@ int	render_frame(t_game *game)
 			game->enemies.enemies[0].img_path = game->enemies.enemy_right_sprites[++game->enemies.enemies[0].img_num % ENEMY_SPRITES_NUM];	
 		render_sprite(game, game->enemies.enemies[0]);
 	}
+	if (game->stats.frames % ENEMY_MOVEMENT_DELAY == 0)
+		move_enemies(game);
 	game->stats.frames += 1;
 	return (0);
 }
