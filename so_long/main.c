@@ -124,10 +124,5 @@ int main(int ac, char **av) {
 	mlx_key_hook(game->mlx_vars.win, key_hook, game);
 	mlx_loop_hook(game->mlx_vars.mlx, render_frame, game);
 	mlx_loop(game->mlx_vars.mlx);
-
-	// CLEAR THE RESOURCES
-    mlx_destroy_display(game->mlx_vars.mlx);
-    free(game->mlx_vars.mlx);
-	free_game(game);
     return (0);
 }
