@@ -35,6 +35,7 @@ void draw_board(t_game *game) {
     }
 	render_sprite(game, game->player.location);
 	display_steps_count(game);
+	display_enemies(game);
 	if (!game->stats.drawn)
 		game->stats.drawn = 1;
 }
