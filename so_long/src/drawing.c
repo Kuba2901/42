@@ -38,6 +38,8 @@ void draw_board(t_game *game) {
 	display_steps_count(game);
 	if (!game->stats.drawn)
 		game->stats.drawn = 1;
+	if (enemy_hit(game))
+		quit_game(game);
 }
 
 void	render_sprite(t_game *game, t_point pt)
