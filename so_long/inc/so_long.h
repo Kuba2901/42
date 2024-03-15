@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/15 15:53:51 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:14:52 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@
 # define POINT_NOT_AVAILABLE 9
 # define POINT_AVAILABLE 10
 
+// Map structure
+# define MS_FREE '0'
+# define MS_WALL '1'
+# define MS_START 'P'
+# define MS_EXIT 'E'
+# define MS_PLAYER 'A'
+# define MS_ENEMY 'B'
+
 // Wall textures
 # define LEFT_WALL_TEX "assets/textures/chosen_64x64/leftmost_wall.xpm" 
 # define RIGHT_WALL_TEX "assets/textures/chosen_64x64/rightmost_wall.xpm" 
@@ -49,7 +57,15 @@
 
 // Enemy sprite
 # define ENEMY_SPRITES_NUM 4
-# define ENEMIES_COUNT 4
+# define ENEMIES_COUNT 1
+# define LEFT_ENEMY_1_TEX "assets/textures/chosen_64x64/enemy/left_1.xpm"
+# define LEFT_ENEMY_2_TEX "assets/textures/chosen_64x64/enemy/left_2.xpm"
+# define LEFT_ENEMY_3_TEX "assets/textures/chosen_64x64/enemy/left_3.xpm"
+# define LEFT_ENEMY_4_TEX "assets/textures/chosen_64x64/enemy/left_4.xpm"
+# define RIGHT_ENEMY_1_TEX "assets/textures/chosen_64x64/enemy/right_1.xpm"
+# define RIGHT_ENEMY_2_TEX "assets/textures/chosen_64x64/enemy/right_2.xpm"
+# define RIGHT_ENEMY_3_TEX "assets/textures/chosen_64x64/enemy/right_3.xpm"
+# define RIGHT_ENEMY_4_TEX "assets/textures/chosen_64x64/enemy/right_4.xpm"
 
 // Environment sprites
 # define TORCH_TEX "assets/textures/chosen_64x64/torch.xpm"
@@ -208,4 +224,6 @@ int			render_frame(t_game *game);
 void		display_stroked_text(t_game *game, int tx, int ty, char *str);
 int			game_won(t_game *game);
 int			field_available(t_game *game, t_point pt);
+void		place_enemies(t_game *game);
+void		display_enemies(t_game *game);
 #endif

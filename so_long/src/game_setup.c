@@ -32,7 +32,7 @@ void	free_game(t_game *game)
 
 	map = game->map;
 	free_map(map);
-	free(game->enemies.enemies);
+	// free(game->enemies.enemies);
 	free(game);
 	printf("Game memory freed\n");
 }
@@ -93,4 +93,5 @@ void	initialize_enemies(t_game *game)
 	game->enemies.enemy_right_sprites[3] = RIGHT_PLAYER_4_TEX;
 	game->enemies.enemies = (t_point *)malloc(sizeof(t_point) * ENEMIES_COUNT);
 	game->enemies.enemies_count = 0;
+	place_enemies(game);
 }

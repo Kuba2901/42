@@ -117,6 +117,7 @@ int	render_frame(t_game *game)
 			game->player.location.img_path = game->player.player_right_sprites[++game->player.location.img_num % PLAYER_SPRITES_NUM];
 		render_sprite(game, game->player.location);
 	}
+	// display_enemies(game);
 	game->stats.frames += 1;
 	return (0);
 }
