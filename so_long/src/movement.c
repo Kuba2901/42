@@ -5,16 +5,6 @@ int			move_valid(t_map *map, t_point pt)
 	return (!(is_out_of_bounds(map, pt) || pt.c == '1'));
 }
 
-int			game_won(t_game *game)
-{
-	if (!(game->stats.collected == game->stats.collectibles))
-	{
-		printf("You have to collect all coins before finishing\n");
-		return (0);
-	}
-	return (1);
-}
-
 void	collect_item(t_game *game)
 {
 	t_point	player;

@@ -1,35 +1,4 @@
-#include "mlx.h"
 #include <so_long.h>
-
-
-void	initialize_player(t_game *game)
-{
-	game->player.player_left_sprites[0] = LEFT_PLAYER_1_TEX;
-	game->player.player_left_sprites[1] = LEFT_PLAYER_2_TEX;
-	game->player.player_left_sprites[2] = LEFT_PLAYER_3_TEX;
-	game->player.player_left_sprites[3] = LEFT_PLAYER_4_TEX;
-	game->player.player_right_sprites[0] = RIGHT_PLAYER_1_TEX;
-	game->player.player_right_sprites[1] = RIGHT_PLAYER_2_TEX;
-	game->player.player_right_sprites[2] = RIGHT_PLAYER_3_TEX;
-	game->player.player_right_sprites[3] = RIGHT_PLAYER_4_TEX;
-	game->player.location.img_path = RIGHT_PLAYER_1_TEX;
-	game->player.location.img_num = 0;
-	game->player.location.direction = ARROW_RIGHT;
-}
-
-void	initialize_enemies(t_game *game)
-{
-	game->enemies.enemy_left_sprites[0] = LEFT_PLAYER_1_TEX;
-	game->enemies.enemy_left_sprites[1] = LEFT_PLAYER_2_TEX;
-	game->enemies.enemy_left_sprites[2] = LEFT_PLAYER_3_TEX;
-	game->enemies.enemy_left_sprites[3] = LEFT_PLAYER_4_TEX;
-	game->enemies.enemy_right_sprites[0] = RIGHT_PLAYER_1_TEX;
-	game->enemies.enemy_right_sprites[1] = RIGHT_PLAYER_2_TEX;
-	game->enemies.enemy_right_sprites[2] = RIGHT_PLAYER_3_TEX;
-	game->enemies.enemy_right_sprites[3] = RIGHT_PLAYER_4_TEX;
-	game->enemies.enemies = (t_point *)malloc(sizeof(t_point) * ENEMIES_COUNT);
-	game->enemies.enemies_count = 0;
-}
 
 t_game		*start_game(const char *file_name)
 {
@@ -61,20 +30,6 @@ t_game		*start_game(const char *file_name)
 	return (game);
 }
 
-int	render_frame(t_game *game)
-{
-	if (game->stats.frames % PLAYER_ANIM_DELAY == 0)
-	{
-		if (game->player.location.direction == ARROW_LEFT)
-			game->player.location.img_path = game->player.player_left_sprites[++game->player.location.img_num % PLAYER_SPRITES_NUM];	
-		else 
-			game->player.location.img_path = game->player.player_right_sprites[++game->player.location.img_num % PLAYER_SPRITES_NUM];
-		custom_render_image(game, game->player.location);
-	}
-	game->stats.frames += 1;
-	return (0);
-}
-
 int calculate_tile_size(t_map_dim *dims)
 {
 	int	x_tile;
@@ -86,33 +41,6 @@ int calculate_tile_size(t_map_dim *dims)
 		return (y_tile);
 	else
 		return (x_tile);
-}
-
-void	display_stroked_text(t_game *game, int tx, int ty, char *str)
-{
-	int	color;
-
-	color = create_trgb(255, 255, 255, 255).col;
-	mlx_string_put(game->mlx_vars.mlx, game->mlx_vars.win,
-		tx + 1, ty, color, str);
-	mlx_string_put(game->mlx_vars.mlx, game->mlx_vars.win,
-		tx, ty + 1, color, str);
-}
-
-void display_steps_count(t_game *game)
-{
-	char	*steps;
-	char	*steps_info;
-	int		tx;
-	int		ty;
-
-	ty = game->map->map_dimensions->height * TILE_SIZE - (TILE_SIZE / 2); // Window decorations issue
-	tx = game->map->map_dimensions->width * TILE_SIZE / 2;
-	steps_info = ft_strdup("STEPS: ");
-	steps = ft_itoa(game->stats.steps);
-	steps_info = ft_join_reassign(steps_info, steps);
-	display_stroked_text(game, tx, ty, steps_info);
-	free(steps_info);
 }
 
 int main(int ac, char **av) {

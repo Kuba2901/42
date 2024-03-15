@@ -92,22 +92,3 @@ void	print_map(t_map	*map)
 		y++;
 	}
 }
-
-void	free_map(t_map *map)
-{
-	free_map_points(map);
-	free(map->map);
-	free(map->map_dimensions);
-	free(map);
-}
-
-void	free_map_points(t_map *map)
-{
-	t_map_dim	*dims;
-	int			y;
-
-	dims = map->map_dimensions;
-	y = -1;
-	while (++y < dims->height)
-		free(map->map[y]);
-}

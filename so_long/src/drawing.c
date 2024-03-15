@@ -1,12 +1,4 @@
 #include <so_long.h>
-#include <time.h>
-
-void sleep_ms(int milliseconds) {
-    struct timespec ts;
-    ts.tv_sec = milliseconds / 1000;
-    ts.tv_nsec = (milliseconds % 1000) * 1000000L;
-    nanosleep(&ts, NULL);
-}
 
 void	draw_rectangle(void *mlx, void *win, t_map_dim *dims, t_point pt)
 {
@@ -38,16 +30,16 @@ void draw_board(t_game *game) {
 			pt = map->map[y][x];
 			if (!game->stats.drawn)
 				draw_rectangle(game->mlx_vars.mlx, game->mlx_vars.win, game->map->map_dimensions, pt);
-			custom_render_image(game, pt);
+			render_sprite(game, pt);
 		}
     }
-	custom_render_image(game, game->player.location);
+	render_sprite(game, game->player.location);
 	display_steps_count(game);
 	if (!game->stats.drawn)
 		game->stats.drawn = 1;
 }
 
-void	custom_render_image(t_game *game, t_point pt)
+void	render_sprite(t_game *game, t_point pt)
 {
 	int 	width;
 	int 	height;
@@ -80,50 +72,51 @@ void	assign_sprites(t_map *map)
 		while (++x < w)
 		{
 			pt = map->map[y][x];
-			map->map[y][x].img_path = get_sprite(map, pt);
+			map->map[y][x].img_path = determine_sprite(map, pt);
 		}
 	}
 }
 
-char	*get_sprite(t_map *map, t_point pt)
+
+void display_steps_count(t_game *game)
 {
-	if (pt.x == 0)
-		return (LEFT_WALL_TEX);
-	if (pt.x == map->map_dimensions->width - 1)
-		return (RIGHT_WALL_TEX);
-	if (pt.y == 0)
-	{
-		if (!(pt.x % 3))
-			return (TORCH_TEX);
-		return (TOP_WALL_TEX);
-	}
-	if (pt.y == map->map_dimensions->height - 1)
-		return (BOTTOM_WALL_TEX);
-	if (pt.c == '0')
-		return (FLOOR_TEX);
-	if (pt.c == 'C')
-		return (COLLECTIBLE_TEX);
-	if (pt.c == 'E')
-		return (EXIT_TEX);
-	if (pt.c == '1')
-		return (TOP_WALL_TEX);
-	if (pt.c == 'P')
-		return (START_TEX);
-	return (EDGE_TEX);
+	char	*steps;
+	char	*steps_info;
+	int		tx;
+	int		ty;
+
+	ty = game->map->map_dimensions->height * TILE_SIZE - (TILE_SIZE / 2); // Window decorations issue
+	tx = game->map->map_dimensions->width * TILE_SIZE / 2;
+	steps_info = ft_strdup("STEPS: ");
+	steps = ft_itoa(game->stats.steps);
+	steps_info = ft_join_reassign(steps_info, steps);
+	display_stroked_text(game, tx, ty, steps_info);
+	free(steps_info);
 }
 
-void	animate_player(t_game *game, int direction)
+
+void	display_stroked_text(t_game *game, int tx, int ty, char *str)
 {
-	if (direction == ARROW_LEFT)
+	int	color;
+
+	color = create_trgb(255, 255, 255, 255).col;
+	mlx_string_put(game->mlx_vars.mlx, game->mlx_vars.win,
+		tx + 1, ty, color, str);
+	mlx_string_put(game->mlx_vars.mlx, game->mlx_vars.win,
+		tx, ty + 1, color, str);
+}
+
+
+int	render_frame(t_game *game)
+{
+	if (game->stats.frames % PLAYER_ANIM_DELAY == 0)
 	{
-		game->player.location.img_path = LEFT_PLAYER_1_TEX;
-		game->player.location.img_num = 0;
-		game->player.location.direction = ARROW_LEFT;
+		if (game->player.location.direction == ARROW_LEFT)
+			game->player.location.img_path = game->player.player_left_sprites[++game->player.location.img_num % PLAYER_SPRITES_NUM];	
+		else 
+			game->player.location.img_path = game->player.player_right_sprites[++game->player.location.img_num % PLAYER_SPRITES_NUM];
+		render_sprite(game, game->player.location);
 	}
-	if (direction == ARROW_RIGHT)
-	{
-		game->player.location.img_path = RIGHT_PLAYER_1_TEX;
-		game->player.location.img_num = 0;
-		game->player.location.direction = ARROW_RIGHT;
-	}
+	game->stats.frames += 1;
+	return (0);
 }
