@@ -2,7 +2,7 @@
 #include <so_long.h>
 
 
-void assign_player_sprites(t_game *game)
+void	initialize_player(t_game *game)
 {
 	game->player.player_left_sprites[0] = LEFT_PLAYER_1_TEX;
 	game->player.player_left_sprites[1] = LEFT_PLAYER_2_TEX;
@@ -12,6 +12,23 @@ void assign_player_sprites(t_game *game)
 	game->player.player_right_sprites[1] = RIGHT_PLAYER_2_TEX;
 	game->player.player_right_sprites[2] = RIGHT_PLAYER_3_TEX;
 	game->player.player_right_sprites[3] = RIGHT_PLAYER_4_TEX;
+	game->player.location.img_path = RIGHT_PLAYER_1_TEX;
+	game->player.location.img_num = 0;
+	game->player.location.direction = ARROW_RIGHT;
+}
+
+void	initialize_enemies(t_game *game)
+{
+	game->enemies.enemy_left_sprites[0] = LEFT_PLAYER_1_TEX;
+	game->enemies.enemy_left_sprites[1] = LEFT_PLAYER_2_TEX;
+	game->enemies.enemy_left_sprites[2] = LEFT_PLAYER_3_TEX;
+	game->enemies.enemy_left_sprites[3] = LEFT_PLAYER_4_TEX;
+	game->enemies.enemy_right_sprites[0] = RIGHT_PLAYER_1_TEX;
+	game->enemies.enemy_right_sprites[1] = RIGHT_PLAYER_2_TEX;
+	game->enemies.enemy_right_sprites[2] = RIGHT_PLAYER_3_TEX;
+	game->enemies.enemy_right_sprites[3] = RIGHT_PLAYER_4_TEX;
+	game->enemies.enemies = (t_point *)malloc(sizeof(t_point) * ENEMIES_COUNT);
+	game->enemies.enemies_count = 0;
 }
 
 t_game		*start_game(const char *file_name)
@@ -34,15 +51,13 @@ t_game		*start_game(const char *file_name)
 		free_game(game);
 		return (NULL);
 	}
-	game->player.location = create_point(map->start.x, map->start.y, 'A');
-	game->player.location.img_path = RIGHT_PLAYER_1_TEX;
-	game->player.location.img_num = 0;
-	game->player.location.direction = ARROW_RIGHT;
+	game->player.location = create_point(map->start.x, map->start.y, 'A');;
 	game->running = 1;
 	game->stats.steps = 0;
 	game->stats.frames = 0;
 	assign_sprites(game->map);
-	assign_player_sprites(game);
+	initialize_player(game);
+	initialize_enemies(game);
 	return (game);
 }
 
@@ -123,3 +138,4 @@ int main(int ac, char **av) {
 	free_game(game);
     return (0);
 }
+ 

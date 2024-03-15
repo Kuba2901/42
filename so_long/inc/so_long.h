@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/15 15:15:20 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:28:36 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@
 # define RIGHT_PLAYER_3_TEX "assets/textures/chosen_64x64/right_3.xpm"
 # define RIGHT_PLAYER_4_TEX "assets/textures/chosen_64x64/right_4.xpm"
 # define PLAYER_SPRITES_NUM 4
+
+// Enemy sprite
+# define ENEMY_SPRITES_NUM 4
+# define ENEMIES_COUNT 4
 
 // Environment sprites
 # define TORCH_TEX "assets/textures/chosen_64x64/torch.xpm"
@@ -130,12 +134,21 @@ typedef struct	s_player
 	char			*player_right_sprites[PLAYER_SPRITES_NUM];
 }	t_player;
 
+typedef struct	s_enemies
+{
+	int				enemies_count;
+	t_point			*enemies;
+	char			*enemy_left_sprites[ENEMY_SPRITES_NUM];
+	char			*enemy_right_sprites[ENEMY_SPRITES_NUM];
+}	t_enemies;
+
 typedef struct	s_game
 {
 	t_map			*map;
 	t_mlx_vars		mlx_vars;
 	t_game_stats	stats;
 	t_player		player;
+	t_enemies		enemies;
 	int				running;
 }	t_game;
 
@@ -184,5 +197,6 @@ void		custom_render_image(t_game *game, t_point pt);
 void		animate_player(t_game *game, int direction);
 void		quit_game(t_game *game);
 int 		calculate_tile_size(t_map_dim *dims);
-void display_steps_count(t_game *game);
+void 		display_steps_count(t_game *game);
+void		initialize_enemies(t_game *game);
 #endif
