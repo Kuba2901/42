@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/15 15:51:15 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:53:51 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define MAP_NOT_SURROUNDED_BY_WALLS 6
 # define MAP_NO_COLLECTIBLES 7
 # define MAP_NO_PATH 8
+# define POINT_NOT_AVAILABLE 9
+# define POINT_AVAILABLE 10
 
 // Wall textures
 # define LEFT_WALL_TEX "assets/textures/chosen_64x64/leftmost_wall.xpm" 
@@ -76,6 +78,7 @@
 
 // Animations
 # define PLAYER_ANIM_DELAY 9000
+# define ENEMY_ANIM_DELAY 27000
 
 typedef struct s_color
 {
@@ -204,4 +207,5 @@ void		initialize_enemies(t_game *game);
 int			render_frame(t_game *game);
 void		display_stroked_text(t_game *game, int tx, int ty, char *str);
 int			game_won(t_game *game);
+int			field_available(t_game *game, t_point pt);
 #endif
