@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/15 16:14:52 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:32:12 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@
 
 // Animations
 # define PLAYER_ANIM_DELAY 9000
-# define ENEMY_ANIM_DELAY 27000
+# define ENEMY_ANIM_DELAY 9000
+# define ENEMY_MOVEMENT_DELAY 27000
 
 typedef struct s_color
 {

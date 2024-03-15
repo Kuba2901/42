@@ -34,8 +34,8 @@ void draw_board(t_game *game) {
 		}
     }
 	render_sprite(game, game->player.location);
-	display_steps_count(game);
 	display_enemies(game);
+	display_steps_count(game);
 	if (!game->stats.drawn)
 		game->stats.drawn = 1;
 }
@@ -118,7 +118,14 @@ int	render_frame(t_game *game)
 			game->player.location.img_path = game->player.player_right_sprites[++game->player.location.img_num % PLAYER_SPRITES_NUM];
 		render_sprite(game, game->player.location);
 	}
-	// display_enemies(game);
+	if (game->stats.frames % ENEMY_ANIM_DELAY == 0)
+	{
+		if (game->enemies.enemies[0].direction == ARROW_LEFT)
+			game->enemies.enemies[0].img_path = game->enemies.enemy_left_sprites[++game->enemies.enemies[0].img_num % ENEMY_SPRITES_NUM];	
+		else 
+			game->enemies.enemies[0].img_path = game->enemies.enemy_right_sprites[++game->enemies.enemies[0].img_num % ENEMY_SPRITES_NUM];	
+		render_sprite(game, game->enemies.enemies[0]);
+	}
 	game->stats.frames += 1;
 	return (0);
 }
