@@ -30,15 +30,15 @@ void	move_enemies(t_game *game)
 			if (axis == AXIS_VERTICAL)
 			{
 				new_pos = create_point(enemy.x, enemy.y + dir, game->map->map[enemy.y + dir][enemy.x].c);
-				if (move_valid(game, new_pos))
+				if (move_valid(game, new_pos) && !enemy_at_point(game, new_pos))
 					animate_enemy(game, i, new_pos);
 			}
 			else
 			{
 				new_pos = create_point(enemy.x + dir, enemy.y, game->map->map[enemy.y][enemy.x + dir].c);
-				if (dir > 0 && move_valid(game, new_pos))
+				if (dir > 0 && move_valid(game, new_pos) && !enemy_at_point(game, new_pos))
 					animate_enemy(game, i, new_pos);
-				else if (move_valid(game, new_pos))
+				else if (move_valid(game, new_pos) && !enemy_at_point(game, new_pos))
 					animate_enemy(game, i, new_pos);
 			}
 	}

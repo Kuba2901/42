@@ -10,7 +10,10 @@ void	quit_game(t_game *game)
 int	key_hook(int keycode, t_game *game)
 {
 	if (keycode == ESC)
+	{
 		quit_game(game);
+		return (0);
+	}
 	move_player(game, keycode);
 	return (0);
 }
