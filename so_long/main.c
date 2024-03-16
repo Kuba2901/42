@@ -32,19 +32,6 @@ t_game		*start_game(const char *file_name)
 	return (game);
 }
 
-int calculate_tile_size(t_map_dim *dims)
-{
-	int	x_tile;
-	int	y_tile;
-
-	x_tile = WINDOW_WIDTH / dims->width;
-	y_tile = WINDOW_HEIGHT / dims->height;
-	if (x_tile > y_tile)
-		return (y_tile);
-	else
-		return (x_tile);
-}
-
 int on_destroy(t_game *game)
 {
 	quit_game(game);

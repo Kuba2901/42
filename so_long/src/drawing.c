@@ -134,3 +134,20 @@ int	render_frame(t_game *game)
 	game->stats.frames += 1;
 	return (0);
 }
+
+void	display_information(t_game *game, char *info)
+{
+	int		x;
+	int		y;
+	t_map	*map;
+	t_point	pt;
+
+	map = game->map;
+	for (y = 0; y < map->map_dimensions->height; y++) {
+        for (x = 0; x < map->map_dimensions->width; x++) {
+			pt = map->map[y][x];
+			draw_rectangle(game->mlx_vars.mlx, game->mlx_vars.win, pt);
+		}
+    }
+	display_stroked_text(game, game->map->map_dimensions->width * TILE_SIZE / 2, game->map->map_dimensions->height * TILE_SIZE / 2, info);
+}
