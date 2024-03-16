@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/15 20:04:04 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/16 17:24:21 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define MS_EXIT 'E'
 # define MS_PLAYER 'A'
 # define MS_ENEMY 'B'
-
+# define MS_COLLECTIBLE 'C'
 // Wall textures
 # define LEFT_WALL_TEX "assets/textures/chosen_64x64/leftmost_wall.xpm" 
 # define RIGHT_WALL_TEX "assets/textures/chosen_64x64/rightmost_wall.xpm" 
@@ -59,7 +59,7 @@
 
 // Enemy sprite
 # define ENEMY_SPRITES_NUM 4
-# define ENEMIES_COUNT 0
+# define ENEMIES_COUNT 5
 # define LEFT_ENEMY_1_TEX "assets/textures/chosen_64x64/enemy/left_1.xpm"
 # define LEFT_ENEMY_2_TEX "assets/textures/chosen_64x64/enemy/left_2.xpm"
 # define LEFT_ENEMY_3_TEX "assets/textures/chosen_64x64/enemy/left_3.xpm"
@@ -215,7 +215,7 @@ int			path_exists(t_map *orig);
 int			full_map_check(const char *file_name, t_map *map);
 t_color		create_trgb(int t, int r, int g, int b);
 int			determine_color(t_point pt);
-void		move_player(t_game *game, int x, int y, int direction);
+void		move_player(t_game *game, int direction);
 int			key_hook(int keycode, t_game *game);
 int			move_valid(t_game *game, t_point pt);
 void		draw_rectangle(void *mlx, void *win, t_point pt);
@@ -223,7 +223,7 @@ void		draw_board(t_game *game);
 void		assign_sprites(t_map *map);
 char		*determine_sprite(t_map *map, t_point pt);
 void		render_sprite(t_game *game, t_point pt);
-void		animate_player(t_game *game, int direction);
+void		animate_player(t_game *game, t_point pt);
 void		quit_game(t_game *game);
 int 		calculate_tile_size(t_map_dim *dims);
 void 		display_steps_count(t_game *game);
@@ -237,7 +237,7 @@ void		place_enemies(t_game *game);
 void		display_enemies(t_game *game);
 int			random_num(int min, int max);
 void		move_enemies(t_game *game);
-void		animate_enemy(t_game *game, int enemy_num, int direction);
+void		animate_enemy(t_game *game, int enemy_num, t_point pt);
 void		change_enemies_sprites(t_game *game);
 int			ft_is_prime(int nb);
 int			ft_find_next_prime(int nb);

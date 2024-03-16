@@ -115,9 +115,11 @@ int	render_frame(t_game *game)
 	if (game->stats.frames % PLAYER_ANIM_DELAY == 0)
 	{
 		if (game->player.location.direction == ARROW_LEFT)
-			game->player.location.img_path = game->player.player_left_sprites[++game->player.location.img_num % PLAYER_SPRITES_NUM];	
+			game->player.location.img_path = game->player.player_left_sprites[
+					++game->player.location.img_num % PLAYER_SPRITES_NUM];	
 		else 
-			game->player.location.img_path = game->player.player_right_sprites[++game->player.location.img_num % PLAYER_SPRITES_NUM];
+			game->player.location.img_path = game->player.player_right_sprites[
+					++game->player.location.img_num % PLAYER_SPRITES_NUM];
 		render_sprite(game, game->player.location);
 	}
 	if (game->stats.frames % ENEMY_ANIM_DELAY == 0)

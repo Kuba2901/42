@@ -7,7 +7,7 @@ int	enemy_hit(t_game *game)
 
 int	move_valid(t_game *game, t_point pt)
 {
-	if (is_out_of_bounds(game->map, pt) || pt.c == '1')
+	if (is_out_of_bounds(game->map, pt) || pt.c == MS_WALL)
 		return (0);
 	return (1);
 }
@@ -17,29 +17,37 @@ void	collect_item(t_game *game)
 	t_point	player;
 
 	player = game->player.location;
-	game->map->map[player.y][player.x].c = '0';
+	game->map->map[player.y][player.x].c = MS_FREE;
 	game->map->map[player.y][player.x].img_path = FLOOR_TEX;
 	game->stats.collected += 1;
 	printf("Item collected!\n");
 }
 
-void		move_player(t_game *game, int x, int y, int direction)
+void		move_player(t_game *game, int direction)
 {
-	if (move_valid(game, game->map->map[y][x]))
+	t_point	pt;
+	t_point	map_pt;
+
+	pt = create_point(game->player.location.x, game->player.location.y, game->player.location.c);
+	if (direction == ARROW_RIGHT)
+		pt.x += 1;
+	else if (direction == ARROW_LEFT)
+		pt.x -= 1;
+	else if (direction == ARROW_UP)
+		pt.y -= 1;
+	else if (direction == ARROW_DOWN)
+		pt.y += 1;
+	map_pt = game->map->map[pt.y][pt.x];
+	printf("Moving to: (%d, %d)\n", map_pt.x, map_pt.y);
+	if (move_valid(game, map_pt))
 	{
-		if (y != game->player.location.y)
-			game->player.location.y += (y - game->player.location.y);
-		animate_player(game, direction);
-		printf("Steps: (%d)\n", game->stats.steps);
-		if (game->map->map[y][x].c == 'C')
+		animate_player(game, map_pt);
+		if (game->map->map[map_pt.y][map_pt.x].c == MS_COLLECTIBLE)
 			collect_item(game);
-		if (game->player.location.x == game->map->end.x && game->player.location.y == game->map->end.y)
+		if (point_cmp(game->player.location, game->map->end) && game_won(game))
 		{
-			if (game_won(game))
-			{
-				printf("Congratulatins! You won!\n");
-				quit_game(game);
-			}
+			printf("Congratulatins! You won!\n");
+			quit_game(game);
 		}
 	}
 }
