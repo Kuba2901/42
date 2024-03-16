@@ -38,15 +38,15 @@ void		move_player(t_game *game, int direction)
 	else if (direction == ARROW_DOWN)
 		pt.y += 1;
 	map_pt = game->map->map[pt.y][pt.x];
-	printf("Moving to: (%d, %d)\n", map_pt.x, map_pt.y);
 	if (move_valid(game, map_pt))
 	{
 		animate_player(game, map_pt);
 		if (game->map->map[map_pt.y][map_pt.x].c == MS_COLLECTIBLE)
 			collect_item(game);
+		display_steps_count(game);
 		if (point_cmp(game->player.location, game->map->end) && game_won(game))
 		{
-			printf("Congratulatins! You won!\n");
+			printf("Congratulations! You won!\n");
 			quit_game(game);
 		}
 	}

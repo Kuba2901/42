@@ -1,4 +1,5 @@
 #include <so_long.h>
+#include <X11/X.h>
 
 t_game		*start_game(const char *file_name)
 {
@@ -22,6 +23,7 @@ t_game		*start_game(const char *file_name)
 	}
 	game->player.location = create_point(map->start.x, map->start.y, 'A');;
 	game->running = 1;
+	game->stats.drawn = 0;
 	game->stats.steps = 0;
 	game->stats.frames = 0;
 	assign_sprites(game->map);
@@ -43,6 +45,12 @@ int calculate_tile_size(t_map_dim *dims)
 		return (x_tile);
 }
 
+int on_destroy(t_game *game)
+{
+	quit_game(game);
+	return (0);
+}
+
 int main(int ac, char **av) {
 	t_map_dim	*dims;
 	t_game		*game;
@@ -54,17 +62,12 @@ int main(int ac, char **av) {
 	dims = game->map->map_dimensions;
     game->mlx_vars.mlx = mlx_init();
     game->mlx_vars.win = mlx_new_window(game->mlx_vars.mlx,
-		TILE_SIZE * dims->width, TILE_SIZE * dims->height, WINDOW_TITLE);
-	game->stats.drawn = 0;
+		(TILE_SIZE * dims->width), (TILE_SIZE * dims->height) + TILE_SIZE / 2, WINDOW_TITLE);
 	draw_board(game);
+	mlx_hook(game->mlx_vars.win, DestroyNotify, StructureNotifyMask, &on_destroy, game);
 	mlx_key_hook(game->mlx_vars.win, key_hook, game);
 	mlx_loop_hook(game->mlx_vars.mlx, render_frame, game);
 	mlx_loop(game->mlx_vars.mlx);
-
-	// CLEAR THE RESOURCES
-    mlx_destroy_display(game->mlx_vars.mlx);
-    free(game->mlx_vars.mlx);
-	free_game(game);
     return (0);
 }
  

@@ -29,7 +29,10 @@ int	enemy_at_point(t_game *game, t_point pt)
 	while (++i < game->enemies.enemies_count)
 	{
 		if (point_cmp(game->enemies.enemies[i], pt))
+		{
+			printf("Enemy overlapping stopped!\n");
 			return (1);
+		}
 	}
 	return (0);
 }

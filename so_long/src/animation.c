@@ -80,11 +80,13 @@ void	animate_enemy(t_game *game, int enemy_num, t_point pt)
 	}
 	else
 		game->enemies.enemies[enemy_num].y += (pt.y - game->enemies.enemies[enemy_num].y);
-	game->stats.steps += 1;
 	render_sprite(game, game->enemies.enemies[enemy_num]);
 	render_sprite(game, orig);
 	if (enemy_hit(game))
+	{
+		printf("You lost enemy_moved!\n");
 		quit_game(game);
+	}
 }
 
 void	animate_player(t_game *game, t_point pt)
@@ -112,7 +114,10 @@ void	animate_player(t_game *game, t_point pt)
 	render_sprite(game, game->player.location);
 	render_sprite(game, orig);
 	if (enemy_hit(game))
+	{
+		printf("You lost player_moved!\n");
 		quit_game(game);
+	}
 }
 
 void sleep_ms(int milliseconds) {

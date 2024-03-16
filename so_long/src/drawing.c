@@ -38,8 +38,6 @@ void draw_board(t_game *game) {
 	display_steps_count(game);
 	if (!game->stats.drawn)
 		game->stats.drawn = 1;
-	if (enemy_hit(game))
-		quit_game(game);
 }
 
 void	render_sprite(t_game *game, t_point pt)
@@ -87,9 +85,14 @@ void display_steps_count(t_game *game)
 	char	*steps_info;
 	int		tx;
 	int		ty;
+	int		i;
 
-	ty = game->map->map_dimensions->height * TILE_SIZE - (TILE_SIZE / 2); // Window decorations issue
+	ty = game->map->map_dimensions->height * TILE_SIZE + TILE_SIZE / 4;
 	tx = game->map->map_dimensions->width * TILE_SIZE / 2;
+	i = -1;
+	while (++i < game->map->map_dimensions->width)
+		draw_rectangle(game->mlx_vars.mlx, game->mlx_vars.win,
+			create_point(i, game->map->map_dimensions->height, '0'));
 	steps_info = ft_strdup("STEPS: ");
 	steps = ft_itoa(game->stats.steps);
 	steps_info = ft_join_reassign(steps_info, steps);
