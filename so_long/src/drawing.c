@@ -112,6 +112,8 @@ void	display_stroked_text(t_game *game, int tx, int ty, char *str)
 
 int	render_frame(t_game *game)
 {
+	if (!game->running)
+		return (0);
 	if (game->stats.frames % PLAYER_ANIM_DELAY == 0)
 	{
 		if (game->player.location.direction == ARROW_LEFT)
