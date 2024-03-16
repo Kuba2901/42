@@ -77,12 +77,16 @@ void	animate_enemy(t_game *game, int enemy_num, int direction)
 		game->enemies.enemies[enemy_num].img_num = 0;
 		game->enemies.enemies[enemy_num].direction = ARROW_RIGHT;
 		game->enemies.enemies[enemy_num].x += 1;
+		// render_sprite(game, game->enemies.enemies[enemy_num]); // TODO: Test rendering only the moved enemy
 	}
 	draw_board(game);
 }
 
 void	animate_player(t_game *game, int direction)
 {
+	t_point	orig;
+
+	orig = game->map->map[game->player.location.y][game->player.location.x];
 	if (direction == ARROW_LEFT)
 	{
 		game->player.location.img_path = LEFT_PLAYER_1_TEX;
@@ -96,9 +100,12 @@ void	animate_player(t_game *game, int direction)
 		game->player.location.img_num = 0;
 		game->player.location.direction = ARROW_RIGHT;
 		game->player.location.x += 1;
+		
 	}
 	game->stats.steps += 1;
-	draw_board(game);
+	render_sprite(game, game->player.location); // TODO: Test rendering only the player
+	render_sprite(game, orig);
+	// draw_board(game);
 }
 
 void sleep_ms(int milliseconds) {

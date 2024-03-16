@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/15 19:22:55 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/15 20:04:04 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
 
 // Enemy sprite
 # define ENEMY_SPRITES_NUM 4
-# define ENEMIES_COUNT 2
+# define ENEMIES_COUNT 0
 # define LEFT_ENEMY_1_TEX "assets/textures/chosen_64x64/enemy/left_1.xpm"
 # define LEFT_ENEMY_2_TEX "assets/textures/chosen_64x64/enemy/left_2.xpm"
 # define LEFT_ENEMY_3_TEX "assets/textures/chosen_64x64/enemy/left_3.xpm"
