@@ -83,6 +83,8 @@ void	animate_enemy(t_game *game, int enemy_num, t_point pt)
 	game->stats.steps += 1;
 	render_sprite(game, game->enemies.enemies[enemy_num]);
 	render_sprite(game, orig);
+	if (enemy_hit(game))
+		quit_game(game);
 }
 
 void	animate_player(t_game *game, t_point pt)
@@ -107,9 +109,10 @@ void	animate_player(t_game *game, t_point pt)
 	else
 		game->player.location.y += (pt.y - game->player.location.y);
 	game->stats.steps += 1;
-	render_sprite(game, game->player.location); // TODO: Test rendering only the player
+	render_sprite(game, game->player.location);
 	render_sprite(game, orig);
-	// display_steps_count(game); TODO: Display steps
+	if (enemy_hit(game))
+		quit_game(game);
 }
 
 void sleep_ms(int milliseconds) {
