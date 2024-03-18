@@ -95,3 +95,11 @@ void	initialize_enemies(t_game *game)
 	game->enemies.enemies_count = 0;
 	place_enemies(game);
 }
+
+void	initialize_game_stats(t_game *game)
+{
+	game->running = 1;
+	game->stats.drawn = 1;
+	game->stats.steps = 0;
+	game->stats.frames = 0;
+}

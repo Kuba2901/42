@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/18 16:16:27 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:39:36 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
 
 // Enemy sprite
 # define ENEMY_SPRITES_NUM 4
-# define ENEMIES_COUNT 4
+# define ENEMIES_COUNT 1
 # define LEFT_ENEMY_1_TEX "assets/textures/chosen_64x64/enemy/left_1.xpm"
 # define LEFT_ENEMY_2_TEX "assets/textures/chosen_64x64/enemy/left_2.xpm"
 # define LEFT_ENEMY_3_TEX "assets/textures/chosen_64x64/enemy/left_3.xpm"
@@ -246,4 +246,5 @@ int			enemy_at_point(t_game *game, t_point pt);
 int			point_cmp(t_point pt1, t_point pt2);
 void		put_enemy(t_game *game, t_point pt);
 int			enemy_hit(t_game *game);
+void		initialize_game_stats(t_game *game);
 #endif
