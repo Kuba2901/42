@@ -99,7 +99,7 @@ void	initialize_enemies(t_game *game)
 void	initialize_game_stats(t_game *game)
 {
 	game->running = 1;
-	game->stats.drawn = 1;
+	game->stats.drawn = DARK_MODE;
 	game->stats.steps = 0;
 	game->stats.frames = 0;
 }

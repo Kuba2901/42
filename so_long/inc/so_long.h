@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/18 17:39:36 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:56:39 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define POINT_AVAILABLE 10
 # define AXIS_VERTICAL 0
 # define AXIS_HORIZONTAL 1
+# define DARK_MODE 0
 
 // Map structure
 # define MS_FREE '0'
@@ -223,7 +224,6 @@ char		*determine_sprite(t_map *map, t_point pt);
 void		render_sprite(t_game *game, t_point pt);
 void		animate_player(t_game *game, t_point pt);
 void		quit_game(t_game *game);
-int 		calculate_tile_size(t_map_dim *dims);
 void 		display_steps_count(t_game *game);
 void		initialize_player(t_game *game);
 void		initialize_enemies(t_game *game);
@@ -235,11 +235,9 @@ void		place_enemies(t_game *game);
 void		display_enemies(t_game *game);
 int			random_num(int min, int max);
 void		move_enemies(t_game *game);
+void		move_enemies_2(t_game *game, int dir, int axis, int i);
 void		animate_enemy(t_game *game, int enemy_num, t_point pt);
 void		change_enemies_sprites(t_game *game);
-int			ft_is_prime(int nb);
-int			ft_find_next_prime(int nb);
-void		sleep_ms(int milliseconds);
 t_free_points	*get_free_points(t_game *game);
 int			count_free_points(t_game *game);
 int			enemy_at_point(t_game *game, t_point pt);
