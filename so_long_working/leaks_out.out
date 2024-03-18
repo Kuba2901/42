@@ -1,0 +1,426 @@
+==22167== Memcheck, a memory error detector
+==22167== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==22167== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==22167== Command: ./so_long assets/maps/map_correct.ber
+==22167== Parent PID: 3535
+==22167== 
+==22167== 
+==22167== Process terminating with default action of signal 2 (SIGINT)
+==22167==    at 0x4AF0A55: writev (writev.c:26)
+==22167==    by 0x4C0BA52: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==22167==    by 0x4C0BB1F: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==22167==    by 0x4C0CD67: xcb_writev (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==22167==    by 0x48D76BD: _XSend (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48DACE3: _XFlush (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48B587D: XFlush (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111F1F: mlx_pixel_put (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x11168F: draw_board (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8F9: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== HEAP SUMMARY:
+==22167==     in use at exit: 117,056 bytes in 143 blocks
+==22167==   total heap usage: 6,343 allocs, 6,200 frees, 6,082,524 bytes allocated
+==22167== 
+==22167== 3 bytes in 1 blocks are still reachable in loss record 1 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x4A7E58E: strdup (strdup.c:42)
+==22167==    by 0x48C5B45: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 8 bytes in 1 blocks are still reachable in loss record 2 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x110045: fill_map (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10FBA7: start_game (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8B7: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 8 bytes in 1 blocks are still reachable in loss record 3 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x4A7E58E: strdup (strdup.c:42)
+==22167==    by 0x48C29AE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x4887820: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x488C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x111A03: mlx_int_deal_shm (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x111C91: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 8 bytes in 1 blocks are still reachable in loss record 4 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x4885B34: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x48879DF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x488C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x111A03: mlx_int_deal_shm (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x111C91: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 10 bytes in 1 blocks are still reachable in loss record 5 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x4A7E58E: strdup (strdup.c:42)
+==22167==    by 0x48C29AE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x492C213: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48C66A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 16 bytes in 1 blocks are still reachable in loss record 6 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x4C0E2EE: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==22167==    by 0x4C0EE6B: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==22167==    by 0x48D5EE9: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48C5B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 21 bytes in 1 blocks are still reachable in loss record 7 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48C603E: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 24 bytes in 1 blocks are still reachable in loss record 8 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x4887041: XextCreateExtension (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x48874CC: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x48879C8: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x488C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x111A03: mlx_int_deal_shm (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x111C91: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 24 bytes in 1 blocks are still reachable in loss record 9 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x4A7E58E: strdup (strdup.c:42)
+==22167==    by 0x48C29AE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x4887820: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x488750A: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x48879C8: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x488C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x111A03: mlx_int_deal_shm (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x111C91: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 24 bytes in 1 blocks are still reachable in loss record 10 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48879F5: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x488C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x111A03: mlx_int_deal_shm (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x111C91: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 29 bytes in 1 blocks are still reachable in loss record 11 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48BF0CD: _XUpdateAtomCache (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48C1929: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111C82: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 32 bytes in 1 blocks are still reachable in loss record 12 of 50
+==22167==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x4C1215E: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==22167==    by 0x4C12237: xcb_get_extension_data (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==22167==    by 0x4C122EE: xcb_prefetch_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==22167==    by 0x4C12364: xcb_get_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==22167==    by 0x48C652B: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 32 bytes in 1 blocks are still reachable in loss record 13 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x4C0B1B7: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==22167==    by 0x4C0BA08: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==22167==    by 0x4C0BEB0: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==22167==    by 0x4C0CE44: xcb_wait_for_reply (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==22167==    by 0x4C12292: xcb_get_extension_data (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==22167==    by 0x4C122EE: xcb_prefetch_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==22167==    by 0x4C12364: xcb_get_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==22167==    by 0x48C652B: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 32 bytes in 1 blocks are still reachable in loss record 14 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48877FF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x488C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x111A03: mlx_int_deal_shm (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x111C91: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 32 bytes in 1 blocks are still reachable in loss record 15 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48877FF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x488750A: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x48879C8: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x488C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x111A03: mlx_int_deal_shm (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x111C91: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 33 bytes in 1 blocks are still reachable in loss record 16 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48BF0CD: _XUpdateAtomCache (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48C1929: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111C6B: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 40 bytes in 1 blocks are still reachable in loss record 17 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x1100C4: fill_map (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10FBA7: start_game (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8B7: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 40 bytes in 1 blocks are still reachable in loss record 18 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48D61F1: _XPollfdCacheInit (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48C5E71: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 48 bytes in 1 blocks are still reachable in loss record 19 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48D5E71: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48C5B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 48 bytes in 1 blocks are still reachable in loss record 20 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48D5E87: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48C5B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 72 bytes in 1 blocks are still reachable in loss record 21 of 50
+==22167==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48C5F20: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 88 bytes in 1 blocks are still reachable in loss record 22 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x1100AE: fill_map (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10FBA7: start_game (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8B7: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 112 bytes in 1 blocks are still reachable in loss record 23 of 50
+==22167==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48D5D72: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48C5B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 112 bytes in 1 blocks are still reachable in loss record 24 of 50
+==22167==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48C6200: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 128 bytes in 1 blocks are still reachable in loss record 25 of 50
+==22167==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48C612E: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 128 bytes in 1 blocks are still reachable in loss record 26 of 50
+==22167==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48C299E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x492C213: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48C66A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 128 bytes in 1 blocks are still reachable in loss record 27 of 50
+==22167==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48C299E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x4887820: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x488C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x111A03: mlx_int_deal_shm (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x111C91: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 128 bytes in 1 blocks are still reachable in loss record 28 of 50
+==22167==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48C299E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x4887820: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x488750A: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x48879C8: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x488C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x111A03: mlx_int_deal_shm (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x111C91: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 136 bytes in 1 blocks are still reachable in loss record 29 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x111BBF: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 144 bytes in 1 blocks are still reachable in loss record 30 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x10FB9C: start_game (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8B7: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 152 bytes in 1 blocks are still reachable in loss record 31 of 50
+==22167==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x492C40E: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48C66A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 156 bytes in 1 blocks are still reachable in loss record 32 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48C6710: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 160 bytes in 1 blocks are still reachable in loss record 33 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48B49EF: XCreateGC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48C65A4: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 160 bytes in 1 blocks are still reachable in loss record 34 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48B49EF: XCreateGC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111E0E: mlx_new_window (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8E6: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 168 bytes in 1 blocks are still reachable in loss record 35 of 50
+==22167==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48C60B2: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 208 bytes in 1 blocks are still reachable in loss record 36 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x4885AE9: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x48879DF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x488C9E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==22167==    by 0x111A03: mlx_int_deal_shm (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x111C91: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 208 bytes in 1 blocks are still reachable in loss record 37 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48D7FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48DABB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48DBEC0: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48DC205: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x1121E5: mlx_int_wait_first_expose (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x111E4E: mlx_new_window (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8E6: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 512 bytes in 1 blocks are still reachable in loss record 38 of 50
+==22167==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48C146A: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48C184E: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111C6B: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 936 bytes in 1 blocks are still reachable in loss record 39 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x111D70: mlx_new_window (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8E6: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 1,024 bytes in 1 blocks are still reachable in loss record 40 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x4A54BA3: _IO_file_doallocate (filedoalloc.c:101)
+==22167==    by 0x4A63CDF: _IO_doallocbuf (genops.c:347)
+==22167==    by 0x4A62F5F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:744)
+==22167==    by 0x4A616D4: _IO_new_file_xsputn (fileops.c:1243)
+==22167==    by 0x4A616D4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1196)
+==22167==    by 0x4A56F1B: puts (ioputs.c:40)
+==22167==    by 0x10FCB6: start_game (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8B7: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 2,080 bytes in 5 blocks are still reachable in loss record 41 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x1100EB: fill_map (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10FBA7: start_game (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8B7: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 2,080 bytes in 10 blocks are still reachable in loss record 42 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48D7FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48DABB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48DBF01: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48DC205: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x1121E5: mlx_int_wait_first_expose (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x111E4E: mlx_new_window (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8E6: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 3,744 bytes in 18 blocks are still reachable in loss record 43 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48D7FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48DABB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48DAC69: _XEventsQueued (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48B587D: XFlush (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x11150B: draw_board (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8F9: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 4,704 bytes in 1 blocks are still reachable in loss record 44 of 50
+==22167==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48C5B31: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 5,824 bytes in 28 blocks are still reachable in loss record 45 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48D7FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48DABB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48DAC69: _XEventsQueued (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48B587D: XFlush (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111F1F: mlx_pixel_put (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x11168F: draw_board (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8F9: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 7,488 bytes in 36 blocks are still reachable in loss record 46 of 50
+==22167==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48D7FAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48DABB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48DAC69: _XEventsQueued (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48B587D: XFlush (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111517: draw_board (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8F9: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 14,612 bytes in 1 blocks are still reachable in loss record 47 of 50
+==22167==    at 0x484DCD3: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x4C0E4FB: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==22167==    by 0x4C0EE6B: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==22167==    by 0x48D5EE9: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48C5B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 16,384 bytes in 1 blocks are still reachable in loss record 48 of 50
+==22167==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48C5EBE: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 21,168 bytes in 1 blocks are still reachable in loss record 49 of 50
+==22167==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x4C0E204: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==22167==    by 0x4C0EE6B: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==22167==    by 0x48D5EE9: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x48C5B68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== 33,600 bytes in 2 blocks are still reachable in loss record 50 of 50
+==22167==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22167==    by 0x48C6290: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==22167==    by 0x111BD7: mlx_init (in /home/kuba/Development/42_test/so_long/so_long)
+==22167==    by 0x10F8C8: main (in /home/kuba/Development/42_test/so_long/so_long)
+==22167== 
+==22167== LEAK SUMMARY:
+==22167==    definitely lost: 0 bytes in 0 blocks
+==22167==    indirectly lost: 0 bytes in 0 blocks
+==22167==      possibly lost: 0 bytes in 0 blocks
+==22167==    still reachable: 117,056 bytes in 143 blocks
+==22167==         suppressed: 0 bytes in 0 blocks
+==22167== 
+==22167== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+--22167-- 
+--22167-- used_suppression:      1 X on SUSE11 writev uninit padding /usr/libexec/valgrind/default.supp:377
+==22167== 
+==22167== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)

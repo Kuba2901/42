@@ -1,5 +1,5 @@
 NAME = so_long
-SRC = main.c src/map_setup.c src/map_setup_2.c src/map_setup_3.c src/game_setup.c src/error_codes.c
+SRC = main.c src/map_setup.c src/map_setup_2.c src/map_setup_3.c src/game_setup.c src/error_codes.c src/graphics_utils.c src/key_events.c src/movement.c src/drawing.c src/animation.c src/placing_enemies.c
 OBJ = $(SRC:.c=.o)
 INC_LIBFT_GNL = -Ilibft/inc_libft/ -Ilibft/inc_gnl/
 INC = -Iinc/ -I/usr/include -Imlx_linux $(INC_LIBFT_GNL)
@@ -27,5 +27,7 @@ fclean: clean
 	cd libft && make fclean
 
 re: fclean all
+
+clean_rebuild: all clean
 
 .PHONY: all clean fclean .c.o

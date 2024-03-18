@@ -85,27 +85,10 @@ void	print_map(t_map	*map)
 		x = 0;
 		while (x < map->map_dimensions->width)
 		{
-			printf("%c", map->map[y][x].c);
-			// printf("(%d,%d)", map->map[y][x].y, map->map[y][x].x);
+			printf("(%p)", map->map[y][x].img_path);
 			x++;
 		}
 		printf("\n");
 		y++;
 	}
-}
-
-void	free_map(t_map *map)
-{
-	free_map_points(map->map, map->map_dimensions->height);
-	free(map->map);
-	free(map->map_dimensions);
-	free(map);
-}
-
-void	free_map_points(t_point **map, int h)
-{
-	int	i;
-	i = -1;
-	while (++i < h)
-		free(map[i]);
 }
