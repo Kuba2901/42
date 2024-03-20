@@ -3,8 +3,9 @@
 void	quit_game(t_game *game)
 {
 	game->running = 0;
-	mlx_destroy_window(game->mlx_vars.mlx, game->mlx_vars.win);
-    mlx_destroy_display(game->mlx_vars.mlx);
+	// TODO: REMOVE THESE COMMENtS
+	// mlx_destroy_window(game->mlx_vars.mlx, game->mlx_vars.win);
+    // mlx_destroy_display(game->mlx_vars.mlx);
     free(game->mlx_vars.mlx);
 	free_game(game);
 	exit(0);
