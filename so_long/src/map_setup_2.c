@@ -1,9 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_setup_2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/20 16:33:10 by jnenczak          #+#    #+#             */
+/*   Updated: 2024/03/20 17:23:36 by jnenczak         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <so_long.h>
+
+t_point	get_shifted_point(int direction, t_point pt, t_map *map)
+{
+	t_point	ret;
+
+	ret.x = pt.x;
+	ret.y = pt.y;
+	if (direction == ARROW_LEFT)
+		ret.c = map->map[ret.y][--ret.x].c;
+	else if (direction == ARROW_DOWN)
+		ret.c = map->map[++ret.y][ret.x].c
+	else if (direction == ARROW_RIGHT)
+		ret.c = map->map[ret.y][++ret.x].c
+	else if (direction == ARROW_UP)
+		ret.c = map->map[--ret.y][ret.x].c
+	return (ret);
+}
 
 t_point	create_point(int x, int y, char c)
 {
-	t_point ret;
-	
+	t_point	ret;
+
 	ret.x = x;
 	ret.y = y;
 	ret.c = c;
@@ -42,72 +71,4 @@ int	check_map_rectangular(const char *file_name)
 	}
 	close (fd);
 	return (error);
-}
-
-/// Check for exit / starting position duplicates in the map
-/// Return values:
-/// - 0 - exactly one exit and one starting position
-///	- 1 - no exit on the map
-/// - 2 - no starting position on the map
-/// - 3 - multiple exits on the map
-/// - 4 - multiple starting positions on the map
-int	check_duplicates(t_map *map)
-{
-	int		exits;
-	int		positions;
-	int		x;
-	int		y;
-
-	exits = 0;
-	positions = 0;
-	y = -1;
-	while (++y < map->map_dimensions->height)
-	{
-		x = 0;
-		while (x < map->map_dimensions->width)
-		{
-			if (map->map[y][x].c == 'E')
-				exits++;
-			else if (map->map[y][x].c == 'P')
-				positions++;
-			x++;
-		}
-	}
-	if (!exits)
-		return (MAP_NO_EXIT);
-	if (!positions)
-		return (MAP_NO_STARTING_POSITION);
-	if (exits > 1)
-		return (MAP_MULTIPLE_EXITS);
-	if (positions > 1)
-		return (MAP_MULTIPLE_STARTING_POSITIONS);
-	return (0);
-}
-
-int	check_surrounded_by_walls(t_map *map)
-{
-	int		x;
-	int		y;
-	t_point	pt;
-
-	y = -1;
-	while (++y < map->map_dimensions->height)
-	{
-		x = -1;
-		while (++x < map->map_dimensions->width)
-		{
-			pt = map->map[y][x];
-			if (!y || y == map->map_dimensions->height - 1)
-			{
-				if (pt.c != '1')
-					return (MAP_NOT_SURROUNDED_BY_WALLS);
-			}
-			else if (x == 0 || x == map->map_dimensions->width - 1)
-			{
-				if (pt.c != '1')
-					return (MAP_NOT_SURROUNDED_BY_WALLS);
-			}
-		}
-	}
-	return (0);
 }

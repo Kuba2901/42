@@ -1,5 +1,5 @@
 NAME = so_long
-SRC = main.c src/map_setup.c src/map_setup_2.c src/map_setup_3.c src/game_setup.c src/error_codes.c src/graphics_utils.c src/key_events.c src/movement.c src/drawing.c src/animation.c src/animation_2.c src/placing_enemies.c
+SRC = main.c src/map_setup.c src/map_setup_2.c src/map_setup_3.c src/map_setup_4.c src/game_setup.c src/game_setup_2.c src/error_codes.c src/graphics_utils.c src/key_events.c src/movement.c src/drawing.c src/drawing_2.c src/animation.c src/animation_2.c src/placing_enemies.c
 OBJ = $(SRC:.c=.o)
 INC_LIBFT_GNL = -Ilibft/inc_libft/ -Ilibft/inc_gnl/
 INC = -Iinc/ -I/usr/include -Imlx_linux $(INC_LIBFT_GNL)

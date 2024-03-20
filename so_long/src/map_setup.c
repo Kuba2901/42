@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_setup.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/20 16:37:27 by jnenczak          #+#    #+#             */
+/*   Updated: 2024/03/20 16:41:44 by jnenczak         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <so_long.h>
 
 t_map_dim	*get_map_dimensions(const char *file_name)
@@ -6,7 +18,7 @@ t_map_dim	*get_map_dimensions(const char *file_name)
 	int			fd;
 	int			h;
 	t_map_dim	*ret;
-	
+
 	fd = open(file_name, O_RDONLY);
 	temp = get_next_line(fd);
 	h = 0;
@@ -59,9 +71,9 @@ t_map	*fill_map(const char *file_name)
 		while (temp[x] && temp[x] != '\n')
 		{
 			map->map[y][x] = create_point(x, y, temp[x]);
-			if (map->map[y][x].c == 'P')
+			if (map->map[y][x].c == MS_START)
 				map->start = map->map[y][x];
-			else if (map->map[y][x].c == 'E')
+			else if (map->map[y][x].c == MS_EXIT)
 				map->end = map->map[y][x];
 			x++;
 		}

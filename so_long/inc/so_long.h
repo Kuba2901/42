@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/18 17:56:39 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:51:36 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,7 @@ int			check_surrounded_by_walls(t_map *map);
 void		free_map_points(t_map *map);
 size_t		ft_custom_strlen(char *str);
 int			check_path_exists(t_map *map);
-int			floodFill(t_map *map, t_point pt);
+int			flood_fill(t_map *map, t_point pt);
 int			is_out_of_bounds(t_map *map, t_point pt);
 void		print_point_info(t_point pt);
 t_map		*duplicate_map(t_map *map);
@@ -245,4 +245,6 @@ int			point_cmp(t_point pt1, t_point pt2);
 void		put_enemy(t_game *game, t_point pt);
 int			enemy_hit(t_game *game);
 void		initialize_game_stats(t_game *game);
+int			determine_error(int exits, int positions);
+t_point		get_shifted_point(int direction, t_point pt, t_map *map);
 #endif
