@@ -55,10 +55,10 @@ t_map	*create_allocate_t_map(t_map_dim *dim)
 
 void	set_start_exit(t_map *map, t_point pt)
 {
-	if (map->map[y][x].c == MS_START)
-		map->start = map->map[y][x];
-	else if (map->map[y][x].c == MS_EXIT)
-		map->end = map->map[y][x];
+	if (pt.c == MS_START)
+		map->start = map->map[pt.y][pt.x];
+	else if (pt.c == MS_EXIT)
+		map->end = map->map[pt.y][pt.x];
 }
 
 t_map	*fill_map(const char *file_name)
@@ -79,7 +79,7 @@ t_map	*fill_map(const char *file_name)
 		while (temp[x] && temp[x] != '\n')
 		{
 			map->map[y][x] = create_point(x, y, temp[x]);
-			set_start_exit(map, map->[y][x]);
+			set_start_exit(map, map->map[y][x]);
 			x++;
 		}
 		y++;

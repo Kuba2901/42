@@ -245,4 +245,5 @@ void			initialize_game_stats(t_game *game);
 int				determine_error(int exits, int positions);
 t_point			get_shifted_point(int direction, t_point pt, t_map *map);
 void			set_start_exit(t_map *map, t_point pt);
+void			handle_linear_placement(t_free_points *free_pts, t_game *game);
 #endif

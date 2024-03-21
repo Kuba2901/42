@@ -48,10 +48,10 @@ int	flood_fill(t_map *map, t_point pt)
 	if (pt.x == map->end.x && pt.y == map->end.y)
 		return (1);
 	map->map[pt.y][pt.x].c = 'V';
-	if (flood_fill(map, get_shifted_point(ARROW_RIGHT, pt, game)) \
-		|| flood_fill(map, get_shifted_point(ARROW_LEFT, pt, game)) \
-			|| flood_fill(map, get_shifted_point(ARROW_DOWN, pt, game)) \
-				|| flood_fill(map, get_shifted_point(ARROW_UP, pt, game)))
+	if (flood_fill(map, get_shifted_point(ARROW_RIGHT, pt, map)) \
+		|| flood_fill(map, get_shifted_point(ARROW_LEFT, pt, map)) \
+			|| flood_fill(map, get_shifted_point(ARROW_DOWN, pt, map)) \
+				|| flood_fill(map, get_shifted_point(ARROW_UP, pt, map)))
 		return (1);
 	return (0);
 }
