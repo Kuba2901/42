@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:37:27 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/20 16:41:44 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:41:50 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,14 @@ t_map	*create_allocate_t_map(t_map_dim *dim)
 	return (map);
 }
 
+void	set_start_exit(t_map *map, t_point pt)
+{
+	if (map->map[y][x].c == MS_START)
+		map->start = map->map[y][x];
+	else if (map->map[y][x].c == MS_EXIT)
+		map->end = map->map[y][x];
+}
+
 t_map	*fill_map(const char *file_name)
 {
 	int			x;
@@ -71,10 +79,7 @@ t_map	*fill_map(const char *file_name)
 		while (temp[x] && temp[x] != '\n')
 		{
 			map->map[y][x] = create_point(x, y, temp[x]);
-			if (map->map[y][x].c == MS_START)
-				map->start = map->map[y][x];
-			else if (map->map[y][x].c == MS_EXIT)
-				map->end = map->map[y][x];
+			set_start_exit(map, map->[y][x]);
 			x++;
 		}
 		y++;

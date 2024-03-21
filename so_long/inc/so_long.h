@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/20 17:31:22 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:42:08 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,4 +244,5 @@ int				enemy_hit(t_game *game);
 void			initialize_game_stats(t_game *game);
 int				determine_error(int exits, int positions);
 t_point			get_shifted_point(int direction, t_point pt, t_map *map);
+void			set_start_exit(t_map *map, t_point pt);
 #endif

@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:33:10 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/20 17:23:36 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:43:27 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ t_point	get_shifted_point(int direction, t_point pt, t_map *map)
 	if (direction == ARROW_LEFT)
 		ret.c = map->map[ret.y][--ret.x].c;
 	else if (direction == ARROW_DOWN)
-		ret.c = map->map[++ret.y][ret.x].c
+		ret.c = map->map[++ret.y][ret.x].c;
 	else if (direction == ARROW_RIGHT)
-		ret.c = map->map[ret.y][++ret.x].c
+		ret.c = map->map[ret.y][++ret.x].c;
 	else if (direction == ARROW_UP)
-		ret.c = map->map[--ret.y][ret.x].c
+		ret.c = map->map[--ret.y][ret.x].c;
 	return (ret);
 }
 

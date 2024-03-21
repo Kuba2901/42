@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:27:06 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/20 17:28:21 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:48:15 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,27 @@ void	place_enemies(t_game *game)
 		if (!enemy_at_point(game, pt))
 			put_enemy(game, pt);
 		else
-		{
-			iter = -1;
-			while (++iter < free_pts->count)
-			{
-				pt = free_pts->points[iter];
-				if (!enemy_at_point(game, pt))
-				{
-					put_enemy(game, pt);
-					break ;
-				}
-			}
-		}
+			handle_linear_placement(free_pts, game);
 	}
 	free(free_pts->points);
 	free(free_pts);
+}
+
+void	handle_linear_placement(t_free_points *free_pts, t_game *game)
+{
+	int		iter;
+	t_point	pt;
+
+	iter = -1;
+	while (++iter < free_pts->count)
+	{
+		pt = free_pts->points[iter];
+		if (!enemy_at_point(game, pt))
+		{
+			put_enemy(game, pt);
+			break ;
+		}
+	}
 }
 
 void	display_enemies(t_game *game)
