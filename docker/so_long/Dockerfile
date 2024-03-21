@@ -17,7 +17,6 @@ ENV DISPLAY=:0
 RUN git clone https://github.com/Kuba2901/42.git
 
 RUN mv 42/so_long .
-
 RUN rm -rf 42
 
 # Set the working directory
