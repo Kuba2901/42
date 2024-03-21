@@ -8,12 +8,18 @@ DISPLAY_WIRELESS = -e DISPLAY=$(shell ipconfig getifaddr en0):0
 DISPLAY_WIRED = -e DISPLAY=$(shell ipconfig getifaddr en1):0
 RUN_FLAGS = -it --rm
 
+run_preconf:
+	@echo "Running preconf"
+	xhost +
+
 run_wired:
+	make run_preconf
 	@echo "Running wired"
 	open -a Xquartz
 	docker run $(RUN_FLAGS) $(DISPLAY_WIRED) $(MOUNT_VOL) $(IMAGE_NAME)
 
 run_wireless:
+	make run_preconf
 	@echo Running SO_LONG Game
 	open -a Xquartz
 	docker run $(RUN_FLAGS) $(DISPLAY_WIRELESS) $(MOUNT_VOL) $(IMAGE_NAME)
