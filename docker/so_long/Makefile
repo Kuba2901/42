@@ -1,11 +1,13 @@
+# DISCLAIMER: ONLY WORKS ON OSX
+
 IMAGE_NAME = so_long_gui
 CREATE_IMAGE = docker build -t $(IMAGE_NAME) .
-UPDATED_PATH := /opt/X11/bin:${PATH}
 MOUNT_VOL =  -v /tmp/.X11-unix:/tmp/.X11-unix
 DISPLAY_NAME = -e DISPLAY=$$HOSTNAME:0
-RUN_FLAGS = -it --rm 
+RUN_FLAGS = -it --rm
 
 run:
+	@echo Running SO_LONG Game
 	open -a Xquartz
 	xhost + ${hostname} \
 	&& export HOSTNAME=`hostname` \
