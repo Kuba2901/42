@@ -8,6 +8,7 @@ CFLAGS = -Wall -Wextra # -Werror
 RM = rm -rf
 LIBFT_INCLUDE = -L./libft -lft
 LIBS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz $(LIBFT_INCLUDE)
+MLX_NAME = mlx_linux
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INC) -O3 -c $< -o $@
@@ -15,6 +16,11 @@ LIBS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz $(LIB
 $(NAME): $(OBJ)
 	cd libft && make
 	$(CC) $(OBJ) $(LIBS) -o $(NAME)
+
+configure:
+	git clone git@github.com:42Paris/minilibx-linux.git $(MLX_NAME)
+	cd $(MLX_NAME) && ./configure
+	clean_rebuild
 
 all: $(NAME)
 
