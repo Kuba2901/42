@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   graphics_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/20 16:30:33 by jnenczak          #+#    #+#             */
+/*   Updated: 2024/03/20 16:31:54 by jnenczak         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <so_long.h>
 
 t_color	create_trgb(int t, int r, int g, int b)
 {
-	t_color ret;
+	t_color	ret;
+
 	ret.t = t;
 	ret.r = r;
 	ret.g = g;
@@ -13,17 +26,17 @@ t_color	create_trgb(int t, int r, int g, int b)
 
 int	determine_color(t_point pt)
 {
-	if (pt.c == '0')
-		return create_trgb(255,0,0,0).col;
-	if (pt.c == '1')
-		return create_trgb(255,255,255,255).col;
-	if (pt.c == 'C')
-		return create_trgb(255,0,255,0).col;
-	if (pt.c == 'E')
-		return create_trgb(255,255,0,0).col;
-	if (pt.c == 'A')
-		return create_trgb(255,255,0,255).col;
-	return create_trgb(255,0,0,255).col;
+	if (pt.c == MS_FREE)
+		return (create_trgb(255, 0, 0, 0).col);
+	if (pt.c == MS_WALL)
+		return (create_trgb(255, 255, 255, 255).col);
+	if (pt.c == MS_COLLECTIBLE)
+		return (create_trgb(255, 0, 255, 0).col);
+	if (pt.c == MS_EXIT)
+		return (create_trgb(255, 255, 0, 0).col);
+	if (pt.c == MS_PLAYER)
+		return (create_trgb(255, 255, 0, 255).col);
+	return (create_trgb(255, 0, 0, 255).col);
 }
 
 char	*determine_sprite(t_map *map, t_point pt)
@@ -40,15 +53,15 @@ char	*determine_sprite(t_map *map, t_point pt)
 	}
 	if (pt.y == map->map_dimensions->height - 1)
 		return (BOTTOM_WALL_TEX);
-	if (pt.c == '0')
+	if (pt.c == MS_FREE)
 		return (FLOOR_TEX);
-	if (pt.c == 'C')
+	if (pt.c == MS_COLLECTIBLE)
 		return (COLLECTIBLE_TEX);
-	if (pt.c == 'E')
+	if (pt.c == MS_EXIT)
 		return (EXIT_TEX);
-	if (pt.c == '1')
+	if (pt.c == MS_WALL)
 		return (TOP_WALL_TEX);
-	if (pt.c == 'P')
+	if (pt.c == MS_START)
 		return (START_TEX);
 	return (EDGE_TEX);
 }
