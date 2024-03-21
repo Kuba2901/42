@@ -18,7 +18,7 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(LIBS) -o $(NAME)
 
 first_run:
-	git clone git@github.com:42Paris/minilibx-linux.git $(MLX_NAME)
+	git clone https://github.com/42Paris/minilibx-linux.git $(MLX_NAME)
 	cd $(MLX_NAME) && ./configure
 	make clean_rebuild
 
