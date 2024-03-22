@@ -4,7 +4,7 @@ OBJ = $(SRC:.c=.o)
 INC_LIBFT_GNL = -Ilibft/inc_libft/ -Ilibft/inc_gnl/ -Ilibft/inc_ft_printf/
 INC = -Iinc/ -I/usr/include -Imlx_linux $(INC_LIBFT_GNL)
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
 LIBFT_INCLUDE = -L./libft -lft
 LIBS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz $(LIBFT_INCLUDE)

@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:25:28 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/22 17:53:54 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:56:15 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	free_game(t_game *game)
 
 	map = game->map;
 	free_map(map);
-	free(game->enemies.enemies);
+	if (game->enemies.enemies != NULL)
+		free(game->enemies.enemies);
 	free(game);
 }
 

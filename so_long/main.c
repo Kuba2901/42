@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:38:23 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/22 17:53:20 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:56:55 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_game	*start_game(const char *file_name)
 	t_map	*map;
 
 	game = (t_game *)malloc(sizeof(t_game));
+	game->enemies.enemies = NULL;
 	map = fill_map(file_name);
 	game->map = map;
 	if (full_map_check(file_name, map))
