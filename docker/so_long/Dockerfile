@@ -10,9 +10,6 @@ RUN apt update && apt-get install -y \
 	build-essential \
 	x11-apps
 
-# Set environment variable for X11 forwarding
-ENV DISPLAY=:0
-
 # Clone the so_long directory
 RUN git clone https://github.com/Kuba2901/42.git
 
