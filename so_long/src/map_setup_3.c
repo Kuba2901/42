@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:41:59 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/20 16:55:29 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:47:45 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ int	is_out_of_bounds(t_map *map, t_point pt)
 				|| pt.y >= map->map_dimensions->height);
 }
 
+// TODO: Test
 void	print_point_info(t_point pt)
 {
-	printf("PT: (x,y,c) => (%d,%d,%c)\n", pt.x, pt.y, pt.c);
+	ft_printf("PT: (x,y,c) => (%d,%d,%c)\n", pt.x, pt.y, pt.c);
 }

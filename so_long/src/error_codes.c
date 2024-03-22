@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:24:26 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/20 16:24:55 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:47:15 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ const char	*get_error_message(int code)
 	return ("Unknown error!");
 }
 
+// TODO: Test that this is working
 void	print_error(int code)
 {
-	printf("%s\n", get_error_message(code));
+	ft_printf("%s\n", get_error_message(code));
 }

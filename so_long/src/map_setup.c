@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:37:27 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/21 16:41:50 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:48:03 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ t_map	*fill_map(const char *file_name)
 	return (map);
 }
 
+// TODO: Test
 void	print_map(t_map	*map)
 {
 	int	x;
@@ -102,10 +103,10 @@ void	print_map(t_map	*map)
 		x = 0;
 		while (x < map->map_dimensions->width)
 		{
-			printf("(%p)", map->map[y][x].img_path);
+			ft_printf("(%p)", map->map[y][x].img_path);
 			x++;
 		}
-		printf("\n");
+		ft_printf("\n");
 		y++;
 	}
 }

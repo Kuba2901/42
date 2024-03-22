@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:26:37 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/20 17:27:00 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:48:31 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ int	enemy_at_point(t_game *game, t_point pt)
 	while (++i < game->enemies.enemies_count)
 	{
 		if (point_cmp(game->enemies.enemies[i], pt))
-		{
-			printf("Enemy overlapping stopped!\n");
 			return (1);
-		}
 	}
 	return (0);
 }
