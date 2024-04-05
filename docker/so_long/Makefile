@@ -4,8 +4,8 @@ export
 
 IMG_NAME = ${IMAGE_LABEL}
 CREATE_IMAGE = docker build -t $(IMG_NAME) .
-MOUNT_VOL =  -v /tmp/.X11-unix:/tmp/.X11-unix
-DISPLAY_WIRELESS = -e DISPLAY=192.168.1.101:0 # $(shell ipconfig getifaddr en0):0
+MOUNT_VOL = -v $$HOME/42_cursus/so_long:/tmp/so_long  # -v /tmp/.X11-unix:/tmp/.X11-unix
+DISPLAY_WIRELESS = -e DISPLAY=192.168.137.7:0  # -e DISPLAY=192.168.1.101:0 # $(shell ipconfig getifaddr en0):0
 DISPLAY_WIRED = -e DISPLAY=$(shell ipconfig getifaddr en1):0
 RUN_FLAGS = -it --rm
 INFO_SCRIPT=./.get_info.sh
