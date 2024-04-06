@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:38:23 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/18 17:42:29 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:56:55 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_game	*start_game(const char *file_name)
 	t_map	*map;
 
 	game = (t_game *)malloc(sizeof(t_game));
+	game->enemies.enemies = NULL;
 	map = fill_map(file_name);
 	game->map = map;
 	if (full_map_check(file_name, map))
@@ -34,10 +35,10 @@ t_game	*start_game(const char *file_name)
 		return (NULL);
 	}
 	game->player.location = create_point(map->start.x, map->start.y, 'A');
-	initialize_game_stats(game);
-	assign_sprites(game->map);
 	initialize_player(game);
 	initialize_enemies(game);
+	initialize_game_stats(game);
+	assign_sprites(game->map);
 	return (game);
 }
 
@@ -56,6 +57,8 @@ int	main(int ac, char **av)
 		return (0);
 	srand(time(0));
 	game = start_game(av[1]);
+	if (game == NULL)
+		return (0);
 	dims = game->map->map_dimensions;
 	game->mlx_vars.mlx = mlx_init();
 	game->mlx_vars.win = mlx_new_window(game->mlx_vars.mlx,

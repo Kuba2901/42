@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:25:20 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/20 17:26:24 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:48:16 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	move_valid(t_game *game, t_point pt)
 	return (1);
 }
 
+// TODO: Test
 void	collect_item(t_game *game)
 {
 	t_point	player;
@@ -32,7 +33,7 @@ void	collect_item(t_game *game)
 	game->map->map[player.y][player.x].c = MS_FREE;
 	game->map->map[player.y][player.x].img_path = FLOOR_TEX;
 	game->stats.collected += 1;
-	printf("Item collected!\n");
+	ft_printf("Item collected!\n");
 }
 
 void	move_player(t_game *game, int direction)
