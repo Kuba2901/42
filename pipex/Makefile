@@ -4,7 +4,7 @@ OBJ = $(SRC:.c=.o)
 INC_LIBFT_GNL = -Ilibft/inc_libft/ -Ilibft/inc_gnl/ -Ilibft/inc_ft_printf/
 INC = -Iinc/ $(INC_LIBFT_GNL)
 CC = cc
-CFLAGS = -g # -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 LIBFT_INCLUDE = -L./libft -lft
 LIBS = $(LIBFT_INCLUDE)
