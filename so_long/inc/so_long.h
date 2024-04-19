@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:49:24 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/21 16:42:08 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:32:31 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,8 @@ typedef struct s_map
 	t_point		end;
 }	t_map;
 
-typedef struct s_mlx_vars {
+typedef struct s_mlx_vars
+{
 	void	*mlx;
 	void	*win;
 }				t_mlx_vars;

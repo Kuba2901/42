@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:10:34 by jakubnencza       #+#    #+#             */
-/*   Updated: 2024/03/22 17:39:35 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:33:38 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <ft_printf.h>
 # include <stdint.h>
 # define FT_STDOUT 1
-
 
 typedef struct s_list
 {

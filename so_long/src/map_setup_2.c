@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:33:10 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/03/22 18:02:38 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:33:13 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	check_map_rectangular(const char *file_name)
 		if (!w)
 			w = ft_custom_strlen(temp);
 		else if (ft_custom_strlen(temp) != w)
-			 error = MAP_NOT_RECTANGULAR;
+			error = MAP_NOT_RECTANGULAR;
 		free(temp);
 		temp = get_next_line(fd);
 	}
