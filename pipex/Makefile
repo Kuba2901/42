@@ -1,5 +1,5 @@
 NAME = pipex
-SRC = main.c
+SRC = main.c pipex_utils.c pipex_utils_2.c
 OBJ = $(SRC:.c=.o)
 INC_LIBFT_GNL = -Ilibft/inc_libft/ -Ilibft/inc_gnl/ -Ilibft/inc_ft_printf/
 INC = -Iinc/ $(INC_LIBFT_GNL)
