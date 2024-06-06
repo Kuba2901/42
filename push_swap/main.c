@@ -59,6 +59,25 @@ int	is_sorted(t_stack stack)
 	return (1);
 }
 
+int	count_operations(int num, t_stack stack)
+{
+	int	i;
+	int	is_biggest_smallest;
+
+	is_biggest_smallest = stack.nums[0] < num \
+		|| stack.nums[stack.nums_count - 1] > num;
+	if (is_biggest_smallest)
+		return (1);
+
+
+	i = 0;
+	while (++i < stack.nums_count)
+	{
+		if (stack.nums[i] == num)
+			return (i);
+	}
+}
+
 int main(int ac, char **av)
 {
 	t_push_swap push_swap;
