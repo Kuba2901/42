@@ -6,11 +6,33 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 14:32:52 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/06 14:57:41 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/06 15:11:53 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
+
+void	print_single_stack(t_stack stack)
+{
+	int	i;
+
+	i = stack.nums_count;
+	while (--i >= 0)
+		printf("[%d]: %d\n", i, stack.nums[i]);
+}
+
+int		find_smaller(t_stack stack, int num)
+{
+	int	i;
+
+	i = stack.nums_count;
+	while (--i >= 0)
+	{
+		if (stack.nums[i] < num)
+			break ;
+	}
+	return (i);
+}
 
 void	move_num_to_top(t_stack *stack, int index)
 {
@@ -28,7 +50,7 @@ void	move_num_to_top(t_stack *stack, int index)
 		while (stack->nums[stack->nums_count - 1] != num)
 			rrx(stack);
 	}
-	printf("Reached! N.%d is not on top!\n", num);
+	printf("Reached N.%d is now on top!\n", num);
 }
 
 int	is_sorted(t_stack stack)
@@ -53,8 +75,9 @@ int calc_push_rotate(t_stack *stack)
 		return (0);
 	while (!is_sorted(*stack))
 	{
-		printf("Rotating stack!");
+		printf("Rotating stack!\n");
 		rx(stack);
+		print_single_stack(*stack);
 		count++;
 	}
 	return (count);

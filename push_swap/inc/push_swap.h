@@ -54,4 +54,5 @@ void		print_stacks(t_push_swap push_swap);
 int			calc_push_rotate(t_stack *stack);
 int			is_sorted(t_stack stack);
 void		move_num_to_top(t_stack *stack, int index);
+int			find_smaller(t_stack stack, int num);
 #endif
