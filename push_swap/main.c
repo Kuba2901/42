@@ -46,6 +46,19 @@ t_push_swap	initialize_push_swap()
 	return (ps);
 }
 
+int	is_sorted(t_stack stack)
+{
+	int	i;
+
+	i = 0;
+	while (++i < stack.nums_count)
+	{
+		if (stack.nums[i - 1] > stack.nums[i])
+			return (0);
+	}
+	return (1);
+}
+
 int main(int ac, char **av)
 {
 	t_push_swap push_swap;
@@ -58,18 +71,7 @@ int main(int ac, char **av)
 	push_swap = initialize_push_swap();
 	push_swap.stack_a = parse_input(ac, av);
 	print_stacks(push_swap);
-	pa_pb(&push_swap, PB);
-	print_stacks(push_swap);
-	pa_pb(&push_swap, PB);
-	print_stacks(push_swap);
-	ra_rb_rr(&push_swap, RA);
-	print_stacks(push_swap);
-	rra_rrb_rrr(&push_swap, RRA);
-	print_stacks(push_swap);
-	pa_pb(&push_swap, PA);
-	print_stacks(push_swap);
-	rra_rrb_rrr(&push_swap, RRR);
-	print_stacks(push_swap);
+	printf("Is sorted A: %s\n",  is_sorted(push_swap.stack_a) ? "yes" : "no");
 	free_stacks(push_swap);
 	return (0);
 }
