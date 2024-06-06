@@ -46,36 +46,62 @@ t_push_swap	initialize_push_swap()
 	return (ps);
 }
 
-int	is_sorted(t_stack stack)
+int	after_push_operations(int num, t_stack stack)
 {
 	int	i;
+	int	up;
 
-	i = 0;
-	while (++i < stack.nums_count)
+	if (!stack.nums_count || stack.nums[stack.nums_count - 1] < num)
+		return (0);
+	if (stack.nums[0] > num)
+		return (1);
+	i = stack.nums_count;
+	up = -1;
+	while (--i > 0)
 	{
-		if (stack.nums[i - 1] > stack.nums[i])
-			return (0);
+		if (stack.nums[i] < num)
+		{
+			up = stack.nums_count - i - 1;
+			break;
+		}
 	}
-	return (1);
+	return (up);
 }
 
-int	count_operations(int num, t_stack stack)
+int	find_cheapest_index(t_stack from_stack, t_stack to_stack)
 {
 	int	i;
-	int	is_biggest_smallest;
+	int	mid;
+	int	cheapest;
+	int	temp_cost;
+	int	ret;
 
-	is_biggest_smallest = stack.nums[0] < num \
-		|| stack.nums[stack.nums_count - 1] > num;
-	if (is_biggest_smallest)
-		return (1);
-
-
-	i = 0;
-	while (++i < stack.nums_count)
+	if (to_stack.nums_count <= 1)
+		return (i = from_stack.nums_count - 1);
+	cheapest = from_stack.nums_count + 1;
+	i = from_stack.nums_count;
+	mid = from_stack.nums_count / 2 + 1;
+	ret = from_stack.nums_count - 1;
+	while (--i >= mid)
 	{
-		if (stack.nums[i] == num)
-			return (i);
+		temp_cost = after_push_operations(from_stack.nums[i], to_stack);
+		if (cheapest > temp_cost)
+		{
+			cheapest = temp_cost;
+			ret = i;
+		}
 	}
+	i = -1;
+	while (++i <= mid)
+	{
+		temp_cost = after_push_operations(from_stack.nums[i], to_stack);
+		if (cheapest > temp_cost)
+		{
+			cheapest = temp_cost;
+			ret = i;
+		}
+	}
+	return (ret);
 }
 
 int main(int ac, char **av)
@@ -89,8 +115,17 @@ int main(int ac, char **av)
 	}
 	push_swap = initialize_push_swap();
 	push_swap.stack_a = parse_input(ac, av);
+
+	// Keep pushing to stack B until A has no more numbers
+	while (push_swap.stack_a.nums_count)
+	{
+		int ci = find_cheapest_index(push_swap.stack_a, push_swap.stack_b);
+		move_num_to_top(&push_swap.stack_a, ci);
+		pa_pb(&push_swap, PB);
+	}
+	while (push_swap.stack_b.nums_count)
+		pa_pb(&push_swap, PA);
 	print_stacks(push_swap);
-	printf("Is sorted A: %s\n",  is_sorted(push_swap.stack_a) ? "yes" : "no");
 	free_stacks(push_swap);
 	return (0);
 }

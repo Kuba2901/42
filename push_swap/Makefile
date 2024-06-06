@@ -1,5 +1,5 @@
 NAME = push_swap
-SRC = main.c src/input_parsing.c src/pa_pb.c src/ra_rb_rr.c src/rra_rrb_rrr.c src/sa_sb_ss.c
+SRC = main.c src/input_parsing.c src/pa_pb.c src/ra_rb_rr.c src/rra_rrb_rrr.c src/sa_sb_ss.c src/rotate_sort.c
 OBJ = $(SRC:.c=.o)
 INC_LIBFT_GNL = -Ilibft/inc_libft/ -Ilibft/inc_gnl/ -Ilibft/inc_ft_printf/
 INC = -Iinc/ $(INC_LIBFT_GNL)

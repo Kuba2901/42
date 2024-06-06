@@ -46,9 +46,12 @@ void		pa_pb(t_push_swap *ps, int operation_code);
 void		rx(t_stack *stack);
 void		rra_rrb_rrr(t_push_swap *ps, int operation_code);
 void		ra_rb_rr(t_push_swap *ps, int operation_code);
-void		rx(t_stack *stack);
-void		rx(t_stack *stack);
+void		rrx(t_stack *stack);
 void		ra_rb_rr(t_push_swap *ps, int operation_code);
 void 		sa_sb_ss(t_push_swap *ps, int operation_code);
 void		sx(t_stack *stack);
+void		print_stacks(t_push_swap push_swap);
+int			calc_push_rotate(t_stack *stack);
+int			is_sorted(t_stack stack);
+void		move_num_to_top(t_stack *stack, int index);
 #endif

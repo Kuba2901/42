@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 19:31:52 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/06 12:46:09 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:29:53 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	contains_duplicates(int ac, char **av)
 {
 	int		i;
 	int		j;
+	int		comp_len;
 
 	i = 0;
 	while (++i < ac)
@@ -23,7 +24,11 @@ int	contains_duplicates(int ac, char **av)
 		j = i;
 		while (++j < ac)
 		{
-			if (ft_strncmp(av[i], av[j], ft_strlen(av[i])) == 0)
+			if (ft_strlen(av[i]) > ft_strlen(av[j]))
+				comp_len = ft_strlen(av[i]);
+			else
+				comp_len = ft_strlen(av[j]);
+			if (!ft_strncmp(av[i], av[j], comp_len))
 				return (1);
 		}
 	}

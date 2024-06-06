@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 21:22:08 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/06 11:33:57 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:54:00 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	pa_pb(t_push_swap *ps, int operation_code)
 			return;
 		push_top(&(ps->stack_a), TOP(ps->stack_b));
 		remove_top(&(ps->stack_b));
+		calc_push_rotate(&(ps->stack_a));
 	}
 	if (operation_code == PB)
 	{
@@ -60,5 +61,6 @@ void	pa_pb(t_push_swap *ps, int operation_code)
 			return;
 		push_top(&(ps->stack_b), TOP(ps->stack_a));
 		remove_top(&(ps->stack_a));
+		calc_push_rotate(&(ps->stack_b));
 	}
 }
