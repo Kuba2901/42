@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 15:41:07 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/02/03 15:41:08 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/07 12:16:49 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (ret);
 }
 
-// #include <stdio.h>
-
-// int	main(void)
-// {
-// 	char	str[] = "lorem ipsum dolor sit amet";
-// 	printf("res: %s\n", ft_substr(str, 0, 0));
-// 	return (0);
-// }
