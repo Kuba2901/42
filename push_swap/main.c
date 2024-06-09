@@ -54,10 +54,7 @@ int	after_push_operations(int num, t_stack stack)
 	if (!stack.nums_count || stack.nums[stack.nums_count - 1] < num)
 		return (0);
 	if (stack.nums[0] > num)
-	{
-		printf("Returning 1!\n");
 		return (1);
-	}
 	i = stack.nums_count;
 	up = -1;
 	while (--i > 0)
@@ -93,7 +90,6 @@ int	find_cheapest_index(t_stack from_stack, t_stack to_stack)
 			cheapest = temp_cost;
 			ret = i;
 		}
-		printf("1!\n");
 	}
 	i = -1;
 	while (++i <= mid)
@@ -104,9 +100,7 @@ int	find_cheapest_index(t_stack from_stack, t_stack to_stack)
 			cheapest = temp_cost;
 			ret = i;
 		}
-		printf("2!\n");
 	}
-	printf("Reached here!\n");
 	return (ret);
 }
 
@@ -128,13 +122,15 @@ int main(int ac, char **av)
 		int ci = find_cheapest_index(push_swap.stack_a, push_swap.stack_b);
 		int smaller_index = find_smaller(push_swap.stack_b, push_swap.stack_a.nums[ci]);
 		move_num_to_top(&push_swap.stack_a, ci);
-		move_num_to_top(&push_swap.stack_b, smaller_index);
+		if (smaller_index != -1)
+			move_num_to_top(&push_swap.stack_b, smaller_index);
+		printf("Pushing %d to stack B\n", push_swap.stack_a.nums[push_swap.stack_a.nums_count - 1]);
 		pa_pb(&push_swap, PB);
-		printf("Pushed to B!\n");
 		print_stacks(push_swap);
+		printf("Stuck\n");
 	}
-	while (push_swap.stack_b.nums_count)
-		pa_pb(&push_swap, PA);
+	// while (push_swap.stack_b.nums_count)
+	// 	pa_pb(&push_swap, PA);
 	print_stacks(push_swap);
 	free_stacks(push_swap);
 	return (0);

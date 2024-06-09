@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 14:32:52 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/06 15:11:53 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/09 13:27:02 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ void	move_num_to_top(t_stack *stack, int index)
 
 	if (index == stack->nums_count - 1)
 		return;
+	if (index == 0) {
+		rx(stack);
+		return;
+	}
 	num = stack->nums[index];
 	if (index >= stack->nums_count / 2)
 	{
@@ -50,7 +54,6 @@ void	move_num_to_top(t_stack *stack, int index)
 		while (stack->nums[stack->nums_count - 1] != num)
 			rrx(stack);
 	}
-	printf("Reached N.%d is now on top!\n", num);
 }
 
 int	is_sorted(t_stack stack)
@@ -75,9 +78,7 @@ int calc_push_rotate(t_stack *stack)
 		return (0);
 	while (!is_sorted(*stack))
 	{
-		printf("Rotating stack!\n");
 		rx(stack);
-		print_single_stack(*stack);
 		count++;
 	}
 	return (count);
