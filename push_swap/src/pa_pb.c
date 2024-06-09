@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 21:22:08 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/06 14:54:00 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/09 13:33:51 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	pa_pb(t_push_swap *ps, int operation_code)
 			return;
 		push_top(&(ps->stack_b), TOP(ps->stack_a));
 		remove_top(&(ps->stack_a));
+		printf("Pushed to stack B\n");
+		print_stacks(*ps);
 		calc_push_rotate(&(ps->stack_b));
 	}
 }

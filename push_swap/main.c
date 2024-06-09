@@ -76,8 +76,10 @@ int	find_cheapest_index(t_stack from_stack, t_stack to_stack)
 	int	temp_cost;
 	int	ret;
 
+	if (from_stack.nums_count == 1)
+		return (0);
 	if (to_stack.nums_count <= 1)
-		return (i = from_stack.nums_count - 1);
+		return (from_stack.nums_count - 1);
 	cheapest = from_stack.nums_count + 1;
 	i = from_stack.nums_count;
 	mid = from_stack.nums_count / 2 + 1;
@@ -121,16 +123,14 @@ int main(int ac, char **av)
 	{
 		int ci = find_cheapest_index(push_swap.stack_a, push_swap.stack_b);
 		int smaller_index = find_smaller(push_swap.stack_b, push_swap.stack_a.nums[ci]);
-		move_num_to_top(&push_swap.stack_a, ci);
+		move_num_to_top(&push_swap.stack_a, ci); 
 		if (smaller_index != -1)
 			move_num_to_top(&push_swap.stack_b, smaller_index);
-		printf("Pushing %d to stack B\n", push_swap.stack_a.nums[push_swap.stack_a.nums_count - 1]);
 		pa_pb(&push_swap, PB);
 		print_stacks(push_swap);
-		printf("Stuck\n");
 	}
-	// while (push_swap.stack_b.nums_count)
-	// 	pa_pb(&push_swap, PA);
+	while (push_swap.stack_b.nums_count)
+		pa_pb(&push_swap, PA);
 	print_stacks(push_swap);
 	free_stacks(push_swap);
 	return (0);

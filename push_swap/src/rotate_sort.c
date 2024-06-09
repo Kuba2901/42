@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 14:32:52 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/09 13:27:02 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/09 13:38:10 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,6 @@ void	move_num_to_top(t_stack *stack, int index)
 
 	if (index == stack->nums_count - 1)
 		return;
-	if (index == 0) {
-		rx(stack);
-		return;
-	}
 	num = stack->nums[index];
 	if (index >= stack->nums_count / 2)
 	{
