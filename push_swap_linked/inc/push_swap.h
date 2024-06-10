@@ -36,5 +36,6 @@ void	ps_pop_head(t_list **stack);
 void	ps_px(t_list **from, t_list **to);
 int		ps_elem_value(t_list *list);
 void	ps_sort_three(t_list **list);
+void	ps_radix_sort(t_list **stack, t_list **other_stack);
 
 #endif

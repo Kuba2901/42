@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:05:21 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/10 16:18:17 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/10 16:20:14 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ void	ps_sort_three(t_list **list)
 		ps_rrx(list);
 	else {
 		max_index = ps_find_max_index(*list);
-		printf("Min index: %d, max index: %d\n", min_index, max_index);
 		if (max_index == 0)
 			ps_rx(list);
 		else
