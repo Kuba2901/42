@@ -26,5 +26,9 @@ long	ft_atoi_long(const char *str);
 int		ft_is_int(const char *str);
 int		parse_errors(int ac, char **av);
 t_list	**parse_input(int ac, char **av);
+int		is_sorted(t_list **list);
+t_list	*ps_create_list_element(int num);
+void	ps_rx(t_list **stack);
+void	ps_sx(t_list **stack);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 13:25:30 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/10 14:38:05 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/10 15:21:53 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	parse_errors(int ac, char **av)
 	return (NUMBERS_VALID);
 }
 
-static	t_list	*ps_create_list_element(int num)
+t_list	*ps_create_list_element(int num)
 {
 	t_list	*element;
 	int		*content;

@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 13:39:01 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/10 14:37:47 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/10 15:27:12 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ int	main(int ac, char **av)
 		exit(1);
 	}
 	stack_a = parse_input(ac, av);
+	ft_printf("Stack A:\n");
+	ft_lstiter(*stack_a, print_value);
+	printf("Is sorted: %d\n", is_sorted(stack_a));
+	ps_rx(stack_a);
+	ft_printf("Stack A:\n");
+	ft_lstiter(*stack_a, print_value);
+	ps_rx(stack_a);
 	ft_printf("Stack A:\n");
 	ft_lstiter(*stack_a, print_value);
 	free_stacks(stack_a, NULL);
