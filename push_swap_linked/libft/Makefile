@@ -11,7 +11,7 @@ INC_GNL = -I inc_gnl/
 SRC_FT_PRINTF = src_ft_printf/ft_printf.c src_ft_printf/ft_printf_con.c
 INC_FT_PRINTF = -I inc_ft_printf/
 
-SRC =  $(SRC_FT_PRINTF) $(SRC_LIBFT) $(SRC_GNL)
+SRC =  $(SRC_FT_PRINTF) $(SRC_LIBFT) $(SRC_GNL) $(BONUS)
 
 BONUS	= src_libft/ft_lstnew.c src_libft/ft_lstadd_front.c src_libft/ft_lstsize.c src_libft/ft_lstlast.c \
 		  src_libft/ft_lstadd_back.c src_libft/ft_lstdelone.c src_libft/ft_lstclear.c src_libft/ft_lstiter.c src_libft/ft_lstmap.c

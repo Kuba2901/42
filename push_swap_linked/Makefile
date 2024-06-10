@@ -1,10 +1,10 @@
 NAME = push_swap
-SRC = main.c src/input_parsing.c src/pa_pb.c src/ra_rb_rr.c src/rra_rrb_rrr.c src/sa_sb_ss.c
+SRC = main.c src/ps_parse_input.c
 OBJ = $(SRC:.c=.o)
 INC_LIBFT_GNL = -Ilibft/inc_libft/ -Ilibft/inc_gnl/ -Ilibft/inc_ft_printf/
 INC = -Iinc/ $(INC_LIBFT_GNL)
 CC = cc
-CFLAGS = -Wall -Wextra -g # -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
 LIBFT_INCLUDE = -L./libft -lft
 LIBS = $(LIBFT_INCLUDE)

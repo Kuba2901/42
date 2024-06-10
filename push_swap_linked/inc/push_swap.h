@@ -8,8 +8,6 @@
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
 # define NUMBERS_VALID 0
-# define BOTTOM(stack) stack.nums[0]
-# define TOP(stack) stack.nums[stack.nums_count - 1]
 
 // Operation codes
 # define SA 30
@@ -24,37 +22,9 @@
 # define PA 39
 # define PB 40
 
-typedef struct s_stack_element
-{
-	int	value;
-	struct s_stack_element	*next;
-}	t_stack_element;
+long	ft_atoi_long(const char *str);
+int		ft_is_int(const char *str);
+int		parse_errors(int ac, char **av);
+t_list	**parse_input(int ac, char **av);
 
-typedef struct s_stack
-{
-	t_stack_element	*top;
-	t_stack_element	*bottom;
-}	t_stack;
-
-typedef struct s_push_swap
-{
-	t_stack	stack_a;
-	t_stack	stack_b;
-}	t_push_swap;
-
-int			get_parse_error(int ac, char **av);
-t_stack 	parse_input(int ac, char **av);
-int			is_number_invalid(const char *str);
-long int	ft_atoi_long(const char *str);
-void		remove_top(t_stack *stack);
-void		push_top(t_stack *stack, int num);
-void		pa_pb(t_push_swap *ps, int operation_code);
-void		rx(t_stack *stack);
-void		rra_rrb_rrr(t_push_swap *ps, int operation_code);
-void		ra_rb_rr(t_push_swap *ps, int operation_code);
-void		rx(t_stack *stack);
-void		rx(t_stack *stack);
-void		ra_rb_rr(t_push_swap *ps, int operation_code);
-void 		sa_sb_ss(t_push_swap *ps, int operation_code);
-void		sx(t_stack *stack);
 #endif
