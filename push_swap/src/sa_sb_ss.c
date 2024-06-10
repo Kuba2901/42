@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:07:56 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/06 11:26:01 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/10 13:07:01 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 void	sx(t_stack *stack)
 {
 	int	temp;
+	int	last_index;
 
 	if (stack->nums_count < 2)
 		return;
-	temp = stack->nums[0];
-	stack->nums[0] = stack->nums[1];
-	stack->nums[1] = temp;
+	last_index = stack->nums_count - 1;
+	temp = stack->nums[last_index - 1];
+	stack->nums[last_index - 1] = stack->nums[last_index];
+	stack->nums[last_index] = temp;
 }
 
 void 	sa_sb_ss(t_push_swap *ps, int operation_code)

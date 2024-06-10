@@ -106,20 +106,29 @@ int	find_cheapest_index(t_stack from_stack, t_stack to_stack)
 	return (ret);
 }
 
+void ft_print_error(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		ft_putchar_fd(str[i], STDERR_FILENO);
+}
+
 int main(int ac, char **av)
 {
 	t_push_swap push_swap;
 
 	if (get_parse_error(ac, av))
 	{
-		ft_printf("Error\n");
+		ft_print_error("Error\n");
 		exit(1);
 	}
 	push_swap = initialize_push_swap();
 	push_swap.stack_a = parse_input(ac, av);
 
 	// Keep pushing to stack B until A has no more numbers
-	while (push_swap.stack_a.nums_count)
+	while (push_swap.stack_a.nums_count > 3)
 	{
 		int ci = find_cheapest_index(push_swap.stack_a, push_swap.stack_b);
 		int smaller_index = find_smaller(push_swap.stack_b, push_swap.stack_a.nums[ci]);
@@ -127,10 +136,23 @@ int main(int ac, char **av)
 		if (smaller_index != -1)
 			move_num_to_top(&push_swap.stack_b, smaller_index);
 		pa_pb(&push_swap, PB);
-		print_stacks(push_swap);
 	}
+	// Sort the remaining numbers in stack A
+	printf("Stack A before simple sort\n");
+	simple_sort(&push_swap.stack_a);
+	printf("Stack A after simple sort\n");
+	print_stacks(push_swap);
+
+	// Push the remaining numbers in stack B to stack A
 	while (push_swap.stack_b.nums_count)
+	{
+		int ci = find_cheapest_index(push_swap.stack_b, push_swap.stack_a);
+		int smaller_index = find_smaller(push_swap.stack_a, push_swap.stack_b.nums[ci]);
+		move_num_to_top(&push_swap.stack_b, ci); 
+		if (smaller_index != -1)
+			move_num_to_top(&push_swap.stack_a, smaller_index);
 		pa_pb(&push_swap, PA);
+	}
 	print_stacks(push_swap);
 	free_stacks(push_swap);
 	return (0);

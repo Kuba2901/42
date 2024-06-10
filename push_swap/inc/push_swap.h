@@ -55,4 +55,7 @@ int			calc_push_rotate(t_stack *stack);
 int			is_sorted(t_stack stack);
 void		move_num_to_top(t_stack *stack, int index);
 int			find_smaller(t_stack stack, int num);
+void		simple_sort(t_stack *stack);
+void		handle_not_sorted(t_stack *stack, int min_index);
+int			is_reverse_sorted(t_stack *stack);
 #endif
