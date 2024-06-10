@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:29:39 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/10 15:37:52 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/10 15:47:05 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ps_rrx(t_list **stack)
 
 	if (*stack == NULL || (*stack)->next == NULL)
 		return ;
-	last_val = *(int *)(ft_lstlast(*stack)->content);
+	last_val = ps_elem_value(ft_lstlast(*stack));
 	ps_pop_last(stack);
 	ft_lstadd_front(stack, ps_create_list_element(last_val));
 }

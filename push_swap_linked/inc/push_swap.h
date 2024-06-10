@@ -34,5 +34,7 @@ void	ps_rrx(t_list **stack);
 void	ps_pop_last(t_list **stack);
 void	ps_pop_head(t_list **stack);
 void	ps_px(t_list **from, t_list **to);
+int		ps_elem_value(t_list *list);
+void	ps_sort_three(t_list **list);
 
 #endif
