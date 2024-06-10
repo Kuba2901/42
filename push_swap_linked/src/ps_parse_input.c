@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 13:25:30 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/10 14:36:14 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/10 14:38:05 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	parse_errors(int ac, char **av)
 
 	i = 0;
 	if (ac == 1)
-		return (ERROR_NO_ARGUMENTS);
+		exit(0);
 	while (++i < ac)
 	{
 		if (!ft_is_int(av[i]))
