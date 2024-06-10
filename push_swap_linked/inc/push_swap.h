@@ -30,5 +30,8 @@ int		is_sorted(t_list **list);
 t_list	*ps_create_list_element(int num);
 void	ps_rx(t_list **stack);
 void	ps_sx(t_list **stack);
+void	ps_rrx(t_list **stack);
+void	ps_pop_last(t_list **stack);
+void	ps_pop_head(t_list **stack);
 
 #endif
