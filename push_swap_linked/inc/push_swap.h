@@ -33,5 +33,6 @@ void	ps_sx(t_list **stack);
 void	ps_rrx(t_list **stack);
 void	ps_pop_last(t_list **stack);
 void	ps_pop_head(t_list **stack);
+void	ps_px(t_list **from, t_list **to);
 
 #endif
