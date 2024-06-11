@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:05:21 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/10 16:20:14 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:58:47 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,18 @@ static int	ps_find_max_index(t_list *elem)
 	return (index);
 }
 
-void	ps_sort_three(t_list **list)
+static void	ps_sort_three(t_list **list)
 {
 	int	min_index;
 	int	max_index;
 	
-	if (is_sorted(list))
+	if (is_sorted(list) || ft_lstsize(*list) == 1)
 		return ;
+	if (ft_lstsize(*list) == 2)
+	{
+		ps_rx(list);
+		return;
+	}
 	if (is_reverse_sorted(list))
 	{
 		ps_sx(list);
@@ -123,4 +128,70 @@ void	ps_sort_three(t_list **list)
 		else
 			ps_sx(list);
 	}
+}
+
+static void	ps_sort_four(t_list **a, t_list **b)
+{
+	int	min_index;
+
+	if (is_sorted(a))
+		return;
+	min_index = ps_find_min_index(*a);
+	if (min_index == 1)
+		ps_rx(a);
+	else if (min_index == 2)
+	{
+		while (min_index-- > 0)
+			ps_rx(a);
+	}
+	else
+		ps_rrx(a);
+	if (is_sorted(a))
+		return;
+	ps_px(a, b);
+	ps_sort_three(a);
+	ps_px(b, a);
+}
+
+static void	ps_sort_five(t_list **a, t_list **b)
+{
+	int	min_index;
+
+	min_index = ps_find_min_index(*a);
+	if (min_index == 1)
+		ps_rx(a);
+	else if (min_index == 2)
+	{
+		while (min_index-- > 0)
+			ps_rx(a);
+	}
+	else if (min_index == 3)
+	{
+		while (--min_index > 0)
+			ps_rx(a);
+	}
+	else
+		ps_rrx(a);
+	if (is_sorted(a))
+		return ;
+	ps_px(a, b);
+	ps_sort_four(a, b);
+	ps_px(b, a);
+}
+
+void	ps_sort_small(t_list **a, t_list **b)
+{
+	int	size_a;
+
+	size_a = ft_lstsize(*a);
+	if (is_sorted(a) || size_a <= 1)
+		return ;
+	if (size_a == 2)
+		ps_sx(a);
+	else if (size_a == 3)
+		ps_sort_three(a);
+	else if (size_a == 4)
+		ps_sort_four(a, b);
+	else
+		ps_sort_five(a, b);
 }

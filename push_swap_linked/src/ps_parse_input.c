@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 13:25:30 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/10 16:40:03 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/11 16:06:55 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,14 @@ int	ft_is_int(const char *str)
 	i = -1;
 	while (str[++i])
 	{
-		if ((str[i] != '-' && str[i] != '+') && (str[i] < '0' || str[i] > '9'))
+		if (!(str[i] == '-' || str[i] == '+'))
+			break ;
+	}
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
 			return (0);
+		i++;
 	}
 	return (1);
 }
