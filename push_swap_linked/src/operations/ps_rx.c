@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:18:13 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/10 15:37:57 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/11 16:16:33 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ps_pop_head(t_list **stack)
 	free(tmp);
 }
 
-void	ps_rx(t_list **stack)
+void	ps_rx(t_list **stack, int code)
 {
 	int		head_val;
 
@@ -43,4 +43,8 @@ void	ps_rx(t_list **stack)
 	head_val = *((int *)(*stack)->content);
 	ps_pop_head(stack);
 	ft_lstadd_back(stack, ps_create_list_element(head_val));
+	if (code == RA)
+		ft_printf("ra\n");
+	else
+		ft_printf("rb\n");
 }

@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:29:53 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/10 17:38:03 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/11 16:14:10 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,21 @@ void	ps_radix_sort(t_list **stack, t_list **other_stack)
             // If we are checking the sign bit
             if (i == max_bits - 1) {
                 if (value < 0)
-                    ps_rx(stack);
+                    ps_rx(stack, RA);
                 else
-                    ps_px(stack, other_stack);
+                    ps_px(stack, other_stack, PB);
             } else {
                 if (((value >> i) & 1) == 1)
-                    ps_rx(stack);
+                    ps_rx(stack, RA);
                 else
-                    ps_px(stack, other_stack);
+                    ps_px(stack, other_stack, PB);
             }
         }
         while (ft_lstsize(*other_stack) > 0)
-            ps_px(other_stack, stack);
+            ps_px(other_stack, stack, PA);
     }
 
 	// Check if negative numbers did not break the order and rotate
 	while (!is_sorted(stack))
-		ps_rrx(stack);
+		ps_rrx(stack, RRA);
 }

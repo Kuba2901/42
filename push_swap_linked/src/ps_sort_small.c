@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:05:21 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/11 15:58:47 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/11 16:15:38 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,13 @@ static void	ps_sort_three(t_list **list)
 		return ;
 	if (ft_lstsize(*list) == 2)
 	{
-		ps_rx(list);
+		ps_rx(list, RA);
 		return;
 	}
 	if (is_reverse_sorted(list))
 	{
-		ps_sx(list);
-		ps_rrx(list);
+		ps_sx(list, SA);
+		ps_rrx(list, RRA);
 		return;
 	}
 	// Cases
@@ -115,18 +115,18 @@ static void	ps_sort_three(t_list **list)
 	// top
 	if (min_index == 0)
 	{
-		ps_sx(list);
-		ps_rx(list);
+		ps_sx(list, SA);
+		ps_rx(list, RA);
 		return;
 	}
 	else if (min_index == 2)
-		ps_rrx(list);
+		ps_rrx(list, RRA);
 	else {
 		max_index = ps_find_max_index(*list);
 		if (max_index == 0)
-			ps_rx(list);
+			ps_rx(list, RA);
 		else
-			ps_sx(list);
+			ps_sx(list, RA);
 	}
 }
 
@@ -138,19 +138,19 @@ static void	ps_sort_four(t_list **a, t_list **b)
 		return;
 	min_index = ps_find_min_index(*a);
 	if (min_index == 1)
-		ps_rx(a);
+		ps_rx(a, RA);
 	else if (min_index == 2)
 	{
 		while (min_index-- > 0)
-			ps_rx(a);
+			ps_rx(a, RA);
 	}
 	else
-		ps_rrx(a);
+		ps_rrx(a, RRA);
 	if (is_sorted(a))
 		return;
-	ps_px(a, b);
+	ps_px(a, b, PB);
 	ps_sort_three(a);
-	ps_px(b, a);
+	ps_px(b, a, PA);
 }
 
 static void	ps_sort_five(t_list **a, t_list **b)
@@ -159,24 +159,24 @@ static void	ps_sort_five(t_list **a, t_list **b)
 
 	min_index = ps_find_min_index(*a);
 	if (min_index == 1)
-		ps_rx(a);
+		ps_rx(a, RA);
 	else if (min_index == 2)
 	{
 		while (min_index-- > 0)
-			ps_rx(a);
+			ps_rx(a, RA);
 	}
 	else if (min_index == 3)
 	{
 		while (--min_index > 0)
-			ps_rx(a);
+			ps_rx(a, RA);
 	}
 	else
-		ps_rrx(a);
+		ps_rrx(a, RRA);
 	if (is_sorted(a))
 		return ;
-	ps_px(a, b);
+	ps_px(a, b, PB);
 	ps_sort_four(a, b);
-	ps_px(b, a);
+	ps_px(b, a, PA);
 }
 
 void	ps_sort_small(t_list **a, t_list **b)
@@ -187,7 +187,7 @@ void	ps_sort_small(t_list **a, t_list **b)
 	if (is_sorted(a) || size_a <= 1)
 		return ;
 	if (size_a == 2)
-		ps_sx(a);
+		ps_sx(a, SA);
 	else if (size_a == 3)
 		ps_sort_three(a);
 	else if (size_a == 4)
