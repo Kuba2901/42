@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 13:39:01 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/11 16:19:43 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:23:37 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,14 @@ int	main(int ac, char **av)
 	}
 	stack_a = parse_input(ac, av);
 	stack_b = malloc(sizeof(t_list *));
-	if (!is_sorted(stack_a))
-	{
-		if (ft_lstsize(*stack_a) <= 5)
-			ps_sort_small(stack_a, stack_b);
-		else
-			ps_radix_sort(stack_a, stack_b);
-	}
+	ps_push_out_of_order(stack_a, stack_b);
+	// if (!is_sorted(stack_a))
+	// {
+	// 	if (ft_lstsize(*stack_a) <= 5)
+	// 		ps_sort_small(stack_a, stack_b);
+	// 	// else
+	// 	// 	ps_radix_sort(stack_a, stack_b);
+	// }
 	print_stacks(stack_a, stack_b);
 	free_stacks(stack_a, stack_b);
 	return (0);
