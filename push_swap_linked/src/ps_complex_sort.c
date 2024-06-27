@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_complex_sort.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jnenczak <jnenczak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:15:59 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/24 16:37:13 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:20:47 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,3 @@ void	ps_push_out_of_order(t_list **stack_a, t_list **stack_b)
 		temp = *stack_a;
 	}
 }
-
-void 
