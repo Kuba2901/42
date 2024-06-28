@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:15:59 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/28 15:07:39 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:50:26 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,11 @@ int		ps_count_longest_increasing_subsequence(t_list **stack_a)
 	temp = *stack_a;
 	max_num = ps_elem_value(temp);
 	sub_len = 0;
-	printf("Largest at the beginning: %d\n", max_num);
 	while (temp != NULL)
 	{
 		if (ps_elem_value(temp) > max_num)
 		{
 			max_num = ps_elem_value(temp);
-			printf("New largest: %d\n", max_num);
 			sub_len++;
 		}
 		temp = temp->next;
@@ -94,7 +92,6 @@ void	ps_push_out_of_order(t_list **stack_a, t_list **stack_b)
 	temp = *stack_a;
 	found_nums = 0;
 	sub_len = ps_count_longest_increasing_subsequence(stack_a);
-	printf("Sub len: %d\n", sub_len);
 	max_num = ps_elem_value(temp);
 	stack_len = ps_count_elements_in_stack(stack_a);
 	while (found_nums < stack_len - sub_len && stack_len - found_nums > 5)
@@ -219,3 +216,124 @@ t_tuple	*ps_calculate_common_price(t_list *elem_a, t_list *elem_b, t_list **a, t
 	return (ps_tuple_create(elem_a, elem_b, ps_abs(price_down_a - price_down_b), RRR));
 }
 
+int	ps_get_last_element_value(t_list **stack)
+{
+	t_list	*temp;
+
+	temp = *stack;
+	while (temp->next != NULL)
+		temp = temp->next;
+	return (ps_elem_value(temp));
+}
+
+t_list	*ps_get_at_index(t_list **stack, int index)
+{
+	t_list	*temp;
+	int		i;
+
+	i = 0;
+	temp = *stack;
+	while (temp != NULL)
+	{
+		if (i == index)
+			return (temp);
+		temp = temp->next;
+		i++;
+	}
+	return NULL;
+}
+
+int	ps_after_push_operations(int num, t_list **stack)
+{
+	int	i;
+	int	up;
+	int	stack_num_count;
+
+	stack_num_count = ps_count_elements_in_stack(stack);
+	if (!stack_num_count || ps_get_last_element_value(stack) < num)
+		return (0);
+	if (ps_elem_value(*stack) > num)
+		return (1);
+	i = stack_num_count;
+	up = -1;
+	while (--i > 0)
+	{
+		if (ps_elem_value(ps_get_at_index(stack, i)) < num)
+		{
+			up = stack_num_count - i - 1;
+			break;
+		}
+	}
+	return (up);
+}
+
+int	ps_find_cheapest_index(t_list **from_stack, t_list **to_stack, int from_num_count, int to_num_count)
+{
+	int	i;
+	int	mid;
+	int	cheapest;
+	int	temp_cost;
+	int	ret;
+
+	if (from_num_count == 1)
+		return (0);
+	if (to_num_count <= 1)
+		return (from_num_count - 1);
+	cheapest = from_num_count + 1;
+	i = from_num_count;
+	mid = from_num_count / 2 + 1;
+	ret = from_num_count - 1;
+	while (--i >= mid)
+	{
+		temp_cost = ps_after_push_operations(ps_elem_value(ps_get_at_index(from_stack, i)), to_stack);
+		if (cheapest > temp_cost)
+		{
+			cheapest = temp_cost;
+			ret = i;
+		}
+	}
+	i = -1;
+	while (++i < mid)
+	{
+		temp_cost = ps_after_push_operations(ps_elem_value(ps_get_at_index(from_stack, i)), to_stack);
+		if (cheapest > temp_cost)
+		{
+			cheapest = temp_cost;
+			ret = i;
+		}
+	}
+	return (ret);
+}
+
+int		ps_find_smaller(t_list **stack, int num)
+{
+	int	i;
+
+	i = ps_count_elements_in_stack(stack);
+	while (--i >= 0)
+	{
+		if (ps_elem_value(ps_get_at_index(stack, i)) < num)
+			break ;
+	}
+	return (i);
+}
+
+void	ps_move_num_to_top(t_list **stack, int index)
+{
+	int	num;
+	int	stack_num_count;
+
+	stack_num_count = ps_count_elements_in_stack(stack);
+	if (index == stack_num_count - 1)
+		return;
+	num = ps_elem_value(ps_get_at_index(stack, index));
+	if (index >= stack_num_count / 2)
+	{
+		while (ps_elem_value(*stack) != num)
+			ps_rx(stack, RB);
+	}
+	else {
+		while (ps_elem_value(*stack) != num)
+			ps_rrx(stack, RRB);
+	}
+}

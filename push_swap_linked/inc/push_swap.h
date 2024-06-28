@@ -52,4 +52,9 @@ t_tuple	*ps_calculate_common_price(t_list *elem_a, t_list *elem_b, t_list **a, t
 t_tuple	*ps_tuple_create(t_list *elem_a, t_list *elem_b, int price, int code);
 void	ps_tuple_free(t_tuple *tuple);
 int		ps_count_elements_in_stack(t_list **stack);
+int		ps_find_cheapest_index(t_list **from_stack, t_list **to_stack, int from_num_count, int to_num_count);
+int		ps_after_push_operations(int num, t_list **stack);
+void	ps_move_num_to_top(t_list **stack, int index);
+int		ps_find_smaller(t_list **stack, int num);
+t_list	*ps_get_at_index(t_list **stack, int index);
 #endif

@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 13:39:01 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/28 15:08:36 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:50:08 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,25 +61,26 @@ int	main(int ac, char **av)
 		{
 			// 1. Push out of order until there are (<= 5 elements)
 			ps_push_out_of_order(stack_a, stack_b);
-			printf("Pushed out of order!\n");
-			print_stacks(stack_a, stack_b);
 
 			// 2. Do simple sort on stack_a
 			ps_sort_small(stack_a, stack_b);
-			printf("Done simple sort on A!\n");
-			print_stacks(stack_a, stack_b);
 
 			// 3. Push back elements, finding the cheapest, into the correct spots
-			
+			while (ps_count_elements_in_stack(stack_b))
+			{
+				int ci = ps_find_cheapest_index(stack_b, stack_a, 
+					ps_count_elements_in_stack(stack_b), ps_count_elements_in_stack(stack_a));
+				int smaller_index = ps_find_smaller(stack_a, ps_elem_value(ps_get_at_index(stack_b, ci)));
+				ps_move_num_to_top(stack_b, ci); 
+				if (smaller_index != -1)
+					ps_move_num_to_top(stack_a, smaller_index);
+				ps_px(stack_b, stack_a, PA);
+			}
 		}
 		else
 			ps_sort_small(stack_a, stack_b);
 	}
-	else
-	{
-		ft_printf("ALREADY SORTED!\n");
-	}
-	print_stacks(stack_a, stack_b);
+	// print_stacks(stack_a, stack_b);
 	free_stacks(stack_a, stack_b);
 	return (0);
 }
