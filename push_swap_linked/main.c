@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 13:39:01 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/28 14:56:56 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:06:50 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,19 @@ int	main(int ac, char **av)
 	stack_a = parse_input(ac, av);
 	stack_b = malloc(sizeof(t_list *));
 	if (!is_sorted(stack_a))
+	{
+		// 1. Push out of order until there are (<= 5 elements)
 		ps_push_out_of_order(stack_a, stack_b);
+		printf("Pushed out of order!\n");
+		print_stacks(stack_a, stack_b);
+
+		// 2. Do simple sort on stack_a
+		ps_sort_small(stack_a, stack_b);
+		printf("Done simple sort on A!\n");
+		print_stacks(stack_a, stack_b);
+
+		// 3. Push back elements, finding the cheapest, into the correct spots
+	}
 	else
 	{
 		ft_printf("ALREADY SORTED!\n");

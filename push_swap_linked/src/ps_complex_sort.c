@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:15:59 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/28 14:59:02 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:06:31 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	ps_push_out_of_order(t_list **stack_a, t_list **stack_b)
 	printf("Sub len: %d\n", sub_len);
 	max_num = ps_elem_value(temp);
 	stack_len = ps_count_elements_in_stack(stack_a);
-	while (found_nums < stack_len - sub_len)
+	while (found_nums < stack_len - sub_len && stack_len - found_nums > 5)
 	{
 		if (max_num > ps_elem_value(temp))
 		{
@@ -111,6 +111,7 @@ void	ps_push_out_of_order(t_list **stack_a, t_list **stack_b)
 		}
 		temp = *stack_a;
 	}
+	temp = NULL;
 }
 
 int		ps_find_elem_index(t_list **stack, t_list *elem)
