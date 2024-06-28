@@ -9,6 +9,14 @@
 # define MIN_INT -2147483648
 # define NUMBERS_VALID 0
 
+typedef struct s_tuple
+{
+	t_list	*elem_a;
+	t_list	*elem_b;
+	int		price;
+	int		code;
+}	t_tuple;
+
 // Operation codes
 # define SA 30
 # define SB 31
@@ -21,6 +29,8 @@
 # define RRR 38
 # define PA 39
 # define PB 40
+# define RX 41
+# define RRX 42
 
 long	ft_atoi_long(const char *str);
 int		ft_is_int(const char *str);
@@ -38,5 +48,7 @@ int		ps_elem_value(t_list *list);
 void	ps_push_out_of_order(t_list **stack_a, t_list **stack_b);
 int		ps_count_longest_increasing_subsequence(t_list **stack_a);
 void	ps_sort_small(t_list **a, t_list **b);
-
+t_tuple	*ps_calculate_common_price(t_list *elem_a, t_list *elem_b, t_list **a, t_list **b);
+t_tuple	*ps_tuple_create(t_list *elem_a, t_list *elem_b, int price, int code);
+void	ps_tuple_free(t_tuple *tuple);
 #endif
