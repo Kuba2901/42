@@ -130,11 +130,11 @@ int main(int ac, char **av)
 	// Keep pushing to stack B until A has no more numbers
 	while (push_swap.stack_a.nums_count > 3)
 	{
-		int ci = find_cheapest_index(push_swap.stack_a, push_swap.stack_b);
-		int smaller_index = find_smaller(push_swap.stack_b, push_swap.stack_a.nums[ci]);
-		move_num_to_top(&push_swap.stack_a, ci); 
-		if (smaller_index != -1)
-			move_num_to_top(&push_swap.stack_b, smaller_index);
+		// int ci = find_cheapest_index(push_swap.stack_a, push_swap.stack_b);
+		// int smaller_index = find_smaller(push_swap.stack_b, push_swap.stack_a.nums[ci]);
+		// move_num_to_top(&push_swap.stack_a, ci); 
+		// if (smaller_index != -1)
+		// 	move_num_to_top(&push_swap.stack_b, smaller_index);
 		pa_pb(&push_swap, PB);
 	}
 	// Sort the remaining numbers in stack A

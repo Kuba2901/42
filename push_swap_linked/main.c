@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 13:39:01 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/28 15:50:08 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:55:44 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	main(int ac, char **av)
 		{
 			// 1. Push out of order until there are (<= 5 elements)
 			ps_push_out_of_order(stack_a, stack_b);
+			print_stacks(stack_a, stack_b);
 
 			// 2. Do simple sort on stack_a
 			ps_sort_small(stack_a, stack_b);
@@ -80,7 +81,7 @@ int	main(int ac, char **av)
 		else
 			ps_sort_small(stack_a, stack_b);
 	}
-	// print_stacks(stack_a, stack_b);
+	print_stacks(stack_a, stack_b);
 	free_stacks(stack_a, stack_b);
 	return (0);
 }
