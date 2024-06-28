@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:15:59 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/28 15:06:31 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:07:39 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ps_abs(int num)
 	return (num);
 }
 
-static int ps_count_elements_in_stack(t_list **stack)
+int	ps_count_elements_in_stack(t_list **stack)
 {
 	t_list	*temp;
 	int		count;

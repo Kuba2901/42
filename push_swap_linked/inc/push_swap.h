@@ -51,4 +51,5 @@ void	ps_sort_small(t_list **a, t_list **b);
 t_tuple	*ps_calculate_common_price(t_list *elem_a, t_list *elem_b, t_list **a, t_list **b);
 t_tuple	*ps_tuple_create(t_list *elem_a, t_list *elem_b, int price, int code);
 void	ps_tuple_free(t_tuple *tuple);
+int		ps_count_elements_in_stack(t_list **stack);
 #endif

@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 13:39:01 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/28 15:06:50 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:08:36 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,24 @@ int	main(int ac, char **av)
 	stack_b = malloc(sizeof(t_list *));
 	if (!is_sorted(stack_a))
 	{
-		// 1. Push out of order until there are (<= 5 elements)
-		ps_push_out_of_order(stack_a, stack_b);
-		printf("Pushed out of order!\n");
-		print_stacks(stack_a, stack_b);
+		// 0. If <= 5 elements -> do simple sort
+		if (ps_count_elements_in_stack(stack_a) > 5)
+		{
+			// 1. Push out of order until there are (<= 5 elements)
+			ps_push_out_of_order(stack_a, stack_b);
+			printf("Pushed out of order!\n");
+			print_stacks(stack_a, stack_b);
 
-		// 2. Do simple sort on stack_a
-		ps_sort_small(stack_a, stack_b);
-		printf("Done simple sort on A!\n");
-		print_stacks(stack_a, stack_b);
+			// 2. Do simple sort on stack_a
+			ps_sort_small(stack_a, stack_b);
+			printf("Done simple sort on A!\n");
+			print_stacks(stack_a, stack_b);
 
-		// 3. Push back elements, finding the cheapest, into the correct spots
+			// 3. Push back elements, finding the cheapest, into the correct spots
+			
+		}
+		else
+			ps_sort_small(stack_a, stack_b);
 	}
 	else
 	{
