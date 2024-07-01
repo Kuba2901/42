@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:15:59 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/28 15:50:26 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:08:47 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	ps_push_out_of_order(t_list **stack_a, t_list **stack_b)
 	sub_len = ps_count_longest_increasing_subsequence(stack_a);
 	max_num = ps_elem_value(temp);
 	stack_len = ps_count_elements_in_stack(stack_a);
-	while (found_nums < stack_len - sub_len && stack_len - found_nums > 5)
+	while (found_nums < stack_len - sub_len)
 	{
 		if (max_num > ps_elem_value(temp))
 		{

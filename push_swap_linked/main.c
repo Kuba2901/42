@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 13:39:01 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/28 15:55:44 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:54:24 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	main(int ac, char **av)
 
 			// 2. Do simple sort on stack_a
 			ps_sort_small(stack_a, stack_b);
+			printf("Sorted A!\n");
+			print_stacks(stack_a, stack_b);
 
 			// 3. Push back elements, finding the cheapest, into the correct spots
 			while (ps_count_elements_in_stack(stack_b))
