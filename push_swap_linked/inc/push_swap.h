@@ -45,16 +45,5 @@ void	ps_pop_last(t_list **stack);
 void	ps_pop_head(t_list **stack);
 void	ps_px(t_list **from, t_list **to, int code);
 int		ps_elem_value(t_list *list);
-void	ps_push_out_of_order(t_list **stack_a, t_list **stack_b);
-int		ps_count_longest_increasing_subsequence(t_list **stack_a);
 void	ps_sort_small(t_list **a, t_list **b);
-t_tuple	*ps_calculate_common_price(t_list *elem_a, t_list *elem_b, t_list **a, t_list **b);
-t_tuple	*ps_tuple_create(t_list *elem_a, t_list *elem_b, int price, int code);
-void	ps_tuple_free(t_tuple *tuple);
-int		ps_count_elements_in_stack(t_list **stack);
-int		ps_find_cheapest_index(t_list **from_stack, t_list **to_stack, int from_num_count, int to_num_count);
-int		ps_after_push_operations(int num, t_list **stack);
-void	ps_move_num_to_top(t_list **stack, int index);
-int		ps_find_smaller(t_list **stack, int num);
-t_list	*ps_get_at_index(t_list **stack, int index);
 #endif
