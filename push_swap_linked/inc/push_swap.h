@@ -46,4 +46,10 @@ void	ps_pop_head(t_list **stack);
 void	ps_px(t_list **from, t_list **to, int code);
 int		ps_elem_value(t_list *list);
 void	ps_sort_small(t_list **a, t_list **b);
+void	ps_push_out_of_order(t_list	**a, t_list **b);
+int		ps_stack_len(t_list **stack);
+int		ps_count_subsequence(t_list **stack);
+void	ps_print_stacks(t_list **a, t_list **b);
+void	ps_insert_to_sorted(t_list **a, t_list **b);
+void	ps_sort_large(t_list **a, t_list **b);
 #endif
