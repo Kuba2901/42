@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 13:39:01 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/07/01 15:19:09 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:42:19 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,17 @@ int	main(int ac, char **av)
 	}
 	stack_a = parse_input(ac, av);
 	stack_b = malloc(sizeof(t_list *));
-	if (!is_sorted(stack_a))
-	{
-		if (ps_stack_len(stack_a) <= 5)
-			ps_sort_small(stack_a, stack_b);
-		else
-			ps_sort_large(stack_a, stack_b);
-	}
 	ps_print_stacks(stack_a, stack_b);
+	if (!is_sorted(stack_a))
+    {
+        if (ps_stack_len(stack_a) <= 5)
+            ps_sort_small(stack_a, stack_b);
+        else
+		{
+			ps_push_out_of_order(stack_a, stack_b);
+			ps_sort_small(stack_a, stack_b);
+		}
+    }
 	free_stacks(stack_a, stack_b);
 	return (0);
 }

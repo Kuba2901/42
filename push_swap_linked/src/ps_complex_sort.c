@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 14:09:35 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/07/01 16:38:13 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:42:27 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void	ps_push_out_of_order(t_list	**a, t_list **b)
 			ps_rx(a, RA);
 		temp = *a;
 	}
+	printf("Pushed out of order!\n");
+	ps_print_stacks(a, b);
 }
 
 t_list	**ps_copy_stack(t_list **stack)

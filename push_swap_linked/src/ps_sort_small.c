@@ -6,7 +6,7 @@
 /*   By: jnenczak <jnenczak@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:05:21 by jnenczak          #+#    #+#             */
-/*   Updated: 2024/06/11 16:15:38 by jnenczak         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:41:26 by jnenczak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static int	ps_find_max_index(t_list *elem)
 	return (index);
 }
 
-static void	ps_sort_three(t_list **list)
+void	ps_sort_three(t_list **list)
 {
 	int	min_index;
 	int	max_index;
@@ -194,4 +194,6 @@ void	ps_sort_small(t_list **a, t_list **b)
 		ps_sort_four(a, b);
 	else
 		ps_sort_five(a, b);
+	printf("Sorted small!\n");
+	ps_print_stacks(a, b);
 }

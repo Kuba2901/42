@@ -50,6 +50,5 @@ void	ps_push_out_of_order(t_list	**a, t_list **b);
 int		ps_stack_len(t_list **stack);
 int		ps_count_subsequence(t_list **stack);
 void	ps_print_stacks(t_list **a, t_list **b);
-void	ps_insert_to_sorted(t_list **a, t_list **b);
-void	ps_sort_large(t_list **a, t_list **b);
+void	ps_sort_three(t_list **list);
 #endif
